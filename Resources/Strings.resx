@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppConfigLoadFailedMessage" xml:space="preserve">
+    <value>Failed to load appsettings.json. Check the file and restart.</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>RouterTray</value>
+  </data>
+  <data name="AuthFailedMessage" xml:space="preserve">
+    <value>Authentication failed. Check login and password.</value>
+  </data>
+  <data name="AutoStartDisabledMessage" xml:space="preserve">
+    <value>Auto start disabled.</value>
+  </data>
+  <data name="AutoStartEnabledMessage" xml:space="preserve">
+    <value>Auto start enabled.</value>
+  </data>
+  <data name="AutoStartFailedMessage" xml:space="preserve">
+    <value>Failed to update auto start.</value>
+  </data>
+  <data name="InterfacesLoadFailedMenu" xml:space="preserve">
+    <value>Failed to load interfaces</value>
+  </data>
+  <data name="InterfacesLoadFailedMessage" xml:space="preserve">
+    <value>Failed to load interfaces.</value>
+  </data>
+  <data name="InterfacesNone" xml:space="preserve">
+    <value>No interfaces found</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="MenuExit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="MenuInterfaces" xml:space="preserve">
+    <value>Interfaces</value>
+  </data>
+  <data name="MenuPolicies" xml:space="preserve">
+    <value>Policies</value>
+  </data>
+  <data name="MenuSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="MenuAbout" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="PoliciesLoadFailedMenu" xml:space="preserve">
+    <value>Failed to load policies</value>
+  </data>
+  <data name="PoliciesNone" xml:space="preserve">
+    <value>No policies found</value>
+  </data>
+  <data name="PolicyDefaultDisplay" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="PolicySetMessageFormat" xml:space="preserve">
+    <value>Policy set to: {0}</value>
+  </data>
+  <data name="PolicyTitle" xml:space="preserve">
+    <value>Policy</value>
+  </data>
+  <data name="RequestTimeoutMessage" xml:space="preserve">
+    <value>Request timed out.</value>
+  </data>
+  <data name="RouterApiErrorMessage" xml:space="preserve">
+    <value>Router API error.</value>
+  </data>
+  <data name="RouterUnreachableMessage" xml:space="preserve">
+    <value>Router unreachable.</value>
+  </data>
+  <data name="SettingsAutoStart" xml:space="preserve">
+    <value>Start with Windows</value>
+  </data>
+  <data name="SettingsCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="SettingsLogin" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="SettingsPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="SettingsSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SettingsSaveFailedMessage" xml:space="preserve">
+    <value>Failed to save settings.</value>
+  </data>
+  <data name="SettingsSavedMessage" xml:space="preserve">
+    <value>Settings saved.</value>
+  </data>
+  <data name="SettingsShowPassword" xml:space="preserve">
+    <value>Show password</value>
+  </data>
+  <data name="SettingsShowPolicyNotifications" xml:space="preserve">
+    <value>Show notification on policy switch</value>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SettingsValidationMessage" xml:space="preserve">
+    <value>Login and password are required.</value>
+  </data>
+  <data name="UnexpectedErrorMessage" xml:space="preserve">
+    <value>Unexpected error.</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutVersionFormat" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="AboutDescription" xml:space="preserve">
+    <value>Tray utility for managing router access policies.</value>
+  </data>
+  <data name="AboutOk" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="AboutLicenseText" xml:space="preserve">
+    <value>Licensed under the MIT License.</value>
+  </data>
+  <data name="AboutLicenseUrl" xml:space="preserve">
+    <value>https://github.com/den67rus/routertray?tab=MIT-1-ov-file#MIT-1-ov-file</value>
+  </data>
+  <data name="AboutWebsiteText" xml:space="preserve">
+    <value>https://github.com/den67rus/routertray</value>
+  </data>
+  <data name="AboutWebsiteUrl" xml:space="preserve">
+    <value>https://github.com/den67rus/routertray</value>
+  </data>
+  <data name="AboutCopyright" xml:space="preserve">
+    <value>© 2026 Sevostyanov Denis.</value>
+  </data>
+</root>

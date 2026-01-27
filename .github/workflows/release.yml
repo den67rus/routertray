@@ -1,0 +1,101 @@
+name: Release Build
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Compute version from tag
+        shell: pwsh
+        run: |
+          $version = "${{ github.ref_name }}"
+          if ($version.StartsWith("v")) { $version = $version.Substring(1) }
+          if ($version -match '^(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z.-]+))?(?:\+([0-9A-Za-z.-]+))?$') {
+            $major = $matches[1]
+            $minor = $matches[2]
+            $patch = $matches[3]
+          } else {
+            $major = 0; $minor = 0; $patch = 0
+            $version = "0.0.0"
+          }
+          $assemblyVersion = "$major.$minor.$patch.0"
+          "APP_VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "ASSEMBLY_VERSION=$assemblyVersion" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "FILE_VERSION=$assemblyVersion" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Publish win-x64
+        run: dotnet publish RouterTray.csproj -c Release -r win-x64 --self-contained true -p:Version=$env:APP_VERSION -p:InformationalVersion=$env:APP_VERSION -p:AssemblyVersion=$env:ASSEMBLY_VERSION -p:FileVersion=$env:FILE_VERSION
+
+      - name: Publish win-arm64
+        run: dotnet publish RouterTray.csproj -c Release -r win-arm64 --self-contained true -p:Version=$env:APP_VERSION -p:InformationalVersion=$env:APP_VERSION -p:AssemblyVersion=$env:ASSEMBLY_VERSION -p:FileVersion=$env:FILE_VERSION
+
+      - name: Publish win-x86
+        run: dotnet publish RouterTray.csproj -c Release -r win-x86 --self-contained true -p:Version=$env:APP_VERSION -p:InformationalVersion=$env:APP_VERSION -p:AssemblyVersion=$env:ASSEMBLY_VERSION -p:FileVersion=$env:FILE_VERSION
+
+      - name: Install Inno Setup
+        run: choco install innosetup -y
+
+      - name: Package win-x64
+        shell: pwsh
+        run: |
+          $publishPath = "bin\Release\net8.0-windows\win-x64\publish"
+          $zipPath = "RouterTray-portable-win-x64.zip"
+          if (Test-Path $zipPath) { Remove-Item $zipPath }
+          Compress-Archive -Path "$publishPath\*" -DestinationPath $zipPath
+
+      - name: Package win-arm64
+        shell: pwsh
+        run: |
+          $publishPath = "bin\Release\net8.0-windows\win-arm64\publish"
+          $zipPath = "RouterTray-portable-win-arm64.zip"
+          if (Test-Path $zipPath) { Remove-Item $zipPath }
+          Compress-Archive -Path "$publishPath\*" -DestinationPath $zipPath
+
+      - name: Package win-x86
+        shell: pwsh
+        run: |
+          $publishPath = "bin\Release\net8.0-windows\win-x86\publish"
+          $zipPath = "RouterTray-portable-win-x86.zip"
+          if (Test-Path $zipPath) { Remove-Item $zipPath }
+          Compress-Archive -Path "$publishPath\*" -DestinationPath $zipPath
+
+      - name: Build setup installers
+        shell: pwsh
+        run: |
+          $iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (-not (Test-Path $iscc)) { throw "ISCC not found at $iscc" }
+          New-Item -ItemType Directory -Force -Path "artifacts" | Out-Null
+          $targets = @(
+            @{ Arch = "win-x64"; PublishDir = "bin\Release\net8.0-windows\win-x64\publish" },
+            @{ Arch = "win-arm64"; PublishDir = "bin\Release\net8.0-windows\win-arm64\publish" },
+            @{ Arch = "win-x86"; PublishDir = "bin\Release\net8.0-windows\win-x86\publish" }
+          )
+          foreach ($target in $targets) {
+            $env:APP_ARCH = $target.Arch
+            $env:PUBLISH_DIR = (Join-Path $PWD $target.PublishDir)
+            & $iscc "installer\RouterTray.iss"
+          }
+
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            RouterTray-portable-win-x64.zip
+            RouterTray-portable-win-arm64.zip
+            RouterTray-portable-win-x86.zip
+            artifacts/RouterTray-setup-win-x64.exe
+            artifacts/RouterTray-setup-win-arm64.exe
+            artifacts/RouterTray-setup-win-x86.exe
