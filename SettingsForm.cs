@@ -2,11 +2,20 @@ namespace RouterTray;
 
 internal sealed class SettingsForm : Form
 {
+    private const int CompactProfileEditorWidth = 640;
+    private const int WorkingAreaMargin = 24;
+
     private readonly AppSettings _workingSettings;
     private readonly RouterNetworkBinding? _currentNetwork;
 
     private TabControl _settingsTabs = null!;
     private TabPage _profilesPage = null!;
+    private Panel _profilesScrollHost = null!;
+    private TableLayoutPanel _profilesContent = null!;
+    private TableLayoutPanel _profileEditorLayout = null!;
+    private GroupBox _connectionGroup = null!;
+    private GroupBox _authenticationGroup = null!;
+    private Label _routerUrlHintLabel = null!;
     private ToolStrip _profileTabsToolStrip = null!;
     private Button _removeProfileButton = null!;
     private TextBox _profileNameTextBox = null!;
@@ -28,6 +37,8 @@ internal sealed class SettingsForm : Form
 
     private RouterProfile? _editingProfile;
     private bool _loadingProfile;
+    private bool _profileEditorsStacked;
+    private bool _updatingProfilesLayout;
 
     public SettingsForm(AppSettings settings, RouterNetworkBinding? currentNetwork)
     {
@@ -41,8 +52,10 @@ internal sealed class SettingsForm : Form
         MinimizeBox = false;
         ShowInTaskbar = false;
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(760, 700);
-        MinimumSize = new Size(720, 730);
+        ClientSize = new Size(
+            Math.Max(760, Font.Height * 32),
+            Math.Max(700, Font.Height * 25));
+        MinimumSize = new Size(440, 360);
         BackColor = SystemColors.Window;
 
         var mainLayout = new TableLayoutPanel
@@ -116,7 +129,12 @@ internal sealed class SettingsForm : Form
 
         var currentProfile = _workingSettings.FindProfileForNetwork(_currentNetwork?.NetworkId);
         PopulateProfileTabs(currentProfile?.Id ?? _workingSettings.SelectedProfileId);
-        Shown += (_, _) => FocusSelectedProfileTab();
+        Shown += (_, _) =>
+        {
+            FitToWorkingArea();
+            UpdateProfilesLayout();
+            FocusSelectedProfileTab();
+        };
     }
 
     public AppSettings ResultSettings => _workingSettings.Clone();
@@ -126,23 +144,34 @@ internal sealed class SettingsForm : Form
         var page = new TabPage(UiText.SettingsProfilesTab)
         {
             Padding = Padding.Empty,
-            AutoScroll = false,
             BackColor = SystemColors.Window,
             UseVisualStyleBackColor = false
         };
 
-        var content = new TableLayoutPanel
+        _profilesScrollHost = new Panel
         {
             Dock = DockStyle.Fill,
-            ColumnCount = 1,
-            RowCount = 3,
+            AutoScroll = true,
             Padding = new Padding(12),
+            Margin = Padding.Empty,
             BackColor = SystemColors.Window
         };
-        content.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
-        content.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-        content.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-        content.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+
+        _profilesContent = new TableLayoutPanel
+        {
+            Dock = DockStyle.Top,
+            ColumnCount = 1,
+            RowCount = 3,
+            AutoSize = true,
+            AutoSizeMode = AutoSizeMode.GrowAndShrink,
+            Padding = Padding.Empty,
+            Margin = Padding.Empty,
+            BackColor = SystemColors.Window
+        };
+        _profilesContent.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        _profilesContent.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        _profilesContent.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        _profilesContent.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
 
         var profileHeader = new TableLayoutPanel
         {
@@ -185,7 +214,7 @@ internal sealed class SettingsForm : Form
         profileHeader.Controls.Add(_profileTabsToolStrip, 0, 0);
         profileHeader.Controls.Add(_removeProfileButton, 1, 0);
 
-        var editorColumns = new TableLayoutPanel
+        _profileEditorLayout = new TableLayoutPanel
         {
             Dock = DockStyle.Top,
             ColumnCount = 2,
@@ -195,37 +224,38 @@ internal sealed class SettingsForm : Form
             BackColor = SystemColors.Window,
             Margin = new Padding(0, 0, 0, 12)
         };
-        editorColumns.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 46));
-        editorColumns.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54));
-        editorColumns.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        _profileEditorLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 46));
+        _profileEditorLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54));
+        _profileEditorLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
-        var connectionGroup = CreateConnectionGroup();
-        connectionGroup.Dock = DockStyle.Fill;
-        connectionGroup.Margin = new Padding(0, 0, 6, 0);
+        _connectionGroup = CreateConnectionGroup();
+        _connectionGroup.Dock = DockStyle.Fill;
+        _connectionGroup.Margin = new Padding(0, 0, 6, 0);
 
-        var authenticationGroup = CreateAuthenticationGroup();
-        authenticationGroup.Dock = DockStyle.Fill;
-        authenticationGroup.Margin = new Padding(6, 0, 0, 0);
+        _authenticationGroup = CreateAuthenticationGroup();
+        _authenticationGroup.Dock = DockStyle.Fill;
+        _authenticationGroup.Margin = new Padding(6, 0, 0, 0);
 
-        editorColumns.Controls.Add(connectionGroup, 0, 0);
-        editorColumns.Controls.Add(authenticationGroup, 1, 0);
+        _profileEditorLayout.Controls.Add(_connectionGroup, 0, 0);
+        _profileEditorLayout.Controls.Add(_authenticationGroup, 1, 0);
 
         var networkGroup = CreateNetworkBindingsGroup();
         networkGroup.Dock = DockStyle.Fill;
 
-        content.Controls.Add(profileHeader, 0, 0);
-        content.Controls.Add(editorColumns, 0, 1);
-        content.Controls.Add(networkGroup, 0, 2);
+        _profilesContent.Controls.Add(profileHeader, 0, 0);
+        _profilesContent.Controls.Add(_profileEditorLayout, 0, 1);
+        _profilesContent.Controls.Add(networkGroup, 0, 2);
 
-        page.Controls.Add(content);
+        _profilesScrollHost.Controls.Add(_profilesContent);
+        _profilesScrollHost.ClientSizeChanged += (_, _) => UpdateProfilesLayout();
+        _profilesScrollHost.Layout += (_, _) => UpdateProfilesLayout();
+        page.Controls.Add(_profilesScrollHost);
         return page;
     }
 
     private GroupBox CreateConnectionGroup()
     {
         var group = CreateSectionGroup(UiText.SettingsConnectionSection);
-        group.Height = 294;
-        group.MinimumSize = new Size(0, 294);
         var fields = CreateStackedFieldLayout(5);
 
         _profileNameTextBox = CreateTextBox();
@@ -236,20 +266,21 @@ internal sealed class SettingsForm : Form
         _routerUrlTextBox.Margin = new Padding(0, 0, 0, 6);
         _routerUrlTextBox.PlaceholderText = AppSettings.RouterUrlExample;
 
-        var routerUrlHint = new Label
+        _routerUrlHintLabel = new Label
         {
             Text = UiText.SettingsRouterUrlHint,
             AutoSize = true,
-            MaximumSize = new Size(260, 0),
+            MaximumSize = new Size(320, 0),
             ForeColor = SystemColors.GrayText,
             Margin = Padding.Empty
         };
+        fields.ClientSizeChanged += (_, _) => UpdateWrappingLabelWidth(_routerUrlHintLabel, fields);
 
         fields.Controls.Add(CreateCompactFieldLabel(UiText.SettingsProfileName), 0, 0);
         fields.Controls.Add(_profileNameTextBox, 0, 1);
         fields.Controls.Add(CreateCompactFieldLabel(UiText.SettingsRouterUrl), 0, 2);
         fields.Controls.Add(_routerUrlTextBox, 0, 3);
-        fields.Controls.Add(routerUrlHint, 0, 4);
+        fields.Controls.Add(_routerUrlHintLabel, 0, 4);
         group.Controls.Add(fields);
         return group;
     }
@@ -257,8 +288,6 @@ internal sealed class SettingsForm : Form
     private GroupBox CreateAuthenticationGroup()
     {
         var group = CreateSectionGroup(UiText.SettingsAuthenticationSection);
-        group.Height = 294;
-        group.MinimumSize = new Size(0, 294);
         var fields = CreateStackedFieldLayout(7);
 
         _authModeComboBox = new ComboBox
@@ -325,8 +354,6 @@ internal sealed class SettingsForm : Form
     private GroupBox CreateNetworkBindingsGroup()
     {
         var group = CreateSectionGroup(UiText.SettingsProfileNetworks);
-        group.AutoSize = false;
-        group.Height = 170;
         group.MinimumSize = new Size(0, 170);
         group.Margin = Padding.Empty;
 
@@ -335,6 +362,8 @@ internal sealed class SettingsForm : Form
             Dock = DockStyle.Fill,
             ColumnCount = 1,
             RowCount = 3,
+            AutoSize = true,
+            AutoSizeMode = AutoSizeMode.GrowAndShrink,
             BackColor = SystemColors.Window,
             Margin = Padding.Empty
         };
@@ -352,15 +381,19 @@ internal sealed class SettingsForm : Form
         {
             Text = currentNetworkText,
             AutoSize = true,
+            MaximumSize = new Size(600, 0),
             ForeColor = _currentNetwork is null ? SystemColors.GrayText : SystemColors.WindowText,
             Margin = new Padding(0, 0, 0, 8)
         };
+        layout.ClientSizeChanged += (_, _) => UpdateWrappingLabelWidth(currentNetworkLabel, layout);
 
         _networkBindingsListBox = new ListBox
         {
             Dock = DockStyle.Fill,
+            MinimumSize = new Size(0, 96),
             IntegralHeight = false,
-            BorderStyle = BorderStyle.FixedSingle
+            BorderStyle = BorderStyle.FixedSingle,
+            HorizontalScrollbar = true
         };
         _networkBindingsListBox.SelectedIndexChanged += (_, _) =>
             _removeNetworkButton.Enabled = _networkBindingsListBox.SelectedItem is RouterNetworkBinding;
@@ -369,8 +402,9 @@ internal sealed class SettingsForm : Form
         {
             Dock = DockStyle.Fill,
             AutoSize = true,
+            AutoSizeMode = AutoSizeMode.GrowAndShrink,
             FlowDirection = FlowDirection.LeftToRight,
-            WrapContents = false,
+            WrapContents = true,
             Margin = new Padding(0, 8, 0, 0)
         };
         var bindButton = new Button
@@ -406,45 +440,242 @@ internal sealed class SettingsForm : Form
     {
         var page = new TabPage(UiText.SettingsApplicationTab)
         {
-            Padding = new Padding(16)
+            Padding = Padding.Empty,
+            BackColor = SystemColors.Window,
+            UseVisualStyleBackColor = false
         };
 
-        var layout = new FlowLayoutPanel
+        var scrollHost = new Panel
         {
             Dock = DockStyle.Fill,
-            FlowDirection = FlowDirection.TopDown,
-            WrapContents = false,
-            AutoScroll = true
+            AutoScroll = true,
+            Padding = new Padding(16),
+            BackColor = SystemColors.Window
         };
+        var layout = new TableLayoutPanel
+        {
+            Dock = DockStyle.Top,
+            ColumnCount = 1,
+            RowCount = 3,
+            AutoSize = true,
+            AutoSizeMode = AutoSizeMode.GrowAndShrink,
+            Margin = Padding.Empty,
+            BackColor = SystemColors.Window
+        };
+        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
         _automaticProfileSelectionCheckBox = new CheckBox
         {
             Text = UiText.SettingsAutomaticProfileSelection,
-            AutoSize = true,
-            MaximumSize = new Size(600, 0),
+            AutoSize = false,
+            Dock = DockStyle.Fill,
             Checked = _workingSettings.AutomaticProfileSelection,
             Margin = new Padding(0, 0, 0, 12)
         };
         _autoStartCheckBox = new CheckBox
         {
             Text = UiText.SettingsAutoStart,
-            AutoSize = true,
+            AutoSize = false,
+            Dock = DockStyle.Fill,
             Checked = _workingSettings.AutoStart,
             Margin = new Padding(0, 0, 0, 12)
         };
         _notifyPolicyCheckBox = new CheckBox
         {
             Text = UiText.SettingsShowPolicyNotifications,
-            AutoSize = true,
+            AutoSize = false,
+            Dock = DockStyle.Fill,
             Checked = _workingSettings.ShowPolicyNotifications,
             Margin = new Padding(0, 0, 0, 12)
         };
 
-        layout.Controls.Add(_automaticProfileSelectionCheckBox);
-        layout.Controls.Add(_autoStartCheckBox);
-        layout.Controls.Add(_notifyPolicyCheckBox);
-        page.Controls.Add(layout);
+        layout.Controls.Add(_automaticProfileSelectionCheckBox, 0, 0);
+        layout.Controls.Add(_autoStartCheckBox, 0, 1);
+        layout.Controls.Add(_notifyPolicyCheckBox, 0, 2);
+
+        var updatingCheckBoxLayout = false;
+        void UpdateCheckBoxLayout()
+        {
+            if (updatingCheckBoxLayout)
+            {
+                return;
+            }
+
+            var availableWidth = scrollHost.ClientSize.Width - scrollHost.Padding.Horizontal;
+            if (scrollHost.VerticalScroll.Visible)
+            {
+                availableWidth -= SystemInformation.VerticalScrollBarWidth;
+            }
+
+            if (availableWidth <= 0)
+            {
+                return;
+            }
+
+            updatingCheckBoxLayout = true;
+            try
+            {
+                foreach (var checkBox in new[]
+                         {
+                             _automaticProfileSelectionCheckBox,
+                             _autoStartCheckBox,
+                             _notifyPolicyCheckBox
+                         })
+                {
+                    var textWidth = Math.Max(1, availableWidth - checkBox.Font.Height - 12);
+                    var textSize = TextRenderer.MeasureText(
+                        checkBox.Text,
+                        checkBox.Font,
+                        new Size(textWidth, int.MaxValue),
+                        TextFormatFlags.WordBreak | TextFormatFlags.NoPrefix);
+                    var height = Math.Max(checkBox.Font.Height + 8, textSize.Height + 8);
+                    checkBox.MinimumSize = new Size(0, height);
+                    checkBox.Height = height;
+                }
+            }
+            finally
+            {
+                updatingCheckBoxLayout = false;
+            }
+        }
+
+        scrollHost.Controls.Add(layout);
+        scrollHost.ClientSizeChanged += (_, _) => UpdateCheckBoxLayout();
+        scrollHost.Layout += (_, _) => UpdateCheckBoxLayout();
+        page.Controls.Add(scrollHost);
         return page;
+    }
+
+    private void UpdateProfilesLayout()
+    {
+        if (_updatingProfilesLayout ||
+            _profilesScrollHost is null ||
+            _profilesContent is null ||
+            _profileEditorLayout is null)
+        {
+            return;
+        }
+
+        _updatingProfilesLayout = true;
+        try
+        {
+            var availableWidth = _profilesScrollHost.ClientSize.Width -
+                                 _profilesScrollHost.Padding.Horizontal;
+            if (_profilesScrollHost.VerticalScroll.Visible)
+            {
+                availableWidth -= SystemInformation.VerticalScrollBarWidth;
+            }
+
+            if (availableWidth <= 0)
+            {
+                return;
+            }
+
+            var wideEditorMinimum = Math.Max(CompactProfileEditorWidth, Font.Height * 27);
+            var shouldStackEditors = availableWidth < wideEditorMinimum;
+            if (shouldStackEditors != _profileEditorsStacked)
+            {
+                ConfigureProfileEditorLayout(shouldStackEditors);
+            }
+
+            var viewportHeight = Math.Max(
+                0,
+                _profilesScrollHost.ClientSize.Height - _profilesScrollHost.Padding.Vertical);
+            if (_profilesContent.MinimumSize.Height != viewportHeight)
+            {
+                _profilesContent.MinimumSize = new Size(0, viewportHeight);
+            }
+
+            if (_routerUrlHintLabel.Parent is Control hintContainer)
+            {
+                UpdateWrappingLabelWidth(_routerUrlHintLabel, hintContainer);
+            }
+        }
+        finally
+        {
+            _updatingProfilesLayout = false;
+        }
+    }
+
+    private void ConfigureProfileEditorLayout(bool stacked)
+    {
+        _profileEditorLayout.SuspendLayout();
+        try
+        {
+            _profileEditorLayout.Controls.Remove(_connectionGroup);
+            _profileEditorLayout.Controls.Remove(_authenticationGroup);
+            _profileEditorLayout.ColumnStyles.Clear();
+            _profileEditorLayout.RowStyles.Clear();
+
+            if (stacked)
+            {
+                _profileEditorLayout.ColumnCount = 1;
+                _profileEditorLayout.RowCount = 2;
+                _profileEditorLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+                _profileEditorLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                _profileEditorLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                _connectionGroup.Margin = new Padding(0, 0, 0, 6);
+                _authenticationGroup.Margin = new Padding(0, 6, 0, 0);
+                _profileEditorLayout.Controls.Add(_connectionGroup, 0, 0);
+                _profileEditorLayout.Controls.Add(_authenticationGroup, 0, 1);
+            }
+            else
+            {
+                _profileEditorLayout.ColumnCount = 2;
+                _profileEditorLayout.RowCount = 1;
+                _profileEditorLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 46));
+                _profileEditorLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54));
+                _profileEditorLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+                _connectionGroup.Margin = new Padding(0, 0, 6, 0);
+                _authenticationGroup.Margin = new Padding(6, 0, 0, 0);
+                _profileEditorLayout.Controls.Add(_connectionGroup, 0, 0);
+                _profileEditorLayout.Controls.Add(_authenticationGroup, 1, 0);
+            }
+
+            _profileEditorsStacked = stacked;
+        }
+        finally
+        {
+            _profileEditorLayout.ResumeLayout(true);
+        }
+    }
+
+    private void FitToWorkingArea()
+    {
+        var screen = Screen.FromControl(Owner ?? this);
+        var workingArea = screen.WorkingArea;
+        var margin = ScaleLogicalPixels(WorkingAreaMargin);
+        var maximumWidth = Math.Max(1, workingArea.Width - margin * 2);
+        var maximumHeight = Math.Max(1, workingArea.Height - margin * 2);
+        var fittedSize = new Size(
+            Math.Min(Width, maximumWidth),
+            Math.Min(Height, maximumHeight));
+
+        if (Size != fittedSize)
+        {
+            Size = fittedSize;
+        }
+
+        Location = new Point(
+            workingArea.Left + Math.Max(0, (workingArea.Width - Width) / 2),
+            workingArea.Top + Math.Max(0, (workingArea.Height - Height) / 2));
+    }
+
+    private int ScaleLogicalPixels(int value)
+    {
+        return Math.Max(1, (int)Math.Ceiling(value * DeviceDpi / 96d));
+    }
+
+    private static void UpdateWrappingLabelWidth(Label label, Control container)
+    {
+        var availableWidth = container.ClientSize.Width - container.Padding.Horizontal;
+        if (availableWidth > 0 && label.MaximumSize.Width != availableWidth)
+        {
+            label.MaximumSize = new Size(availableWidth, 0);
+        }
     }
 
     private void PopulateProfileTabs(string? selectedProfileId)
@@ -912,10 +1143,9 @@ internal sealed class SettingsForm : Form
         return new GroupBox
         {
             Text = text,
-            Dock = DockStyle.Top,
-            AutoSize = false,
-            Height = 208,
-            MinimumSize = new Size(0, 208),
+            Dock = DockStyle.Fill,
+            AutoSize = true,
+            AutoSizeMode = AutoSizeMode.GrowAndShrink,
             BackColor = SystemColors.Window,
             Padding = new Padding(12, 10, 12, 12),
             Margin = new Padding(0, 0, 0, 14)

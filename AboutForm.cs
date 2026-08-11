@@ -6,7 +6,16 @@ namespace RouterTray;
 internal sealed class AboutForm : Form
 {
     private const int MaxTextWidth = 460;
+    private const int WorkingAreaMargin = 24;
+
     private readonly Image? _logoImage;
+    private readonly List<Control> _bodyWrappingControls = [];
+    private readonly List<Control> _footerWrappingControls = [];
+    private readonly TableLayoutPanel _bodyTextLayout;
+    private readonly TableLayoutPanel _footerTextLayout;
+    private readonly Panel _scrollHost;
+    private readonly TableLayoutPanel _rootLayout;
+    private bool _updatingResponsiveLayout;
 
     public AboutForm()
     {
@@ -17,19 +26,32 @@ internal sealed class AboutForm : Form
         MinimizeBox = false;
         ShowInTaskbar = false;
         AutoScaleMode = AutoScaleMode.Font;
-        AutoSize = true;
-        AutoSizeMode = AutoSizeMode.GrowAndShrink;
+        ClientSize = new Size(
+            Math.Max(600, Font.Height * 24),
+            Math.Max(360, Font.Height * 13));
+        MinimumSize = new Size(380, 280);
         BackColor = SystemColors.Window;
 
-        var root = new TableLayoutPanel
+        _scrollHost = new Panel
         {
             Dock = DockStyle.Fill,
+            AutoScroll = true,
+            BackColor = SystemColors.Window
+        };
+
+        _rootLayout = new TableLayoutPanel
+        {
+            Dock = DockStyle.Top,
             ColumnCount = 1,
             RowCount = 2,
             AutoSize = true,
-            AutoSizeMode = AutoSizeMode.GrowAndShrink
+            AutoSizeMode = AutoSizeMode.GrowAndShrink,
+            Margin = Padding.Empty,
+            BackColor = SystemColors.Window
         };
-        root.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        _rootLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        _rootLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+        _rootLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
         var content = new TableLayoutPanel
         {
@@ -39,12 +61,13 @@ internal sealed class AboutForm : Form
             Dock = DockStyle.Fill,
             AutoSize = true,
             AutoSizeMode = AutoSizeMode.GrowAndShrink,
+            Margin = Padding.Empty,
             BackColor = SystemColors.Window
         };
         content.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
         content.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
-        var left = new TableLayoutPanel
+        _bodyTextLayout = new TableLayoutPanel
         {
             ColumnCount = 1,
             AutoSize = true,
@@ -59,8 +82,8 @@ internal sealed class AboutForm : Form
             Margin = new Padding(0, 0, 0, 4),
             Font = new Font(Font.FontFamily, Font.Size + 10f, FontStyle.Bold)
         };
-        left.Controls.Add(nameLabel, 0, 0);
-        left.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        _bodyTextLayout.Controls.Add(nameLabel, 0, 0);
+        _bodyTextLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
         var versionLabel = new Label
         {
@@ -70,11 +93,16 @@ internal sealed class AboutForm : Form
             Margin = new Padding(4, 0, 0, 10),
             Font = new Font(Font.FontFamily, Font.Size + 1f, FontStyle.Regular)
         };
-        left.Controls.Add(versionLabel, 0, 1);
-        left.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        _bodyWrappingControls.Add(versionLabel);
+        _bodyTextLayout.Controls.Add(versionLabel, 0, 1);
+        _bodyTextLayout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
         var rowIndex = 2;
-        rowIndex = AddOptionalLabel(left, rowIndex, UiText.AboutDescription);
+        rowIndex = AddOptionalLabel(
+            _bodyTextLayout,
+            rowIndex,
+            UiText.AboutDescription,
+            _bodyWrappingControls);
 
         _logoImage = GetAppIconBitmap();
         var logo = new PictureBox
@@ -85,7 +113,7 @@ internal sealed class AboutForm : Form
             Margin = new Padding(24, 4, 0, 0)
         };
 
-        content.Controls.Add(left, 0, 0);
+        content.Controls.Add(_bodyTextLayout, 0, 0);
         content.Controls.Add(logo, 1, 0);
 
         var footerPanel = new Panel
@@ -109,23 +137,36 @@ internal sealed class AboutForm : Form
         footerLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
         footerLayout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
 
-        var footerLeft = new TableLayoutPanel
+        _footerTextLayout = new TableLayoutPanel
         {
             ColumnCount = 1,
             AutoSize = true,
             AutoSizeMode = AutoSizeMode.GrowAndShrink,
-            BackColor = SystemColors.Control
+            BackColor = SystemColors.Control,
+            Dock = DockStyle.Fill
         };
-        footerLeft.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+        _footerTextLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
 
         var footerRow = 0;
-        footerRow = AddOptionalLabel(footerLeft, footerRow, ResolveCopyright());
+        footerRow = AddOptionalLabel(
+            _footerTextLayout,
+            footerRow,
+            ResolveCopyright(),
+            _footerWrappingControls);
 
         var licenseLink = CreateLink(UiText.AboutLicenseText, UiText.AboutLicenseUrl);
-        footerRow = AddOptionalControl(footerLeft, footerRow, licenseLink);
+        footerRow = AddOptionalControl(
+            _footerTextLayout,
+            footerRow,
+            licenseLink,
+            _footerWrappingControls);
 
         var websiteLink = CreateLink(UiText.AboutWebsiteText, UiText.AboutWebsiteUrl);
-        footerRow = AddOptionalControl(footerLeft, footerRow, websiteLink);
+        footerRow = AddOptionalControl(
+            _footerTextLayout,
+            footerRow,
+            websiteLink,
+            _footerWrappingControls);
 
         var buttonsPanel = new FlowLayoutPanel
         {
@@ -134,8 +175,8 @@ internal sealed class AboutForm : Form
             AutoSize = true,
             AutoSizeMode = AutoSizeMode.GrowAndShrink,
             BackColor = SystemColors.Control,
-            Anchor = AnchorStyles.Top | AnchorStyles.Right,
-            Margin = new Padding(0, 60, 0, 0)
+            Anchor = AnchorStyles.Bottom | AnchorStyles.Right,
+            Margin = new Padding(24, 0, 0, 0)
         };
 
         var okButton = new Button
@@ -152,19 +193,30 @@ internal sealed class AboutForm : Form
 
         buttonsPanel.Controls.Add(okButton);
 
-        footerLayout.Controls.Add(footerLeft, 0, 0);
+        footerLayout.Controls.Add(_footerTextLayout, 0, 0);
         footerLayout.Controls.Add(buttonsPanel, 1, 0);
         footerPanel.Controls.Add(footerLayout);
 
-        root.Controls.Add(content, 0, 0);
-        root.Controls.Add(footerPanel, 0, 1);
-        root.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-        root.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        _rootLayout.Controls.Add(content, 0, 0);
+        _rootLayout.Controls.Add(footerPanel, 0, 1);
 
-        Controls.Add(root);
+        _scrollHost.Controls.Add(_rootLayout);
+        Controls.Add(_scrollHost);
+        _scrollHost.ClientSizeChanged += (_, _) => UpdateResponsiveLayout();
+        _bodyTextLayout.ClientSizeChanged += (_, _) => UpdateResponsiveLayout();
+        _footerTextLayout.ClientSizeChanged += (_, _) => UpdateResponsiveLayout();
+        Shown += (_, _) =>
+        {
+            FitToWorkingArea();
+            UpdateResponsiveLayout();
+        };
     }
 
-    private static int AddOptionalLabel(TableLayoutPanel panel, int rowIndex, string text)
+    private static int AddOptionalLabel(
+        TableLayoutPanel panel,
+        int rowIndex,
+        string text,
+        ICollection<Control>? wrappingControls = null)
     {
         if (string.IsNullOrWhiteSpace(text))
         {
@@ -172,18 +224,24 @@ internal sealed class AboutForm : Form
         }
 
         var label = CreateLabel(text, 8);
+        wrappingControls?.Add(label);
         panel.Controls.Add(label, 0, rowIndex);
         panel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
         return rowIndex + 1;
     }
 
-    private static int AddOptionalControl(TableLayoutPanel panel, int rowIndex, Control? control)
+    private static int AddOptionalControl(
+        TableLayoutPanel panel,
+        int rowIndex,
+        Control? control,
+        ICollection<Control>? wrappingControls = null)
     {
         if (control is null)
         {
             return rowIndex;
         }
 
+        wrappingControls?.Add(control);
         panel.Controls.Add(control, 0, rowIndex);
         panel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
         return rowIndex + 1;
@@ -224,6 +282,76 @@ internal sealed class AboutForm : Form
         };
 
         return link;
+    }
+
+    private void UpdateResponsiveLayout()
+    {
+        if (_updatingResponsiveLayout)
+        {
+            return;
+        }
+
+        _updatingResponsiveLayout = true;
+        try
+        {
+            var viewportHeight = Math.Max(0, _scrollHost.ClientSize.Height);
+            if (_rootLayout.MinimumSize.Height != viewportHeight)
+            {
+                _rootLayout.MinimumSize = new Size(0, viewportHeight);
+            }
+
+            UpdateWrappingControls(_bodyWrappingControls, _bodyTextLayout.ClientSize.Width);
+            UpdateWrappingControls(_footerWrappingControls, _footerTextLayout.ClientSize.Width);
+        }
+        finally
+        {
+            _updatingResponsiveLayout = false;
+        }
+    }
+
+    private void UpdateWrappingControls(IEnumerable<Control> controls, int containerWidth)
+    {
+        if (containerWidth <= 0)
+        {
+            return;
+        }
+
+        var maximumTextWidth = ScaleLogicalPixels(MaxTextWidth);
+        foreach (var control in controls)
+        {
+            var availableWidth = Math.Max(1, containerWidth - control.Margin.Horizontal);
+            var width = Math.Min(maximumTextWidth, availableWidth);
+            if (control.MaximumSize.Width != width)
+            {
+                control.MaximumSize = new Size(width, 0);
+            }
+        }
+    }
+
+    private void FitToWorkingArea()
+    {
+        var screen = Screen.FromControl(Owner ?? this);
+        var workingArea = screen.WorkingArea;
+        var margin = ScaleLogicalPixels(WorkingAreaMargin);
+        var maximumWidth = Math.Max(1, workingArea.Width - margin * 2);
+        var maximumHeight = Math.Max(1, workingArea.Height - margin * 2);
+        var fittedSize = new Size(
+            Math.Min(Width, maximumWidth),
+            Math.Min(Height, maximumHeight));
+
+        if (Size != fittedSize)
+        {
+            Size = fittedSize;
+        }
+
+        Location = new Point(
+            workingArea.Left + Math.Max(0, (workingArea.Width - Width) / 2),
+            workingArea.Top + Math.Max(0, (workingArea.Height - Height) / 2));
+    }
+
+    private int ScaleLogicalPixels(int value)
+    {
+        return Math.Max(1, (int)Math.Ceiling(value * DeviceDpi / 96d));
     }
 
     protected override void Dispose(bool disposing)
