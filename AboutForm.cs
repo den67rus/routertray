@@ -275,8 +275,8 @@ internal sealed class AboutForm : Form
     {
         try
         {
-            using var icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath) ?? SystemIcons.Application;
-            return icon.ToBitmap();
+            using var extractedIcon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            return (extractedIcon ?? SystemIcons.Application).ToBitmap();
         }
         catch
         {

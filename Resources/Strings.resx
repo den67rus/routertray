@@ -15,11 +15,14 @@
   <data name="AppConfigLoadFailedMessage" xml:space="preserve">
     <value>Failed to load appsettings.json. Check the file and restart.</value>
   </data>
+  <data name="AppConfigRecoveredMessage" xml:space="preserve">
+    <value>The settings file was damaged or unavailable. Safe defaults were loaded; review Settings before using router controls.</value>
+  </data>
   <data name="AppName" xml:space="preserve">
     <value>RouterTray</value>
   </data>
   <data name="AuthFailedMessage" xml:space="preserve">
-    <value>Authentication failed. Check login and password.</value>
+    <value>Authentication failed. Check the configured credentials or access token.</value>
   </data>
   <data name="AutoStartDisabledMessage" xml:space="preserve">
     <value>Auto start disabled.</value>
@@ -38,6 +41,9 @@
   </data>
   <data name="InterfacesNone" xml:space="preserve">
     <value>No interfaces found</value>
+  </data>
+  <data name="InterfacesAutomatic" xml:space="preserve">
+    <value>Automatic selection</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Loading...</value>
@@ -81,6 +87,9 @@
   <data name="RouterUnreachableMessage" xml:space="preserve">
     <value>Router unreachable.</value>
   </data>
+  <data name="RouterEndpointUnavailableMessage" xml:space="preserve">
+    <value>Router address or active network interface is unavailable. Check Settings and your network connection.</value>
+  </data>
   <data name="SettingsAutoStart" xml:space="preserve">
     <value>Start with Windows</value>
   </data>
@@ -90,8 +99,20 @@
   <data name="SettingsLogin" xml:space="preserve">
     <value>Login</value>
   </data>
+  <data name="SettingsAuthMode" xml:space="preserve">
+    <value>Sign-in method</value>
+  </data>
+  <data name="SettingsAuthModePassword" xml:space="preserve">
+    <value>Login and password</value>
+  </data>
+  <data name="SettingsAuthModeAccessToken" xml:space="preserve">
+    <value>Access token</value>
+  </data>
   <data name="SettingsPassword" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="SettingsAccessToken" xml:space="preserve">
+    <value>Access token</value>
   </data>
   <data name="SettingsSave" xml:space="preserve">
     <value>Save</value>
@@ -105,14 +126,29 @@
   <data name="SettingsShowPassword" xml:space="preserve">
     <value>Show password</value>
   </data>
+  <data name="SettingsShowAccessToken" xml:space="preserve">
+    <value>Show access token</value>
+  </data>
   <data name="SettingsShowPolicyNotifications" xml:space="preserve">
     <value>Show notification on policy switch</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="SettingsRouterUrl" xml:space="preserve">
+    <value>Router URL</value>
+  </data>
+  <data name="SettingsRouterUrlHint" xml:space="preserve">
+    <value>Leave this field blank to use the selected network interface's gateway automatically.</value>
+  </data>
+  <data name="SettingsRouterUrlValidationMessage" xml:space="preserve">
+    <value>Enter a complete router address, for example http://192.168.1.1/, without credentials, query, or fragment.</value>
+  </data>
   <data name="SettingsValidationMessage" xml:space="preserve">
     <value>Login and password are required.</value>
+  </data>
+  <data name="SettingsAccessTokenValidationMessage" xml:space="preserve">
+    <value>Access token is required.</value>
   </data>
   <data name="UnexpectedErrorMessage" xml:space="preserve">
     <value>Unexpected error.</value>
@@ -143,5 +179,89 @@
   </data>
   <data name="AboutCopyright" xml:space="preserve">
     <value>© 2026 Sevostyanov Denis.</value>
+  </data>
+  <data name="MenuProfiles" xml:space="preserve">
+    <value>Router profiles</value>
+  </data>
+  <data name="ProfilesAutomatic" xml:space="preserve">
+    <value>Automatic selection</value>
+  </data>
+  <data name="ProfilesActiveFormat" xml:space="preserve">
+    <value>Active: {0}</value>
+  </data>
+  <data name="ProfilesNoneActive" xml:space="preserve">
+    <value>No profile for the current network</value>
+  </data>
+  <data name="ProfileChangedMessageFormat" xml:space="preserve">
+    <value>Active router profile: {0}</value>
+  </data>
+  <data name="RouterProfileUnavailableMessage" xml:space="preserve">
+    <value>No router profile is bound to the current network. Bind the network in Settings or select a profile manually.</value>
+  </data>
+  <data name="SettingsProfilesTab" xml:space="preserve">
+    <value>Router profiles</value>
+  </data>
+  <data name="SettingsApplicationTab" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="SettingsProfile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="SettingsProfileName" xml:space="preserve">
+    <value>Profile name</value>
+  </data>
+  <data name="SettingsProfileAdd" xml:space="preserve">
+    <value>Add profile</value>
+  </data>
+  <data name="SettingsProfileRemove" xml:space="preserve">
+    <value>Remove profile</value>
+  </data>
+  <data name="SettingsUnnamedProfile" xml:space="preserve">
+    <value>Unnamed profile</value>
+  </data>
+  <data name="SettingsConnectionSection" xml:space="preserve">
+    <value>Connection</value>
+  </data>
+  <data name="SettingsAuthenticationSection" xml:space="preserve">
+    <value>Authentication</value>
+  </data>
+  <data name="SettingsProfileNetworks" xml:space="preserve">
+    <value>Automatic network bindings</value>
+  </data>
+  <data name="SettingsCurrentNetworkFormat" xml:space="preserve">
+    <value>Current network: {0}</value>
+  </data>
+  <data name="SettingsCurrentNetworkUnavailable" xml:space="preserve">
+    <value>Windows could not identify the current network.</value>
+  </data>
+  <data name="SettingsBindCurrentNetwork" xml:space="preserve">
+    <value>Bind current network</value>
+  </data>
+  <data name="SettingsRemoveNetwork" xml:space="preserve">
+    <value>Remove binding</value>
+  </data>
+  <data name="SettingsAutomaticProfileSelection" xml:space="preserve">
+    <value>Select a router profile automatically for the current Windows network</value>
+  </data>
+  <data name="SettingsProfileNameValidationMessage" xml:space="preserve">
+    <value>Profile name is required.</value>
+  </data>
+  <data name="SettingsProfileDuplicateNameMessage" xml:space="preserve">
+    <value>Profile names must be unique.</value>
+  </data>
+  <data name="SettingsProfileValidationFormat" xml:space="preserve">
+    <value>Profile “{0}”: {1}</value>
+  </data>
+  <data name="SettingsNewProfileNameFormat" xml:space="preserve">
+    <value>Router {0}</value>
+  </data>
+  <data name="SettingsRemoveProfileConfirmationFormat" xml:space="preserve">
+    <value>Remove router profile “{0}”?</value>
+  </data>
+  <data name="SettingsCannotRemoveLastProfileMessage" xml:space="preserve">
+    <value>At least one router profile is required.</value>
+  </data>
+  <data name="SettingsMoveNetworkConfirmationFormat" xml:space="preserve">
+    <value>The current network is already bound to profile “{0}”. Move it to this profile?</value>
   </data>
 </root>

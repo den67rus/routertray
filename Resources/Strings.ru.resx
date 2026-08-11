@@ -15,11 +15,14 @@
   <data name="AppConfigLoadFailedMessage" xml:space="preserve">
     <value>Не удалось загрузить appsettings.json. Проверьте файл и перезапустите приложение.</value>
   </data>
+  <data name="AppConfigRecoveredMessage" xml:space="preserve">
+    <value>Файл настроек повреждён или недоступен. Загружены безопасные значения по умолчанию; проверьте настройки перед управлением роутером.</value>
+  </data>
   <data name="AppName" xml:space="preserve">
     <value>RouterTray</value>
   </data>
   <data name="AuthFailedMessage" xml:space="preserve">
-    <value>Ошибка аутентификации. Проверьте логин и пароль.</value>
+    <value>Ошибка аутентификации. Проверьте выбранные учётные данные или токен доступа.</value>
   </data>
   <data name="AutoStartDisabledMessage" xml:space="preserve">
     <value>Автозапуск отключен.</value>
@@ -38,6 +41,9 @@
   </data>
   <data name="InterfacesNone" xml:space="preserve">
     <value>Интерфейсы не найдены</value>
+  </data>
+  <data name="InterfacesAutomatic" xml:space="preserve">
+    <value>Автоматический выбор</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Загрузка...</value>
@@ -81,6 +87,9 @@
   <data name="RouterUnreachableMessage" xml:space="preserve">
     <value>Роутер недоступен.</value>
   </data>
+  <data name="RouterEndpointUnavailableMessage" xml:space="preserve">
+    <value>Адрес роутера или активный сетевой интерфейс недоступен. Проверьте настройки и подключение к сети.</value>
+  </data>
   <data name="SettingsAutoStart" xml:space="preserve">
     <value>Запускать вместе с Windows</value>
   </data>
@@ -90,8 +99,20 @@
   <data name="SettingsLogin" xml:space="preserve">
     <value>Логин</value>
   </data>
+  <data name="SettingsAuthMode" xml:space="preserve">
+    <value>Способ входа</value>
+  </data>
+  <data name="SettingsAuthModePassword" xml:space="preserve">
+    <value>Логин и пароль</value>
+  </data>
+  <data name="SettingsAuthModeAccessToken" xml:space="preserve">
+    <value>Токен доступа</value>
+  </data>
   <data name="SettingsPassword" xml:space="preserve">
     <value>Пароль</value>
+  </data>
+  <data name="SettingsAccessToken" xml:space="preserve">
+    <value>Токен доступа</value>
   </data>
   <data name="SettingsSave" xml:space="preserve">
     <value>Сохранить</value>
@@ -105,14 +126,29 @@
   <data name="SettingsShowPassword" xml:space="preserve">
     <value>Показывать пароль</value>
   </data>
+  <data name="SettingsShowAccessToken" xml:space="preserve">
+    <value>Показывать токен доступа</value>
+  </data>
   <data name="SettingsShowPolicyNotifications" xml:space="preserve">
     <value>Показывать уведомление при смене политики</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
     <value>Настройки</value>
   </data>
+  <data name="SettingsRouterUrl" xml:space="preserve">
+    <value>URL роутера</value>
+  </data>
+  <data name="SettingsRouterUrlHint" xml:space="preserve">
+    <value>Оставьте поле пустым, чтобы автоматически использовать шлюз выбранного сетевого интерфейса.</value>
+  </data>
+  <data name="SettingsRouterUrlValidationMessage" xml:space="preserve">
+    <value>Укажите полный адрес роутера, например http://192.168.1.1/, без учётных данных, строки запроса и фрагмента.</value>
+  </data>
   <data name="SettingsValidationMessage" xml:space="preserve">
     <value>Необходимо указать логин и пароль.</value>
+  </data>
+  <data name="SettingsAccessTokenValidationMessage" xml:space="preserve">
+    <value>Необходимо указать токен доступа.</value>
   </data>
   <data name="UnexpectedErrorMessage" xml:space="preserve">
     <value>Непредвиденная ошибка.</value>
@@ -143,5 +179,89 @@
   </data>
   <data name="AboutCopyright" xml:space="preserve">
     <value>© 2026 Sevostyanov Denis.</value>
+  </data>
+  <data name="MenuProfiles" xml:space="preserve">
+    <value>Профили роутеров</value>
+  </data>
+  <data name="ProfilesAutomatic" xml:space="preserve">
+    <value>Автоматический выбор</value>
+  </data>
+  <data name="ProfilesActiveFormat" xml:space="preserve">
+    <value>Активный: {0}</value>
+  </data>
+  <data name="ProfilesNoneActive" xml:space="preserve">
+    <value>Для текущей сети профиль не найден</value>
+  </data>
+  <data name="ProfileChangedMessageFormat" xml:space="preserve">
+    <value>Активный профиль роутера: {0}</value>
+  </data>
+  <data name="RouterProfileUnavailableMessage" xml:space="preserve">
+    <value>Для текущей сети не найден профиль роутера. Привяжите сеть в настройках или выберите профиль вручную.</value>
+  </data>
+  <data name="SettingsProfilesTab" xml:space="preserve">
+    <value>Профили роутеров</value>
+  </data>
+  <data name="SettingsApplicationTab" xml:space="preserve">
+    <value>Приложение</value>
+  </data>
+  <data name="SettingsProfile" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
+  <data name="SettingsProfileName" xml:space="preserve">
+    <value>Название профиля</value>
+  </data>
+  <data name="SettingsProfileAdd" xml:space="preserve">
+    <value>Добавить профиль</value>
+  </data>
+  <data name="SettingsProfileRemove" xml:space="preserve">
+    <value>Удалить профиль</value>
+  </data>
+  <data name="SettingsUnnamedProfile" xml:space="preserve">
+    <value>Без названия</value>
+  </data>
+  <data name="SettingsConnectionSection" xml:space="preserve">
+    <value>Подключение</value>
+  </data>
+  <data name="SettingsAuthenticationSection" xml:space="preserve">
+    <value>Аутентификация</value>
+  </data>
+  <data name="SettingsProfileNetworks" xml:space="preserve">
+    <value>Привязки для автоматического выбора</value>
+  </data>
+  <data name="SettingsCurrentNetworkFormat" xml:space="preserve">
+    <value>Текущая сеть: {0}</value>
+  </data>
+  <data name="SettingsCurrentNetworkUnavailable" xml:space="preserve">
+    <value>Windows не удалось определить текущую сеть.</value>
+  </data>
+  <data name="SettingsBindCurrentNetwork" xml:space="preserve">
+    <value>Привязать текущую сеть</value>
+  </data>
+  <data name="SettingsRemoveNetwork" xml:space="preserve">
+    <value>Удалить привязку</value>
+  </data>
+  <data name="SettingsAutomaticProfileSelection" xml:space="preserve">
+    <value>Автоматически выбирать профиль роутера для текущей сети Windows</value>
+  </data>
+  <data name="SettingsProfileNameValidationMessage" xml:space="preserve">
+    <value>Необходимо указать название профиля.</value>
+  </data>
+  <data name="SettingsProfileDuplicateNameMessage" xml:space="preserve">
+    <value>Названия профилей не должны повторяться.</value>
+  </data>
+  <data name="SettingsProfileValidationFormat" xml:space="preserve">
+    <value>Профиль «{0}»: {1}</value>
+  </data>
+  <data name="SettingsNewProfileNameFormat" xml:space="preserve">
+    <value>Роутер {0}</value>
+  </data>
+  <data name="SettingsRemoveProfileConfirmationFormat" xml:space="preserve">
+    <value>Удалить профиль роутера «{0}»?</value>
+  </data>
+  <data name="SettingsCannotRemoveLastProfileMessage" xml:space="preserve">
+    <value>Должен остаться хотя бы один профиль роутера.</value>
+  </data>
+  <data name="SettingsMoveNetworkConfirmationFormat" xml:space="preserve">
+    <value>Текущая сеть уже привязана к профилю «{0}». Перенести её в этот профиль?</value>
   </data>
 </root>

@@ -21,8 +21,8 @@
   #define ArchitecturesAllowed "x86"
   #define ArchitecturesInstallIn64BitMode ""
 #elif AppArch == "win-x64"
-  #define ArchitecturesAllowed "x64"
-  #define ArchitecturesInstallIn64BitMode "x64"
+  #define ArchitecturesAllowed "x64os"
+  #define ArchitecturesInstallIn64BitMode "x64os"
 #elif AppArch == "win-arm64"
   #define ArchitecturesAllowed "arm64"
   #define ArchitecturesInstallIn64BitMode "arm64"
@@ -57,3 +57,36 @@ Name: "{group}\{#AppName}"; Filename: "{app}\{#AppExeName}"
 
 [Run]
 Filename: "{app}\{#AppExeName}"; Description: "Launch {#AppName}"; Flags: nowait postinstall skipifsilent
+
+[Code]
+procedure RemoveAutoStartEntry;
+var
+  CurrentValue: string;
+  ExpectedValue: string;
+begin
+  if not RegQueryStringValue(
+    HKEY_CURRENT_USER,
+    'Software\Microsoft\Windows\CurrentVersion\Run',
+    '{#AppName}',
+    CurrentValue) then
+  begin
+    Exit;
+  end;
+
+  ExpectedValue := '"' + ExpandConstant('{app}\{#AppExeName}') + '"';
+  if CompareText(CurrentValue, ExpectedValue) = 0 then
+  begin
+    RegDeleteValue(
+      HKEY_CURRENT_USER,
+      'Software\Microsoft\Windows\CurrentVersion\Run',
+      '{#AppName}');
+  end;
+end;
+
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+begin
+  if CurUninstallStep = usUninstall then
+  begin
+    RemoveAutoStartEntry;
+  end;
+end;

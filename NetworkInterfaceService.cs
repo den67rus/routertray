@@ -1,34 +1,47 @@
+using System.Globalization;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace RouterTray;
 
 internal sealed class NetworkInterfaceService
 {
+    private static readonly IPAddress DefaultIpv4Probe = IPAddress.Parse("1.1.1.1");
+    private static readonly IPAddress DefaultIpv6Probe = IPAddress.Parse("2606:4700:4700::1111");
+    private readonly WindowsNetworkProfileService _networkProfileService = new();
 
-    public InterfaceSnapshot GetSnapshot()
+    public async Task<InterfaceSnapshot> GetSnapshotAsync(
+        string? preferredInterfaceId = null,
+        Uri? configuredRouterUri = null,
+        CancellationToken ct = default)
     {
-        var interfaces = new List<NetworkInterfaceInfo>();
+        var networkProfilesTask = _networkProfileService.GetConnectedNetworksAsync(ct);
         var allInterfaces = NetworkInterface.GetAllNetworkInterfaces();
-        var localAddress = TryGetLocalAddressForDefaultRoute();
-        var activeInterface = localAddress is null
-            ? null
-            : FindInterfaceByAddress(allInterfaces, localAddress);
+        var activeInterface = FindPreferredInterface(allInterfaces, preferredInterfaceId);
+
+        if (activeInterface is null && configuredRouterUri is not null)
+        {
+            activeInterface = await FindInterfaceForRouterAsync(
+                allInterfaces,
+                configuredRouterUri,
+                ct).ConfigureAwait(false);
+        }
 
         if (activeInterface is null)
         {
-            activeInterface = FindInterfaceWithGateway(allInterfaces);
+            activeInterface = FindInterfaceForRemote(allInterfaces, DefaultIpv4Probe) ??
+                              FindInterfaceForRemote(allInterfaces, DefaultIpv6Probe) ??
+                              FindInterfaceWithGateway(allInterfaces);
         }
 
         var activeGateway = activeInterface is null ? null : GetDefaultGateway(activeInterface);
+        var networkProfiles = await networkProfilesTask.ConfigureAwait(false);
+        var interfaces = new List<NetworkInterfaceInfo>();
 
         foreach (var netInterface in allInterfaces)
         {
-            if (netInterface.NetworkInterfaceType == NetworkInterfaceType.Loopback ||
-                netInterface.NetworkInterfaceType == NetworkInterfaceType.Tunnel)
+            if (!IsEligible(netInterface))
             {
                 continue;
             }
@@ -42,61 +55,115 @@ internal sealed class NetworkInterfaceService
             var isUp = netInterface.OperationalStatus == OperationalStatus.Up;
             var isActive = isUp && activeInterface is not null &&
                            string.Equals(netInterface.Id, activeInterface.Id, StringComparison.OrdinalIgnoreCase);
+            var isPreferred = !string.IsNullOrWhiteSpace(preferredInterfaceId) &&
+                              string.Equals(
+                                  netInterface.Id,
+                                  preferredInterfaceId,
+                                  StringComparison.OrdinalIgnoreCase);
+            var networkIdentity = Guid.TryParse(netInterface.Id, out var adapterId) &&
+                                  networkProfiles.TryGetValue(adapterId, out var identity)
+                ? identity
+                : null;
 
             interfaces.Add(new NetworkInterfaceInfo(
+                netInterface.Id,
                 netInterface.Name,
                 netInterface.Description,
                 macAddress,
+                GetDefaultGateway(netInterface),
+                networkIdentity?.NetworkId,
+                networkIdentity?.Name,
                 isUp,
-                isActive));
+                isActive,
+                isPreferred));
         }
 
-        var activeMac = interfaces.FirstOrDefault(info => info.IsActive)?.MacAddress;
+        var activeInfo = interfaces.FirstOrDefault(info => info.IsActive);
         var ordered = interfaces
             .OrderByDescending(info => info.IsActive)
+            .ThenByDescending(info => info.IsPreferred)
             .ThenByDescending(info => info.IsUp)
             .ThenBy(info => info.Name, StringComparer.OrdinalIgnoreCase)
             .ToArray();
 
-        return new InterfaceSnapshot(ordered, activeMac, activeGateway);
+        return new InterfaceSnapshot(
+            ordered,
+            activeInfo?.Id,
+            activeInfo?.MacAddress,
+            activeGateway,
+            activeInfo?.NetworkId,
+            activeInfo?.NetworkName);
     }
 
-    public string GetRouterUrl(string fallbackRouterUrl)
+    public Uri? ResolveRouterUri(string configuredRouterUrl, InterfaceSnapshot snapshot)
     {
-        var snapshot = GetSnapshot();
-        if (string.IsNullOrWhiteSpace(snapshot.ActiveGateway))
+        return RouterEndpoint.Resolve(configuredRouterUrl, snapshot.ActiveGateway);
+    }
+
+    private static NetworkInterface? FindPreferredInterface(
+        IEnumerable<NetworkInterface> interfaces,
+        string? preferredInterfaceId)
+    {
+        if (string.IsNullOrWhiteSpace(preferredInterfaceId))
         {
-            return fallbackRouterUrl;
+            return null;
         }
 
-        var scheme = TryGetScheme(fallbackRouterUrl) ?? "http";
-        return $"{scheme}://{snapshot.ActiveGateway}";
+        return interfaces.FirstOrDefault(netInterface =>
+            IsEligible(netInterface) &&
+            netInterface.OperationalStatus == OperationalStatus.Up &&
+            string.Equals(netInterface.Id, preferredInterfaceId, StringComparison.OrdinalIgnoreCase));
     }
 
-    private static bool InterfaceHasAddress(NetworkInterface netInterface, IPAddress address)
+    private static async Task<NetworkInterface?> FindInterfaceForRouterAsync(
+        IEnumerable<NetworkInterface> interfaces,
+        Uri routerUri,
+        CancellationToken ct)
     {
-        var properties = netInterface.GetIPProperties();
-        foreach (var entry in properties.UnicastAddresses)
+        IPAddress[] addresses;
+        try
         {
-            if (entry.Address.Equals(address))
+            addresses = await ResolveRouterAddressesAsync(
+                routerUri,
+                static (host, token) => Dns.GetHostAddressesAsync(host, token),
+                ct).ConfigureAwait(false);
+        }
+        catch (SocketException)
+        {
+            return null;
+        }
+
+        foreach (var address in addresses)
+        {
+            var netInterface = FindInterfaceForRemote(interfaces, address);
+            if (netInterface is not null)
             {
-                return true;
+                return netInterface;
             }
         }
 
-        return false;
+        return null;
     }
 
-    private static IPAddress? TryGetLocalAddressForDefaultRoute()
+    internal static Task<IPAddress[]> ResolveRouterAddressesAsync(
+        Uri routerUri,
+        Func<string, CancellationToken, Task<IPAddress[]>> resolver,
+        CancellationToken ct)
     {
-        var local = TryGetLocalAddressForRemote(new IPAddress(new byte[] { 1, 1, 1, 1 }));
-        if (local is not null)
-        {
-            return local;
-        }
+        ArgumentNullException.ThrowIfNull(routerUri);
+        ArgumentNullException.ThrowIfNull(resolver);
 
-        var ipv6 = IPAddress.Parse("2606:4700:4700::1111");
-        return TryGetLocalAddressForRemote(ipv6);
+        return IPAddress.TryParse(routerUri.DnsSafeHost, out var address)
+            ? Task.FromResult(new[] { address })
+            : resolver(routerUri.DnsSafeHost, ct);
+    }
+
+    private static NetworkInterface? FindInterfaceForRemote(
+        IEnumerable<NetworkInterface> interfaces,
+        IPAddress remoteAddress)
+    {
+        var localAddress = TryGetLocalAddressForRemote(remoteAddress);
+        return localAddress is null ? null : FindInterfaceByAddress(interfaces, localAddress);
     }
 
     private static IPAddress? TryGetLocalAddressForRemote(IPAddress remote)
@@ -119,13 +186,12 @@ internal sealed class NetworkInterfaceService
     {
         foreach (var netInterface in interfaces)
         {
-            if (netInterface.NetworkInterfaceType == NetworkInterfaceType.Loopback ||
-                netInterface.NetworkInterfaceType == NetworkInterfaceType.Tunnel)
+            if (!IsEligible(netInterface))
             {
                 continue;
             }
 
-            if (InterfaceHasAddress(netInterface, localAddress))
+            if (netInterface.GetIPProperties().UnicastAddresses.Any(entry => entry.Address.Equals(localAddress)))
             {
                 return netInterface;
             }
@@ -136,98 +202,74 @@ internal sealed class NetworkInterfaceService
 
     private static NetworkInterface? FindInterfaceWithGateway(IEnumerable<NetworkInterface> interfaces)
     {
-        foreach (var netInterface in interfaces)
-        {
-            if (netInterface.OperationalStatus != OperationalStatus.Up ||
-                netInterface.NetworkInterfaceType == NetworkInterfaceType.Loopback ||
-                netInterface.NetworkInterfaceType == NetworkInterfaceType.Tunnel)
-            {
-                continue;
-            }
+        return interfaces.FirstOrDefault(netInterface =>
+            IsEligible(netInterface) &&
+            netInterface.OperationalStatus == OperationalStatus.Up &&
+            !string.IsNullOrWhiteSpace(GetDefaultGateway(netInterface)));
+    }
 
-            var gateway = GetDefaultGateway(netInterface);
-            if (!string.IsNullOrWhiteSpace(gateway))
-            {
-                return netInterface;
-            }
-        }
+    private static bool IsEligible(NetworkInterface netInterface)
+    {
+        return IsEligible(
+            netInterface.NetworkInterfaceType,
+            netInterface.Supports(NetworkInterfaceComponent.IPv4),
+            netInterface.Supports(NetworkInterfaceComponent.IPv6));
+    }
 
-        return null;
+    internal static bool IsEligible(
+        NetworkInterfaceType interfaceType,
+        bool supportsIpv4,
+        bool supportsIpv6)
+    {
+        return interfaceType != NetworkInterfaceType.Loopback &&
+               interfaceType != NetworkInterfaceType.Tunnel &&
+               (supportsIpv4 || supportsIpv6);
     }
 
     private static string? GetDefaultGateway(NetworkInterface netInterface)
     {
-        var properties = netInterface.GetIPProperties();
-        var gateways = properties.GatewayAddresses
+        var gateways = netInterface.GetIPProperties().GatewayAddresses
             .Select(gateway => gateway.Address)
-            .Where(address => address is not null && !IPAddress.IsLoopback(address))
+            .Where(address => !IPAddress.IsLoopback(address))
             .ToArray();
 
-        var ipv4 = gateways.FirstOrDefault(address => address.AddressFamily == AddressFamily.InterNetwork);
-        if (ipv4 is not null && !ipv4.Equals(IPAddress.Any))
+        var ipv4 = gateways.FirstOrDefault(address =>
+            address.AddressFamily == AddressFamily.InterNetwork && !address.Equals(IPAddress.Any));
+        if (ipv4 is not null)
         {
             return ipv4.ToString();
         }
 
-        var ipv6 = gateways.FirstOrDefault(address => address.AddressFamily == AddressFamily.InterNetworkV6);
-        return ipv6?.ToString();
-    }
-
-    private static string? TryGetScheme(string? routerUrl)
-    {
-        if (string.IsNullOrWhiteSpace(routerUrl))
-        {
-            return null;
-        }
-
-        if (Uri.TryCreate(routerUrl, UriKind.Absolute, out var uri))
-        {
-            return uri.Scheme;
-        }
-
-        return null;
+        return gateways.FirstOrDefault(address =>
+            address.AddressFamily == AddressFamily.InterNetworkV6)?.ToString();
     }
 
     private static string FormatMac(PhysicalAddress address)
     {
         var bytes = address.GetAddressBytes();
-        if (bytes.Length == 0)
-        {
-            return string.Empty;
-        }
-
-        return string.Join(":", bytes.Select(value => value.ToString("X2")));
-    }
-}
-
-internal sealed class NetworkInterfaceInfo
-{
-    public NetworkInterfaceInfo(string name, string description, string macAddress, bool isUp, bool isActive)
-    {
-        Name = name;
-        Description = description;
-        MacAddress = macAddress;
-        IsUp = isUp;
-        IsActive = isActive;
+        return bytes.Length == 0
+            ? string.Empty
+            : string.Join(":", bytes.Select(value => value.ToString("X2", CultureInfo.InvariantCulture)));
     }
 
-    public string Name { get; }
-    public string Description { get; }
-    public string MacAddress { get; }
-    public bool IsUp { get; }
-    public bool IsActive { get; }
 }
 
-internal sealed class InterfaceSnapshot
-{
-    public InterfaceSnapshot(IReadOnlyList<NetworkInterfaceInfo> interfaces, string? activeMac, string? activeGateway)
-    {
-        Interfaces = interfaces;
-        ActiveMac = activeMac;
-        ActiveGateway = activeGateway;
-    }
+internal sealed record NetworkInterfaceInfo(
+    string Id,
+    string Name,
+    string Description,
+    string MacAddress,
+    string? Gateway,
+    string? NetworkId,
+    string? NetworkName,
+    bool IsUp,
+    bool IsActive,
+    bool IsPreferred);
 
-    public IReadOnlyList<NetworkInterfaceInfo> Interfaces { get; }
-    public string? ActiveMac { get; }
-    public string? ActiveGateway { get; }
-}
+internal sealed record InterfaceSnapshot(
+    IReadOnlyList<NetworkInterfaceInfo> Interfaces,
+    string? ActiveInterfaceId,
+    string? ActiveMac,
+    string? ActiveGateway,
+    string? ActiveNetworkId,
+    string? ActiveNetworkName);
