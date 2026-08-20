@@ -5,13 +5,15 @@
     <RootNamespace>RouterTray</RootNamespace>
     <OutputType>WinExe</OutputType>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <PublishSingleFile>false</PublishSingleFile>
     <SelfContained>false</SelfContained>
     <PublishTrimmed>false</PublishTrimmed>
+    <StoreBuild Condition="'$(StoreBuild)' == ''">false</StoreBuild>
+    <DefineConstants Condition="'$(StoreBuild)' == 'true'">$(DefineConstants);MICROSOFT_STORE</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,7 +27,7 @@
   <ItemGroup>
     <PackageReference Include="BouncyCastle.Cryptography" Version="2.7.0" />
     <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
-    <PackageReference Include="Velopack" Version="1.2.0" />
+    <PackageReference Include="Velopack" Version="1.2.0" Condition="'$(StoreBuild)' != 'true'" />
   </ItemGroup>
 
   <ItemGroup>

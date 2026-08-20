@@ -114,6 +114,9 @@
   <data name="SettingsUpdateScheduleDescription" xml:space="preserve">
     <value>RouterTray søger efter opdateringer kort efter hver start. Hvis programmet fortsat kører, foretages den næste kontrol efter 14 dage.</value>
   </data>
+  <data name="SettingsStoreUpdatesDescription" xml:space="preserve">
+    <value>Denne version opdateres automatisk via Microsoft Store. RouterTray bruger ikke Velopack og kontakter ikke GitHub Releases for at søge efter opdateringer.</value>
+  </data>
   <data name="SettingsUpdateCheckInProgress" xml:space="preserve">
     <value>Søger efter opdateringer...</value>
   </data>

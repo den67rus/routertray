@@ -149,7 +149,7 @@ flowchart LR
 - Основной файл: `%LOCALAPPDATA%\RouterTray\appsettings.json`.
 - Лог: `%LOCALAPPDATA%\RouterTray\routertray.log`.
 - Пароли и токены сохраняются через Windows DPAPI в области `CurrentUser`.
-- RouterTray обращается к роутеру по локальной сети. Если автоматическая проверка обновлений включена, единственный внешний запрос выполняется к GitHub Releases этого репозитория.
+- RouterTray обращается к роутеру по локальной сети. Версия Velopack при включённой автоматической проверке обращается к GitHub Releases; версия из Microsoft Store получает обновления только через Store и не выполняет такую проверку.
 - Версия, установленная через Velopack, находится в `%LOCALAPPDATA%\RouterTray.App`; пользовательские настройки остаются в `%LOCALAPPDATA%\RouterTray` и не заменяются при обновлении.
 
 ## Если что-то не работает
@@ -210,6 +210,8 @@ dotnet test tests/RouterTray.Tests/RouterTray.Tests.csproj -c Release --no-resto
 ```powershell
 dotnet publish RouterTray.csproj -c Release -r win-x64 --self-contained true -o artifacts/publish/win-x64
 ```
+
+Сборка `.msixupload` для Microsoft Store, настройка Partner Center и отличия Store-версии описаны в [отдельной инструкции](docs/MICROSOFT_STORE_RU.md).
 
 ## Как помочь
 

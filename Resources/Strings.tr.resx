@@ -114,6 +114,9 @@
   <data name="SettingsUpdateScheduleDescription" xml:space="preserve">
     <value>RouterTray her başlatmadan kısa süre sonra güncellemeleri denetler. Uygulama çalışmaya devam ederse bir sonraki denetim 14 gün sonra yapılır.</value>
   </data>
+  <data name="SettingsStoreUpdatesDescription" xml:space="preserve">
+    <value>Bu sürüm Microsoft Store üzerinden otomatik olarak güncellenir. RouterTray, güncellemeleri denetlemek için Velopack kullanmaz veya GitHub Releases ile iletişim kurmaz.</value>
+  </data>
   <data name="SettingsUpdateCheckInProgress" xml:space="preserve">
     <value>Güncellemeler denetleniyor...</value>
   </data>

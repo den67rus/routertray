@@ -149,7 +149,7 @@ If you use Ethernet, Wi-Fi, or virtual adapters at the same time, you can select
 - Settings are stored in `%LOCALAPPDATA%\RouterTray\appsettings.json`.
 - Logs are stored in `%LOCALAPPDATA%\RouterTray\routertray.log`.
 - Passwords and access tokens are protected with Windows DPAPI in the `CurrentUser` scope.
-- RouterTray communicates with the router over your local network. When automatic update checks are enabled, its only external request is to this repository's GitHub Releases.
+- RouterTray communicates with the router over your local network. The Velopack flavor checks this repository's GitHub Releases when enabled; the Microsoft Store flavor receives updates only through Store and does not make that check.
 - The Velopack-installed version is located in `%LOCALAPPDATA%\RouterTray.App`; user settings remain in `%LOCALAPPDATA%\RouterTray` and are not replaced by updates.
 
 ## Troubleshooting
@@ -210,6 +210,8 @@ Choose the target platform for the build: `win-x64`, `win-arm64`, or `win-x86`.
 ```powershell
 dotnet publish RouterTray.csproj -c Release -r win-x64 --self-contained true -o artifacts/publish/win-x64
 ```
+
+See the [Microsoft Store packaging guide](docs/MICROSOFT_STORE.md) for the `.msixupload` build, Partner Center identity setup, and Store-specific behavior.
 
 ## Contributing
 

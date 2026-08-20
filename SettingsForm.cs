@@ -11,6 +11,7 @@ internal sealed class SettingsForm : Form
         ApplicationUpdateChannel,
         CancellationToken,
         Task<ApplicationUpdateCheckResult>> _checkForUpdates;
+    private readonly bool _updatesManagedByPackage;
     private readonly CancellationTokenSource _updateCheckCancellation = new();
 
     private TabControl _settingsTabs = null!;
@@ -56,12 +57,14 @@ internal sealed class SettingsForm : Form
         Func<
             ApplicationUpdateChannel,
             CancellationToken,
-            Task<ApplicationUpdateCheckResult>> checkForUpdates)
+            Task<ApplicationUpdateCheckResult>> checkForUpdates,
+        bool updatesManagedByPackage = false)
     {
         ArgumentNullException.ThrowIfNull(checkForUpdates);
         _workingSettings = settings.Clone();
         _currentNetwork = currentNetwork?.Clone();
         _checkForUpdates = checkForUpdates;
+        _updatesManagedByPackage = updatesManagedByPackage;
 
         Text = UiText.SettingsTitle;
         StartPosition = FormStartPosition.CenterParent;
@@ -96,7 +99,10 @@ internal sealed class SettingsForm : Form
         _profilesPage = CreateProfilesPage();
         _settingsTabs.TabPages.Add(_profilesPage);
         _settingsTabs.TabPages.Add(CreateApplicationPage());
-        _settingsTabs.TabPages.Add(CreateUpdatesPage());
+        if (!_updatesManagedByPackage)
+        {
+            _settingsTabs.TabPages.Add(CreateUpdatesPage());
+        }
 
         var footer = new Panel
         {
@@ -598,6 +604,32 @@ internal sealed class SettingsForm : Form
             BackColor = SystemColors.Window,
             UseVisualStyleBackColor = false
         };
+
+        if (_updatesManagedByPackage)
+        {
+            var storeUpdateDescription = new Label
+            {
+                Text = UiText.SettingsStoreUpdatesDescription,
+                Dock = DockStyle.Top,
+                AutoSize = true,
+                MaximumSize = new Size(Math.Max(1, ClientSize.Width - 64), 0),
+                Margin = Padding.Empty
+            };
+            var storeUpdatePanel = new Panel
+            {
+                Dock = DockStyle.Fill,
+                AutoScroll = true,
+                Padding = new Padding(16),
+                BackColor = SystemColors.Window
+            };
+            storeUpdatePanel.Controls.Add(storeUpdateDescription);
+            storeUpdatePanel.ClientSizeChanged += (_, _) =>
+                storeUpdateDescription.MaximumSize = new Size(
+                    Math.Max(1, storeUpdatePanel.ClientSize.Width - storeUpdatePanel.Padding.Horizontal),
+                    0);
+            page.Controls.Add(storeUpdatePanel);
+            return page;
+        }
 
         var scrollHost = new Panel
         {
@@ -1298,8 +1330,11 @@ internal sealed class SettingsForm : Form
 
         _workingSettings.AutomaticProfileSelection = _automaticProfileSelectionCheckBox.Checked;
         _workingSettings.AutoStart = _autoStartCheckBox.Checked;
-        _workingSettings.CheckForUpdatesAutomatically = _checkForUpdatesCheckBox.Checked;
-        _workingSettings.UpdateChannel = SelectedUpdateChannel;
+        if (!_updatesManagedByPackage)
+        {
+            _workingSettings.CheckForUpdatesAutomatically = _checkForUpdatesCheckBox.Checked;
+            _workingSettings.UpdateChannel = SelectedUpdateChannel;
+        }
         _workingSettings.ShowPolicyNotifications = _notifyPolicyCheckBox.Checked;
         if (_workingSettings.FindProfile(_workingSettings.SelectedProfileId) is null)
         {

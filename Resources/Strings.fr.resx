@@ -114,6 +114,9 @@
   <data name="SettingsUpdateScheduleDescription" xml:space="preserve">
     <value>RouterTray recherche les mises à jour peu après chaque démarrage. Si l’application reste active, la prochaine vérification aura lieu après 14 jours.</value>
   </data>
+  <data name="SettingsStoreUpdatesDescription" xml:space="preserve">
+    <value>Cette version est mise à jour automatiquement via le Microsoft Store. RouterTray n’utilise pas Velopack et ne contacte pas GitHub Releases pour rechercher des mises à jour.</value>
+  </data>
   <data name="SettingsUpdateCheckInProgress" xml:space="preserve">
     <value>Recherche de mises à jour...</value>
   </data>

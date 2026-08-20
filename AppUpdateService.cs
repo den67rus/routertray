@@ -1,5 +1,7 @@
+#if !MICROSOFT_STORE
 using Velopack;
 using Velopack.Sources;
+#endif
 
 namespace RouterTray;
 
@@ -7,6 +9,7 @@ internal enum ApplicationUpdateCheckResult
 {
     UpToDate,
     UpdateScheduled,
+    ManagedByPackage,
     NotPackaged,
     Failed
 }
@@ -20,13 +23,16 @@ internal sealed class AppUpdateService : IDisposable
     private readonly FileLogger _logger;
     private readonly Action<Action> _scheduleApply;
     private readonly Func<CancellationToken, Task> _runAutomaticLoop;
+    private readonly bool _packageManaged;
     private readonly object _sync = new();
     private readonly SemaphoreSlim _checkLock = new(1, 1);
     private readonly CancellationTokenSource _lifetimeCancellation = new();
     private CancellationTokenSource? _runCancellation;
     private DateTimeOffset? _lastCheckAttemptUtc;
     private ApplicationUpdateChannel _channel;
+#if !MICROSOFT_STORE
     private bool _updateScheduled;
+#endif
     private bool _enabled;
     private bool _started;
     private bool _disposed;
@@ -36,7 +42,8 @@ internal sealed class AppUpdateService : IDisposable
         Action<Action> scheduleApply,
         bool enabled,
         ApplicationUpdateChannel channel,
-        Func<CancellationToken, Task>? runAutomaticLoop = null)
+        Func<CancellationToken, Task>? runAutomaticLoop = null,
+        bool packageManaged = false)
     {
         ValidateChannel(channel);
         _logger = logger;
@@ -44,6 +51,11 @@ internal sealed class AppUpdateService : IDisposable
         _runAutomaticLoop = runAutomaticLoop ?? RunAsync;
         _enabled = enabled;
         _channel = channel;
+#if MICROSOFT_STORE
+        _packageManaged = true;
+#else
+        _packageManaged = packageManaged;
+#endif
     }
 
     public void Start()
@@ -59,10 +71,16 @@ internal sealed class AppUpdateService : IDisposable
 
             _started = true;
             channel = _channel;
-            if (_enabled)
+            if (_enabled && !_packageManaged)
             {
                 runCancellation = CreateRunCancellationLocked();
             }
+        }
+
+        if (_packageManaged)
+        {
+            _logger.Info("Application updates are managed by the installed app package.");
+            return;
         }
 
         if (runCancellation is null)
@@ -104,7 +122,7 @@ internal sealed class AppUpdateService : IDisposable
                 _lastCheckAttemptUtc = null;
             }
 
-            if (_started)
+            if (_started && !_packageManaged)
             {
                 if (enabled && (enabledChanged || channelChanged))
                 {
@@ -146,6 +164,12 @@ internal sealed class AppUpdateService : IDisposable
         CancellationToken cancellationToken)
     {
         ValidateChannel(channel);
+        if (_packageManaged)
+        {
+            _logger.Info("Manual update checks are delegated to the installed app package.");
+            return ApplicationUpdateCheckResult.ManagedByPackage;
+        }
+
         CancellationToken lifetimeToken;
         lock (_sync)
         {
@@ -251,6 +275,10 @@ internal sealed class AppUpdateService : IDisposable
         ApplicationUpdateChannel channel,
         CancellationToken cancellationToken)
     {
+#if MICROSOFT_STORE
+        await Task.CompletedTask;
+        return ApplicationUpdateCheckResult.ManagedByPackage;
+#else
         try
         {
             lock (_sync)
@@ -327,6 +355,7 @@ internal sealed class AppUpdateService : IDisposable
             _logger.Error("Application update check failed.", ex);
             return ApplicationUpdateCheckResult.Failed;
         }
+#endif
     }
 
     private void RecordCheckAttempt(
@@ -378,7 +407,7 @@ internal sealed class AppUpdateService : IDisposable
         CancellationTokenSource? runCancellation = null;
         lock (_sync)
         {
-            if (_disposed || !_started || !_enabled)
+            if (_disposed || !_started || !_enabled || _packageManaged)
             {
                 return;
             }

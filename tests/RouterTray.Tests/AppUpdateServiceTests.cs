@@ -63,4 +63,42 @@ public sealed class AppUpdateServiceTests
             File.Delete(logPath);
         }
     }
+
+    [Fact]
+    public async Task PackageManaged_StartDoesNotRunVelopackLoop()
+    {
+        var loopStarted = new TaskCompletionSource(
+            TaskCreationOptions.RunContinuationsAsynchronously);
+        var logPath = Path.Combine(
+            Path.GetTempPath(),
+            $"routertray-update-test-{Guid.NewGuid():N}.log");
+        using var logger = new FileLogger(logPath);
+        using var service = new AppUpdateService(
+            logger,
+            _ => { },
+            enabled: true,
+            channel: ApplicationUpdateChannel.Stable,
+            _ =>
+            {
+                loopStarted.TrySetResult();
+                return Task.CompletedTask;
+            },
+            packageManaged: true);
+
+        try
+        {
+            service.Start();
+            var result = await service.CheckNowAsync(
+                ApplicationUpdateChannel.Stable,
+                CancellationToken.None);
+
+            Assert.Equal(ApplicationUpdateCheckResult.ManagedByPackage, result);
+            Assert.False(loopStarted.Task.IsCompleted);
+        }
+        finally
+        {
+            service.Dispose();
+            File.Delete(logPath);
+        }
+    }
 }

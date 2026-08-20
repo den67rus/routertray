@@ -1,20 +1,42 @@
 using Microsoft.Win32;
+using Windows.ApplicationModel;
 
 namespace RouterTray;
+
+internal enum AutoStartApplyResult
+{
+    Applied,
+    DisabledByUser,
+    DisabledByPolicy
+}
 
 internal sealed class AutoStartService
 {
     private const string RunKeyPath = @"Software\Microsoft\Windows\CurrentVersion\Run";
+    private const string PackagedStartupTaskId = "RouterTrayStartup";
     private readonly string _appName;
     private readonly string _executablePath;
+    private readonly bool _isPackaged;
 
-    public AutoStartService(string appName, string executablePath)
+    public AutoStartService(string appName, string executablePath, bool isPackaged)
     {
         _appName = appName;
         _executablePath = executablePath;
+        _isPackaged = isPackaged;
     }
 
-    public void EnsureEnabled(bool enabled)
+    public async Task<AutoStartApplyResult> EnsureEnabledAsync(bool enabled)
+    {
+        if (_isPackaged)
+        {
+            return await EnsurePackagedStartupTaskAsync(enabled);
+        }
+
+        EnsureRegistryEntry(enabled);
+        return AutoStartApplyResult.Applied;
+    }
+
+    private void EnsureRegistryEntry(bool enabled)
     {
         var expectedValue = CreateEntryValue(_executablePath);
         if (enabled)
@@ -36,6 +58,41 @@ internal sealed class AutoStartService
         }
 
         RemoveEntry(_appName, _executablePath);
+    }
+
+    private static async Task<AutoStartApplyResult> EnsurePackagedStartupTaskAsync(bool enabled)
+    {
+        if (!OperatingSystem.IsWindowsVersionAtLeast(10, 0, 14393))
+        {
+            return AutoStartApplyResult.DisabledByPolicy;
+        }
+
+        var startupTask = await StartupTask.GetAsync(PackagedStartupTaskId);
+        if (!enabled)
+        {
+            if (startupTask.State == StartupTaskState.EnabledByPolicy)
+            {
+                return AutoStartApplyResult.DisabledByPolicy;
+            }
+
+            if (startupTask.State == StartupTaskState.Enabled)
+            {
+                startupTask.Disable();
+            }
+
+            return AutoStartApplyResult.Applied;
+        }
+
+        var state = startupTask.State == StartupTaskState.Disabled
+            ? await startupTask.RequestEnableAsync()
+            : startupTask.State;
+        return state switch
+        {
+            StartupTaskState.Enabled or StartupTaskState.EnabledByPolicy =>
+                AutoStartApplyResult.Applied,
+            StartupTaskState.DisabledByUser => AutoStartApplyResult.DisabledByUser,
+            _ => AutoStartApplyResult.DisabledByPolicy
+        };
     }
 
     public static void RemoveEntry(string appName, string executablePath)

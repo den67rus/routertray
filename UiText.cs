@@ -72,6 +72,7 @@ internal static class UiText
     public static string SettingsUpdateChannelStable => Get(nameof(SettingsUpdateChannelStable));
     public static string SettingsUpdateChannelPreview => Get(nameof(SettingsUpdateChannelPreview));
     public static string SettingsUpdateScheduleDescription => Get(nameof(SettingsUpdateScheduleDescription));
+    public static string SettingsStoreUpdatesDescription => Get(nameof(SettingsStoreUpdatesDescription));
     public static string SettingsUpdateCheckInProgress => Get(nameof(SettingsUpdateCheckInProgress));
     public static string SettingsUpdateUpToDate => Get(nameof(SettingsUpdateUpToDate));
     public static string SettingsUpdateReady => Get(nameof(SettingsUpdateReady));

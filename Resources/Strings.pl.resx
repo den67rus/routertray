@@ -114,6 +114,9 @@
   <data name="SettingsUpdateScheduleDescription" xml:space="preserve">
     <value>RouterTray sprawdza dostępność aktualizacji wkrótce po każdym uruchomieniu. Jeśli aplikacja pozostanie uruchomiona, kolejna kontrola nastąpi po 14 dniach.</value>
   </data>
+  <data name="SettingsStoreUpdatesDescription" xml:space="preserve">
+    <value>Ta wersja jest aktualizowana automatycznie przez Microsoft Store. RouterTray nie używa Velopack ani nie łączy się z GitHub Releases w celu sprawdzania aktualizacji.</value>
+  </data>
   <data name="SettingsUpdateCheckInProgress" xml:space="preserve">
     <value>Sprawdzanie aktualizacji...</value>
   </data>

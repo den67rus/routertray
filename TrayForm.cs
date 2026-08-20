@@ -35,6 +35,7 @@ internal sealed class TrayForm : Form
     private readonly Icon _icon;
     private readonly Icon _inactiveIcon;
     private readonly bool _ownsIcon;
+    private readonly bool _usesPackageManagedUpdates;
 
     private KeeneticClient? _client;
     private Uri? _clientEndpoint;
@@ -60,13 +61,18 @@ internal sealed class TrayForm : Form
         _settings = settings;
         _settingsPath = settingsPath;
         _logger = logger;
+        _usesPackageManagedUpdates = AppInstallation.UsesPackageManagedUpdates;
         _interfaceService = new NetworkInterfaceService();
-        _autoStartService = new AutoStartService("RouterTray", Application.ExecutablePath);
+        _autoStartService = new AutoStartService(
+            "RouterTray",
+            Application.ExecutablePath,
+            _usesPackageManagedUpdates);
         _updateService = new AppUpdateService(
             logger,
             ScheduleUpdateApply,
             settings.CheckForUpdatesAutomatically,
-            settings.UpdateChannel);
+            settings.UpdateChannel,
+            packageManaged: _usesPackageManagedUpdates);
 
         ShowInTaskbar = false;
         WindowState = FormWindowState.Minimized;
@@ -137,13 +143,13 @@ internal sealed class TrayForm : Form
         FormClosing += OnFormClosing;
         NetworkChange.NetworkAddressChanged += OnNetworkAddressChanged;
 
-        ApplyAutoStart(_settings.AutoStart, showNotification: false);
     }
 
     protected override async void OnShown(EventArgs e)
     {
         base.OnShown(e);
         Hide();
+        await ApplyAutoStartAsync(_settings.AutoStart, showNotification: false);
         _updateService.Start();
 
         try
@@ -1397,7 +1403,8 @@ internal sealed class TrayForm : Form
         using var form = new SettingsForm(
             _settings,
             currentNetwork,
-            _updateService.CheckNowAsync)
+            _updateService.CheckNowAsync,
+            _usesPackageManagedUpdates)
         {
             StartPosition = FormStartPosition.CenterScreen
         };
@@ -1447,7 +1454,7 @@ internal sealed class TrayForm : Form
 
             if (previousAutoStart != _settings.AutoStart)
             {
-                ApplyAutoStart(_settings.AutoStart, showNotification: true);
+                await ApplyAutoStartAsync(_settings.AutoStart, showNotification: true);
             }
         }
         finally
@@ -1457,11 +1464,25 @@ internal sealed class TrayForm : Form
         }
     }
 
-    private void ApplyAutoStart(bool enabled, bool showNotification)
+    private async Task ApplyAutoStartAsync(bool enabled, bool showNotification)
     {
         try
         {
-            _autoStartService.EnsureEnabled(enabled);
+            var result = await _autoStartService.EnsureEnabledAsync(enabled);
+            if (result != AutoStartApplyResult.Applied)
+            {
+                _logger.Info($"Auto start request was rejected by Windows ({result}).");
+                if (showNotification)
+                {
+                    ShowBalloon(
+                        UiText.SettingsTitle,
+                        UiText.AutoStartFailedMessage,
+                        ToolTipIcon.Error);
+                }
+
+                return;
+            }
+
             _logger.Info($"Auto start {(enabled ? "enabled" : "disabled")}.");
 
             if (showNotification)

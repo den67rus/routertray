@@ -1,5 +1,7 @@
 using System.Globalization;
+#if !MICROSOFT_STORE
 using Velopack;
+#endif
 
 namespace RouterTray;
 
@@ -11,12 +13,12 @@ internal static class Program
     [STAThread]
     private static void Main()
     {
-        VelopackApp.Build()
-            .SetAutoApplyOnStartup(true)
-            .SetAppUserModelId(AppUserModelId)
-            .OnBeforeUninstallFastCallback(_ =>
-                AutoStartService.RemoveEntry("RouterTray", Application.ExecutablePath))
-            .Run();
+#if !MICROSOFT_STORE
+        if (!AppInstallation.UsesPackageManagedUpdates)
+        {
+            InitializeVelopack();
+        }
+#endif
 
         using var singleInstance = SingleInstanceGuard.Acquire(SingleInstanceName);
         if (!singleInstance.IsPrimaryInstance)
@@ -26,6 +28,18 @@ internal static class Program
 
         RunApplication();
     }
+
+#if !MICROSOFT_STORE
+    private static void InitializeVelopack()
+    {
+        VelopackApp.Build()
+            .SetAutoApplyOnStartup(true)
+            .SetAppUserModelId(AppUserModelId)
+            .OnBeforeUninstallFastCallback(_ =>
+                AutoStartService.RemoveEntry("RouterTray", Application.ExecutablePath))
+            .Run();
+    }
+#endif
 
     private static void RunApplication()
     {
