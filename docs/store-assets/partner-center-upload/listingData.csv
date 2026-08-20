@@ -1,0 +1,851 @@
+﻿Field,ID,Type (Тип),default,en,es,it,pt,ru,tr,fr,en-us,da,de,pl,uk,fi,sv
+Description,2,Текст,,"The router access policy you need in one click.
+
+RouterTray brings the access policies configured on your Keenetic or Netcraze router to the Windows notification area. Choose any scenario you have created for the current PC—for example, direct internet access, a work VPN, or a family profile—without repeatedly signing in to the router’s web interface.
+
+Click the RouterTray icon next to the clock and select the policy you need. The router will apply it to the selected network adapter on the PC. The active policy has a check mark, while the “Default” command restores the router’s standard rules.
+
+For home, office, and other networks, you can create separate profiles with their own router address, sign-in method, and network adapter. Link a profile to a Windows network and RouterTray will select it automatically when you connect. You can enter the router address manually or let the app detect it through the network gateway.
+
+Key features:
+
+• quickly select a policy from the system tray;
+• multiple profiles for different routers and networks;
+• automatic profile selection based on the current Windows network;
+• automatic router address detection;
+• automatic or manual selection of Ethernet, Wi-Fi, and other network adapters;
+• sign in with a username and password or an access token;
+• protect saved passwords and tokens using Windows security;
+• start with Windows;
+
+How RouterTray works:
+
+The app connects to the router over the local network, retrieves the list of existing policies, and applies the selected policy to the current computer’s network adapter. RouterTray does not modify the policy settings, is not a VPN client, and does not route internet traffic itself.
+
+Important:
+
+• requires a compatible Keenetic or Netcraze router with a local RCI API;
+• policies must be created in advance in the router’s web interface;
+• token authentication is available on firmware version 5.2 or later;
+• RouterTray is an independent app and is not affiliated with the official Keenetic or Netcraze products.
+
+Set up RouterTray once, and the route you need will always be close at hand.","La política de acceso del router que necesitas, a un solo clic.
+
+RouterTray lleva las políticas de acceso configuradas en tu router Keenetic o Netcraze al área de notificación de Windows. Elige para el equipo actual cualquier escenario que hayas creado, por ejemplo, acceso directo a Internet, una VPN de trabajo o un perfil familiar, sin tener que iniciar sesión continuamente en la interfaz web del router.
+
+Haz clic en el icono de RouterTray junto al reloj y selecciona la política que necesites. El router la aplicará al adaptador de red seleccionado del equipo. La política activa aparece marcada, mientras que el comando «Predeterminada» restaura las reglas estándar del router.
+
+Para casa, la oficina y otras redes, puedes crear perfiles independientes con su propia dirección del router, método de inicio de sesión y adaptador de red. Vincula un perfil a una red de Windows y RouterTray lo seleccionará automáticamente cuando te conectes. Puedes introducir la dirección del router manualmente o permitir que la aplicación la detecte a través de la puerta de enlace de red.
+
+Funciones principales:
+
+• selección rápida de políticas desde la bandeja del sistema;
+• varios perfiles para distintos routers y redes;
+• selección automática del perfil según la red de Windows actual;
+• detección automática de la dirección del router;
+• selección automática o manual de Ethernet, Wi-Fi y otros adaptadores de red;
+• inicio de sesión con nombre de usuario y contraseña o con un token de acceso;
+• protección de contraseñas y tokens guardados mediante la seguridad de Windows;
+• inicio automático con Windows;
+
+Cómo funciona RouterTray:
+
+La aplicación se conecta al router a través de la red local, obtiene la lista de políticas existentes y aplica la política seleccionada al adaptador de red del equipo actual. RouterTray no modifica la configuración de las políticas, no es un cliente VPN y no enruta el tráfico de Internet por sí mismo.
+
+Importante:
+
+• se requiere un router Keenetic o Netcraze compatible con una API RCI local;
+• las políticas deben crearse previamente en la interfaz web del router;
+• la autenticación mediante token está disponible con la versión de firmware 5.2 o posterior;
+• RouterTray es una aplicación independiente y no forma parte de los productos oficiales de Keenetic ni de Netcraze.
+
+Configura RouterTray una vez y la ruta que necesites siempre estará a mano.","Il criterio di accesso al router che ti serve, con un solo clic.
+
+RouterTray porta nell’area di notifica di Windows i criteri di accesso configurati sul router Keenetic o Netcraze. Per il computer in uso, scegli qualsiasi scenario creato da te, ad esempio l’accesso diretto a Internet, una VPN aziendale o un profilo famiglia, senza dover accedere ogni volta all’interfaccia web del router.
+
+Fai clic sull’icona RouterTray accanto all’orologio e seleziona il criterio desiderato. Il router lo applicherà alla scheda di rete selezionata del computer. Il criterio attivo è contrassegnato da un segno di spunta, mentre il comando «Predefinito» ripristina le regole standard del router.
+
+Per casa, ufficio e altre reti puoi creare profili separati, ciascuno con il proprio indirizzo del router, metodo di accesso e scheda di rete. Associa un profilo a una rete Windows e RouterTray lo selezionerà automaticamente alla connessione. Puoi inserire manualmente l’indirizzo del router oppure lasciare che l’app lo rilevi tramite il gateway di rete.
+
+Funzionalità principali:
+
+• selezione rapida dei criteri dall’area di notifica;
+• più profili per router e reti diversi;
+• selezione automatica del profilo in base alla rete Windows corrente;
+• rilevamento automatico dell’indirizzo del router;
+• selezione automatica o manuale di Ethernet, Wi-Fi e altre schede di rete;
+• accesso con nome utente e password o token di accesso;
+• protezione di password e token salvati tramite le funzionalità di sicurezza di Windows;
+• avvio insieme a Windows;
+
+Come funziona RouterTray:
+
+L’app si connette al router tramite la rete locale, recupera l’elenco dei criteri già creati e applica quello selezionato alla scheda di rete del computer in uso. RouterTray non modifica le impostazioni dei criteri, non è un client VPN e non instrada autonomamente il traffico Internet.
+
+Importante:
+
+• è necessario un router Keenetic o Netcraze compatibile con API RCI locale;
+• i criteri devono essere creati in precedenza nell’interfaccia web del router;
+• l’autenticazione tramite token è disponibile con la versione firmware 5.2 o successiva;
+• RouterTray è un’app indipendente e non fa parte dei prodotti ufficiali Keenetic o Netcraze.
+
+Configura RouterTray una sola volta e avrai sempre a portata di mano il percorso che ti serve.","A política de acesso ao router de que precisa, com um só clique.
+
+O RouterTray coloca na área de notificação do Windows as políticas de acesso configuradas no seu router Keenetic ou Netcraze. Escolha, para o computador atual, qualquer cenário que tenha criado, por exemplo, acesso direto à Internet, uma VPN de trabalho ou um perfil familiar, sem iniciar sessão constantemente na interface Web do router.
+
+Clique no ícone do RouterTray junto ao relógio e selecione a política pretendida. O router aplicá-la-á ao adaptador de rede selecionado do computador. A política ativa fica assinalada, enquanto o comando «Predefinição» repõe as regras padrão do router.
+
+Para casa, escritório e outras redes, pode criar perfis separados com o respetivo endereço do router, método de início de sessão e adaptador de rede. Associe um perfil a uma rede do Windows e o RouterTray selecioná-lo-á automaticamente quando se ligar. Pode introduzir manualmente o endereço do router ou permitir que a aplicação o detete através do gateway de rede.
+
+Principais funcionalidades:
+
+• seleção rápida de políticas na área de notificação;
+• vários perfis para diferentes routers e redes;
+• seleção automática do perfil com base na rede atual do Windows;
+• deteção automática do endereço do router;
+• seleção automática ou manual de Ethernet, Wi-Fi e outros adaptadores de rede;
+• início de sessão com nome de utilizador e palavra-passe ou token de acesso;
+• proteção das palavras-passe e dos tokens guardados através da segurança do Windows;
+• arranque com o Windows;
+
+Como funciona o RouterTray:
+
+A aplicação liga-se ao router através da rede local, obtém a lista de políticas já criadas e aplica a política selecionada ao adaptador de rede do computador atual. O RouterTray não altera as definições das políticas, não é um cliente VPN e não encaminha o tráfego da Internet autonomamente.
+
+Importante:
+
+• é necessário um router Keenetic ou Netcraze compatível com uma API RCI local;
+• as políticas têm de ser criadas previamente na interface Web do router;
+• a autenticação por token está disponível no firmware versão 5.2 ou posterior;
+• o RouterTray é uma aplicação independente e não faz parte dos produtos oficiais da Keenetic ou da Netcraze.
+
+Configure o RouterTray uma vez e terá sempre à mão a rota de que precisa.","Нужная политика доступа роутера в одном клике.
+
+RouterTray переносит настроенные на роутере Keenetic или Netcraze политики доступа в область уведомлений Windows. Выбирайте для текущего компьютера любой созданный вами сценарий например, прямой доступ в интернет, рабочий VPN или семейный профиль без постоянного входа в веб-интерфейс роутера.
+
+Нажмите на значок RouterTray рядом с часами и выберите нужную политику. Роутер применит её к выбранному сетевому адаптеру компьютера. Активная политика отмечена галочкой, а команда «По умолчанию» возвращает стандартные правила роутера.
+
+Для дома, офиса и других сетей можно создать отдельные профили с собственным адресом роутера, способом входа и сетевым адаптером. Привяжите профиль к сети Windows, и RouterTray автоматически выберет его при подключении. Адрес роутера можно указать вручную или позволить приложению определить его через сетевой шлюз.
+
+Основные возможности:
+
+• быстрый выбор политики из системного трея;
+• несколько профилей для разных роутеров и сетей;
+• автоматический выбор профиля по текущей сети Windows;
+• автоматическое определение адреса роутера;
+• автоматический или ручной выбор Ethernet, Wi-Fi и других сетевых адаптеров;
+• вход по логину и паролю или токену доступа;
+• защита сохранённых паролей и токенов средствами Windows;
+• запуск вместе с Windows;
+
+Как работает RouterTray:
+
+Приложение подключается к роутеру по локальной сети, получает список уже созданных политик и применяет выбранную политику к сетевому адаптеру текущего компьютера. RouterTray не изменяет настройки самих политик, не является VPN-клиентом и не маршрутизирует интернет-трафик самостоятельно.
+
+Важно:
+
+• требуется совместимый роутер Keenetic или Netcraze с локальным RCI API;
+• политики необходимо заранее создать в веб-интерфейсе роутера;
+• авторизация по токену доступна на прошивке версии 5.2 или новее;
+• RouterTray является независимым приложением и не относится к официальным продуктам Keenetic или Netcraze.
+
+Настройте RouterTray один раз и нужный маршрут всегда будет под рукой.
+","İhtiyacınız olan yönlendirici erişim politikası tek tık uzağınızda.
+
+RouterTray, Keenetic veya Netcraze yönlendiricinizde yapılandırılmış erişim politikalarını Windows bildirim alanına taşır. Yönlendiricinin web arayüzünde sürekli oturum açmadan, mevcut bilgisayar için oluşturduğunuz herhangi bir senaryoyu (örneğin doğrudan internet erişimi, iş VPN’i veya aile profili) seçin.
+
+Saatin yanındaki RouterTray simgesine tıklayın ve istediğiniz politikayı seçin. Yönlendirici, bu politikayı bilgisayarın seçili ağ bağdaştırıcısına uygular. Etkin politika onay işaretiyle belirtilir; «Varsayılan» komutu ise yönlendiricinin standart kurallarını geri yükler.
+
+Ev, ofis ve diğer ağlar için kendi yönlendirici adresi, oturum açma yöntemi ve ağ bağdaştırıcısı bulunan ayrı profiller oluşturabilirsiniz. Bir profili Windows ağına bağladığınızda RouterTray, bağlantı kurulurken profili otomatik olarak seçer. Yönlendirici adresini elle girebilir veya uygulamanın ağ geçidi üzerinden algılamasına izin verebilirsiniz.
+
+Başlıca özellikler:
+
+• sistem tepsisinden hızlı politika seçimi;
+• farklı yönlendiriciler ve ağlar için birden çok profil;
+• geçerli Windows ağına göre otomatik profil seçimi;
+• yönlendirici adresinin otomatik algılanması;
+• Ethernet, Wi-Fi ve diğer ağ bağdaştırıcılarının otomatik veya elle seçimi;
+• kullanıcı adı ve parola ya da erişim belirteciyle oturum açma;
+• kaydedilen parolaların ve belirteçlerin Windows güvenliğiyle korunması;
+• Windows ile birlikte başlatma;
+
+RouterTray nasıl çalışır:
+
+Uygulama yerel ağ üzerinden yönlendiriciye bağlanır, önceden oluşturulmuş politikaların listesini alır ve seçili politikayı mevcut bilgisayarın ağ bağdaştırıcısına uygular. RouterTray politikaların ayarlarını değiştirmez, bir VPN istemcisi değildir ve internet trafiğini kendi başına yönlendirmez.
+
+Önemli:
+
+• yerel RCI API’sine sahip uyumlu bir Keenetic veya Netcraze yönlendirici gerekir;
+• politikalar önceden yönlendiricinin web arayüzünde oluşturulmalıdır;
+• belirteçle kimlik doğrulama, 5.2 veya üzeri ürün yazılımı sürümlerinde kullanılabilir;
+• RouterTray bağımsız bir uygulamadır ve Keenetic veya Netcraze’in resmi ürünlerinden biri değildir.
+
+RouterTray’i bir kez ayarlayın; ihtiyacınız olan rota her zaman elinizin altında olsun.","La politique d’accès au routeur qu’il vous faut, en un clic.
+
+RouterTray place dans la zone de notification Windows les politiques d’accès configurées sur votre routeur Keenetic ou Netcraze. Pour l’ordinateur actuel, choisissez n’importe quel scénario que vous avez créé, par exemple un accès direct à Internet, un VPN professionnel ou un profil familial, sans vous connecter sans cesse à l’interface web du routeur.
+
+Cliquez sur l’icône RouterTray à côté de l’horloge, puis sélectionnez la politique souhaitée. Le routeur l’appliquera à la carte réseau sélectionnée de l’ordinateur. La politique active est cochée, tandis que la commande «Par défaut» rétablit les règles standard du routeur.
+
+Pour la maison, le bureau et d’autres réseaux, vous pouvez créer des profils distincts avec leur propre adresse de routeur, mode de connexion et carte réseau. Associez un profil à un réseau Windows et RouterTray le sélectionnera automatiquement lors de la connexion. Vous pouvez saisir l’adresse du routeur manuellement ou laisser l’application la détecter via la passerelle réseau.
+
+Principales fonctionnalités:
+
+• sélection rapide d’une politique depuis la zone de notification;
+• plusieurs profils pour différents routeurs et réseaux;
+• sélection automatique du profil selon le réseau Windows actuel;
+• détection automatique de l’adresse du routeur;
+• sélection automatique ou manuelle des cartes Ethernet, Wi-Fi et autres cartes réseau;
+• connexion avec un nom d’utilisateur et un mot de passe ou un jeton d’accès;
+• protection des mots de passe et jetons enregistrés par les mécanismes de sécurité Windows;
+• démarrage avec Windows;
+
+Fonctionnement de RouterTray:
+
+L’application se connecte au routeur via le réseau local, récupère la liste des politiques déjà créées et applique la politique sélectionnée à la carte réseau de l’ordinateur actuel. RouterTray ne modifie pas les paramètres des politiques, n’est pas un client VPN et n’achemine pas lui-même le trafic Internet.
+
+Important:
+
+• un routeur Keenetic ou Netcraze compatible avec une API RCI locale est requis;
+• les politiques doivent être créées au préalable dans l’interface web du routeur;
+• l’authentification par jeton est disponible avec la version 5.2 ou ultérieure du micrologiciel;
+• RouterTray est une application indépendante et ne fait pas partie des produits officiels Keenetic ou Netcraze.
+
+Configurez RouterTray une fois et l’itinéraire dont vous avez besoin restera toujours à portée de main.","The router access policy you need in one click.
+
+RouterTray brings the access policies configured on your Keenetic or Netcraze router to the Windows notification area. Choose any scenario you have created for the current PC—for example, direct internet access, a work VPN, or a family profile—without repeatedly signing in to the router’s web interface.
+
+Click the RouterTray icon next to the clock and select the policy you need. The router will apply it to the selected network adapter on the PC. The active policy has a check mark, while the “Default” command restores the router’s standard rules.
+
+For home, office, and other networks, you can create separate profiles with their own router address, sign-in method, and network adapter. Link a profile to a Windows network and RouterTray will select it automatically when you connect. You can enter the router address manually or let the app detect it through the network gateway.
+
+Key features:
+
+• quickly select a policy from the system tray;
+• multiple profiles for different routers and networks;
+• automatic profile selection based on the current Windows network;
+• automatic router address detection;
+• automatic or manual selection of Ethernet, Wi-Fi, and other network adapters;
+• sign in with a username and password or an access token;
+• protect saved passwords and tokens using Windows security;
+• start with Windows;
+
+How RouterTray works:
+
+The app connects to the router over the local network, retrieves the list of existing policies, and applies the selected policy to the current computer’s network adapter. RouterTray does not modify the policy settings, is not a VPN client, and does not route internet traffic itself.
+
+Important:
+
+• requires a compatible Keenetic or Netcraze router with a local RCI API;
+• policies must be created in advance in the router’s web interface;
+• token authentication is available on firmware version 5.2 or later;
+• RouterTray is an independent app and is not affiliated with the official Keenetic or Netcraze products.
+
+Set up RouterTray once, and the route you need will always be close at hand.","Den ønskede adgangspolitik til routeren er kun ét klik væk.
+
+RouterTray flytter de adgangspolitikker, der er konfigureret på din Keenetic- eller Netcraze-router, til Windows-meddelelsesområdet. Vælg et scenarie, du har oprettet til den aktuelle computer, f.eks. direkte internetadgang, en arbejds-VPN eller en familieprofil, uden hele tiden at logge på routerens webgrænseflade.
+
+Klik på RouterTray-ikonet ved siden af uret, og vælg den ønskede politik. Routeren anvender den på computerens valgte netværkskort. Den aktive politik er markeret med et flueben, mens kommandoen »Standard« gendanner routerens standardregler.
+
+Du kan oprette separate profiler til hjemmet, kontoret og andre netværk, hver med egen routeradresse, loginmetode og netværkskort. Knyt en profil til et Windows-netværk, så vælger RouterTray den automatisk, når der oprettes forbindelse. Du kan angive routeradressen manuelt eller lade appen registrere den via netværksgatewayen.
+
+Vigtigste funktioner:
+
+• hurtigt valg af politik fra systembakken;
+• flere profiler til forskellige routere og netværk;
+• automatisk profilvalg ud fra det aktuelle Windows-netværk;
+• automatisk registrering af routeradressen;
+• automatisk eller manuelt valg af Ethernet, Wi-Fi og andre netværkskort;
+• login med brugernavn og adgangskode eller adgangstoken;
+• beskyttelse af gemte adgangskoder og tokens med Windows-sikkerhed;
+• start sammen med Windows;
+
+Sådan fungerer RouterTray:
+
+Appen opretter forbindelse til routeren via lokalnetværket, henter listen over allerede oprettede politikker og anvender den valgte politik på den aktuelle computers netværkskort. RouterTray ændrer ikke indstillingerne for selve politikkerne, er ikke en VPN-klient og dirigerer ikke selv internettrafikken.
+
+Vigtigt:
+
+• kræver en kompatibel Keenetic- eller Netcraze-router med lokal RCI API;
+• politikker skal oprettes på forhånd i routerens webgrænseflade;
+• godkendelse med token er tilgængelig i firmwareversion 5.2 eller nyere;
+• RouterTray er en uafhængig app og er ikke en del af Keenetics eller Netcrazes officielle produkter.
+
+Konfigurer RouterTray én gang, så er den ønskede rute altid lige ved hånden.","Die passende Zugriffsrichtlinie für Ihren Router – mit einem Klick.
+
+RouterTray bringt die auf Ihrem Keenetic- oder Netcraze-Router konfigurierten Zugriffsrichtlinien in den Windows-Infobereich. Wählen Sie für den aktuellen Computer ein beliebiges von Ihnen erstelltes Szenario, zum Beispiel direkten Internetzugang, ein geschäftliches VPN oder ein Familienprofil, ohne sich ständig bei der Weboberfläche des Routers anzumelden.
+
+Klicken Sie neben der Uhr auf das RouterTray-Symbol und wählen Sie die gewünschte Richtlinie. Der Router wendet sie auf den ausgewählten Netzwerkadapter des Computers an. Die aktive Richtlinie ist mit einem Häkchen gekennzeichnet; der Befehl „Standard“ stellt die Standardregeln des Routers wieder her.
+
+Für Zuhause, Büro und andere Netzwerke können Sie separate Profile mit eigener Routeradresse, Anmeldemethode und eigenem Netzwerkadapter erstellen. Verknüpfen Sie ein Profil mit einem Windows-Netzwerk, und RouterTray wählt es beim Verbinden automatisch aus. Sie können die Routeradresse manuell eingeben oder von der App über das Netzwerk-Gateway ermitteln lassen.
+
+Wichtigste Funktionen:
+
+• schnelle Richtlinienauswahl über den Infobereich;
+• mehrere Profile für unterschiedliche Router und Netzwerke;
+• automatische Profilauswahl anhand des aktuellen Windows-Netzwerks;
+• automatische Ermittlung der Routeradresse;
+• automatische oder manuelle Auswahl von Ethernet-, WLAN- und anderen Netzwerkadaptern;
+• Anmeldung mit Benutzername und Kennwort oder Zugriffstoken;
+• Schutz gespeicherter Kennwörter und Tokens durch Windows-Sicherheitsfunktionen;
+• Start mit Windows;
+
+So funktioniert RouterTray:
+
+Die App verbindet sich über das lokale Netzwerk mit dem Router, ruft die Liste der bereits erstellten Richtlinien ab und wendet die ausgewählte Richtlinie auf den Netzwerkadapter des aktuellen Computers an. RouterTray ändert die Einstellungen der Richtlinien nicht, ist kein VPN-Client und leitet den Internetverkehr nicht selbst weiter.
+
+Wichtig:
+
+• ein kompatibler Keenetic- oder Netcraze-Router mit lokaler RCI-API ist erforderlich;
+• die Richtlinien müssen zuvor in der Weboberfläche des Routers erstellt werden;
+• die Token-Authentifizierung ist ab Firmwareversion 5.2 verfügbar;
+• RouterTray ist eine unabhängige App und gehört nicht zu den offiziellen Produkten von Keenetic oder Netcraze.
+
+Richten Sie RouterTray einmal ein, und die benötigte Route ist immer griffbereit.","Potrzebna polityka dostępu routera za jednym kliknięciem.
+
+RouterTray przenosi polityki dostępu skonfigurowane na routerze Keenetic lub Netcraze do obszaru powiadomień systemu Windows. Wybierz dla bieżącego komputera dowolny utworzony scenariusz, na przykład bezpośredni dostęp do Internetu, firmowy VPN albo profil rodzinny, bez ciągłego logowania się do interfejsu internetowego routera.
+
+Kliknij ikonę RouterTray obok zegara i wybierz potrzebną politykę. Router zastosuje ją do wybranej karty sieciowej komputera. Aktywna polityka jest oznaczona znacznikiem wyboru, a polecenie „Domyślna” przywraca standardowe reguły routera.
+
+Dla domu, biura i innych sieci możesz utworzyć oddzielne profile z własnym adresem routera, metodą logowania i kartą sieciową. Powiąż profil z siecią Windows, a RouterTray wybierze go automatycznie po nawiązaniu połączenia. Adres routera możesz wpisać ręcznie albo pozwolić aplikacji wykryć go za pośrednictwem bramy sieciowej.
+
+Najważniejsze funkcje:
+
+• szybki wybór polityki z zasobnika systemowego;
+• wiele profili dla różnych routerów i sieci;
+• automatyczny wybór profilu na podstawie bieżącej sieci Windows;
+• automatyczne wykrywanie adresu routera;
+• automatyczny lub ręczny wybór kart Ethernet, Wi-Fi i innych kart sieciowych;
+• logowanie za pomocą nazwy użytkownika i hasła lub tokenu dostępu;
+• ochrona zapisanych haseł i tokenów za pomocą zabezpieczeń systemu Windows;
+• uruchamianie wraz z systemem Windows;
+
+Jak działa RouterTray:
+
+Aplikacja łączy się z routerem przez sieć lokalną, pobiera listę wcześniej utworzonych polityk i stosuje wybraną politykę do karty sieciowej bieżącego komputera. RouterTray nie zmienia ustawień samych polityk, nie jest klientem VPN i samodzielnie nie kieruje ruchu internetowego.
+
+Ważne:
+
+• wymagany jest zgodny router Keenetic lub Netcraze z lokalnym interfejsem RCI API;
+• polityki należy wcześniej utworzyć w interfejsie internetowym routera;
+• uwierzytelnianie tokenem jest dostępne w oprogramowaniu układowym w wersji 5.2 lub nowszej;
+• RouterTray jest niezależną aplikacją i nie należy do oficjalnych produktów Keenetic ani Netcraze.
+
+Skonfiguruj RouterTray raz, a potrzebna trasa będzie zawsze pod ręką.","Потрібна політика доступу маршрутизатора в один клік.
+
+RouterTray переносить налаштовані на маршрутизаторі Keenetic або Netcraze політики доступу до області сповіщень Windows. Вибирайте для поточного комп’ютера будь-який створений вами сценарій, наприклад прямий доступ до Інтернету, робочий VPN або сімейний профіль, без постійного входу у вебінтерфейс маршрутизатора.
+
+Натисніть піктограму RouterTray поруч із годинником і виберіть потрібну політику. Маршрутизатор застосує її до вибраного мережевого адаптера комп’ютера. Активну політику позначено прапорцем, а команда «За замовчуванням» повертає стандартні правила маршрутизатора.
+
+Для дому, офісу та інших мереж можна створити окремі профілі з власною адресою маршрутизатора, способом входу й мережевим адаптером. Прив’яжіть профіль до мережі Windows, і RouterTray автоматично вибере його під час підключення. Адресу маршрутизатора можна вказати вручну або дозволити програмі визначити її через мережевий шлюз.
+
+Основні можливості:
+
+• швидкий вибір політики із системного трея;
+• кілька профілів для різних маршрутизаторів і мереж;
+• автоматичний вибір профілю за поточною мережею Windows;
+• автоматичне визначення адреси маршрутизатора;
+• автоматичний або ручний вибір Ethernet, Wi-Fi та інших мережевих адаптерів;
+• вхід за допомогою імені користувача й пароля або токена доступу;
+• захист збережених паролів і токенів засобами Windows;
+• запуск разом із Windows;
+
+Як працює RouterTray:
+
+Програма підключається до маршрутизатора через локальну мережу, отримує список уже створених політик і застосовує вибрану політику до мережевого адаптера поточного комп’ютера. RouterTray не змінює налаштувань самих політик, не є VPN-клієнтом і не маршрутизує інтернет-трафік самостійно.
+
+Важливо:
+
+• потрібен сумісний маршрутизатор Keenetic або Netcraze з локальним RCI API;
+• політики потрібно заздалегідь створити у вебінтерфейсі маршрутизатора;
+• авторизація за токеном доступна у версії прошивки 5.2 або новішій;
+• RouterTray є незалежною програмою й не належить до офіційних продуктів Keenetic або Netcraze.
+
+Налаштуйте RouterTray один раз, і потрібний маршрут завжди буде під рукою.","Tarvitsemasi reitittimen käyttöoikeuskäytäntö yhdellä napsautuksella.
+
+RouterTray tuo Keenetic- tai Netcraze-reitittimeen määritetyt käyttöoikeuskäytännöt Windowsin ilmoitusalueelle. Valitse nykyiselle tietokoneelle mikä tahansa luomasi toimintamalli, kuten suora internetyhteys, työ-VPN tai perheprofiili, ilman jatkuvaa kirjautumista reitittimen verkkokäyttöliittymään.
+
+Napsauta kellon vieressä olevaa RouterTray-kuvaketta ja valitse haluamasi käytäntö. Reititin ottaa sen käyttöön tietokoneen valitussa verkkosovittimessa. Aktiivinen käytäntö on merkitty valintamerkillä, ja Oletus-komento palauttaa reitittimen vakiosäännöt.
+
+Voit luoda kotiin, toimistoon ja muihin verkkoihin erilliset profiilit, joilla on oma reitittimen osoite, kirjautumistapa ja verkkosovitin. Yhdistä profiili Windows-verkkoon, niin RouterTray valitsee sen automaattisesti yhteyttä muodostettaessa. Voit syöttää reitittimen osoitteen käsin tai antaa sovelluksen tunnistaa sen verkkoyhdyskäytävän kautta.
+
+Tärkeimmät ominaisuudet:
+
+• käytännön nopea valinta ilmaisinalueelta;
+• useita profiileja eri reitittimiä ja verkkoja varten;
+• profiilin automaattinen valinta nykyisen Windows-verkon perusteella;
+• reitittimen osoitteen automaattinen tunnistus;
+• Ethernet-, Wi-Fi- ja muiden verkkosovittimien automaattinen tai manuaalinen valinta;
+• kirjautuminen käyttäjänimellä ja salasanalla tai käyttöoikeustunnuksella;
+• tallennettujen salasanojen ja tunnusten suojaus Windowsin suojaustoiminnoilla;
+• käynnistys Windowsin mukana;
+
+Näin RouterTray toimii:
+
+Sovellus muodostaa yhteyden reitittimeen paikallisverkon kautta, hakee jo luotujen käytäntöjen luettelon ja ottaa valitun käytännön käyttöön nykyisen tietokoneen verkkosovittimessa. RouterTray ei muuta käytäntöjen asetuksia, ei ole VPN-asiakasohjelma eikä reititä internetliikennettä itse.
+
+Tärkeää:
+
+• edellyttää yhteensopivaa Keenetic- tai Netcraze-reititintä, jossa on paikallinen RCI API;
+• käytännöt on luotava etukäteen reitittimen verkkokäyttöliittymässä;
+• tunnuksella tehtävä todennus on käytettävissä laiteohjelmistoversiossa 5.2 tai uudemmassa;
+• RouterTray on itsenäinen sovellus eikä kuulu Keeneticin tai Netcrazen virallisiin tuotteisiin.
+
+Määritä RouterTray kerran, niin tarvitsemasi reitti on aina käden ulottuvilla.","Rätt åtkomstprincip för routern med ett enda klick.
+
+RouterTray flyttar åtkomstprinciperna som har konfigurerats på din Keenetic- eller Netcraze-router till meddelandefältet i Windows. Välj valfritt scenario som du har skapat för den aktuella datorn, till exempel direkt internetåtkomst, ett VPN för arbetet eller en familjeprofil, utan att hela tiden logga in på routerns webbgränssnitt.
+
+Klicka på RouterTray-ikonen bredvid klockan och välj önskad princip. Routern tillämpar den på datorns valda nätverkskort. Den aktiva principen markeras med en bock, medan kommandot Standard återställer routerns standardregler.
+
+För hemmet, kontoret och andra nätverk kan du skapa separata profiler med egen routeradress, inloggningsmetod och nätverkskort. Koppla en profil till ett Windows-nätverk så väljer RouterTray den automatiskt när anslutningen upprättas. Du kan ange routeradressen manuellt eller låta appen identifiera den via nätverksgatewayen.
+
+Viktigaste funktionerna:
+
+• snabbt val av princip från systemfältet;
+• flera profiler för olika routrar och nätverk;
+• automatiskt profilval utifrån det aktuella Windows-nätverket;
+• automatisk identifiering av routeradressen;
+• automatiskt eller manuellt val av Ethernet, Wi-Fi och andra nätverkskort;
+• inloggning med användarnamn och lösenord eller åtkomsttoken;
+• skydd av sparade lösenord och token med Windows säkerhetsfunktioner;
+• start tillsammans med Windows;
+
+Så fungerar RouterTray:
+
+Appen ansluter till routern via det lokala nätverket, hämtar listan över redan skapade principer och tillämpar den valda principen på den aktuella datorns nätverkskort. RouterTray ändrar inte principernas inställningar, är inte en VPN-klient och dirigerar inte internettrafik på egen hand.
+
+Viktigt:
+
+• kräver en kompatibel Keenetic- eller Netcraze-router med lokalt RCI API;
+• principerna måste skapas i förväg i routerns webbgränssnitt;
+• tokenautentisering är tillgänglig i firmwareversion 5.2 eller senare;
+• RouterTray är en oberoende app och ingår inte i Keenetics eller Netcrazes officiella produkter.
+
+Konfigurera RouterTray en gång så har du alltid den rutt du behöver nära till hands."
+ReleaseNotes,3,Текст,,,,,,,,,,,,,,,
+Title,4,Текст,,RouterTray,RouterTray,RouterTray,RouterTray,RouterTray,RouterTray,RouterTray,RouterTray,RouterTray,RouterTray,RouterTray,RouterTray,RouterTray,RouterTray
+ShortTitle,5,Текст,,,,,,,,,,,,,,,
+SortTitle,6,Текст,,,,,,,,,,,,,,,
+VoiceTitle,7,Текст,,,,,,,,,,,,,,,
+ShortDescription,8,Текст,,Switch Keenetic and Netcraze access policies from the Windows system tray.,Cambia las políticas de acceso de Keenetic y Netcraze desde la bandeja del sistema de Windows.,Cambia i criteri di accesso Keenetic e Netcraze dall’area di notifica di Windows.,Alterne as políticas de acesso Keenetic e Netcraze na área de notificação do Windows.,Переключайте политики доступа Keenetic и Netcraze из системного трея Windows.,Keenetic ve Netcraze erişim politikalarını Windows sistem tepsisinden değiştirin.,Changez les politiques d’accès Keenetic et Netcraze depuis la zone de notification Windows.,Switch Keenetic and Netcraze access policies from the Windows system tray.,Skift Keenetic- og Netcraze-adgangspolitikker fra systembakken i Windows.,Wechseln Sie Keenetic- und Netcraze-Zugriffsrichtlinien über den Windows-Infobereich.,Przełączaj polityki dostępu Keenetic i Netcraze z zasobnika systemowego Windows.,Перемикайте політики доступу Keenetic і Netcraze із системного трея Windows.,Vaihda Keenetic- ja Netcraze-käyttöoikeuskäytäntöjä Windowsin ilmaisinalueelta.,Byt åtkomstprinciper för Keenetic och Netcraze från systemfältet i Windows.
+DevStudio,9,Текст,,Sevostianov Denis,Sevostianov Denis,Sevostianov Denis,Sevostianov Denis,Sevostianov Denis,Sevostianov Denis,Sevostianov Denis,Sevostianov Denis,Sevostianov Denis,Sevostianov Denis,Sevostianov Denis,Sevostianov Denis,Sevostianov Denis,Sevostianov Denis
+CopyrightTrademarkInformation,12,Текст,,,,,,,,,,,,,,,
+AdditionalLicenseTerms,13,Текст,,,,,,,,,,,,,,,
+DesktopScreenshot1,100,Относительный путь (или URL-адрес файла в Центре партнеров),,partner-center-upload/screenshots/en-US/01-policy-switcher.png,partner-center-upload/screenshots/es-ES/01-policy-switcher.png,partner-center-upload/screenshots/it-IT/01-policy-switcher.png,partner-center-upload/screenshots/pt-PT/01-policy-switcher.png,partner-center-upload/screenshots/ru-RU/01-policy-switcher.png,partner-center-upload/screenshots/tr-TR/01-policy-switcher.png,partner-center-upload/screenshots/fr-FR/01-policy-switcher.png,partner-center-upload/screenshots/en-US/01-policy-switcher.png,partner-center-upload/screenshots/da-DK/01-policy-switcher.png,partner-center-upload/screenshots/de-DE/01-policy-switcher.png,partner-center-upload/screenshots/pl-PL/01-policy-switcher.png,partner-center-upload/screenshots/uk-UA/01-policy-switcher.png,partner-center-upload/screenshots/fi-FI/01-policy-switcher.png,partner-center-upload/screenshots/sv-SE/01-policy-switcher.png
+DesktopScreenshot2,101,Относительный путь (или URL-адрес файла в Центре партнеров),,partner-center-upload/screenshots/en-US/02-router-profiles.png,partner-center-upload/screenshots/es-ES/02-router-profiles.png,partner-center-upload/screenshots/it-IT/02-router-profiles.png,partner-center-upload/screenshots/pt-PT/02-router-profiles.png,partner-center-upload/screenshots/ru-RU/02-router-profiles.png,partner-center-upload/screenshots/tr-TR/02-router-profiles.png,partner-center-upload/screenshots/fr-FR/02-router-profiles.png,partner-center-upload/screenshots/en-US/02-router-profiles.png,partner-center-upload/screenshots/da-DK/02-router-profiles.png,partner-center-upload/screenshots/de-DE/02-router-profiles.png,partner-center-upload/screenshots/pl-PL/02-router-profiles.png,partner-center-upload/screenshots/uk-UA/02-router-profiles.png,partner-center-upload/screenshots/fi-FI/02-router-profiles.png,partner-center-upload/screenshots/sv-SE/02-router-profiles.png
+DesktopScreenshot3,102,Относительный путь (или URL-адрес файла в Центре партнеров),,partner-center-upload/screenshots/en-US/03-profile-settings.png,partner-center-upload/screenshots/es-ES/03-profile-settings.png,partner-center-upload/screenshots/it-IT/03-profile-settings.png,partner-center-upload/screenshots/pt-PT/03-profile-settings.png,partner-center-upload/screenshots/ru-RU/03-profile-settings.png,partner-center-upload/screenshots/tr-TR/03-profile-settings.png,partner-center-upload/screenshots/fr-FR/03-profile-settings.png,partner-center-upload/screenshots/en-US/03-profile-settings.png,partner-center-upload/screenshots/da-DK/03-profile-settings.png,partner-center-upload/screenshots/de-DE/03-profile-settings.png,partner-center-upload/screenshots/pl-PL/03-profile-settings.png,partner-center-upload/screenshots/uk-UA/03-profile-settings.png,partner-center-upload/screenshots/fi-FI/03-profile-settings.png,partner-center-upload/screenshots/sv-SE/03-profile-settings.png
+DesktopScreenshot4,103,Относительный путь (или URL-адрес файла в Центре партнеров),,partner-center-upload/screenshots/en-US/04-access-token.png,partner-center-upload/screenshots/es-ES/04-access-token.png,partner-center-upload/screenshots/it-IT/04-access-token.png,partner-center-upload/screenshots/pt-PT/04-access-token.png,partner-center-upload/screenshots/ru-RU/04-access-token.png,partner-center-upload/screenshots/tr-TR/04-access-token.png,partner-center-upload/screenshots/fr-FR/04-access-token.png,partner-center-upload/screenshots/en-US/04-access-token.png,partner-center-upload/screenshots/da-DK/04-access-token.png,partner-center-upload/screenshots/de-DE/04-access-token.png,partner-center-upload/screenshots/pl-PL/04-access-token.png,partner-center-upload/screenshots/uk-UA/04-access-token.png,partner-center-upload/screenshots/fi-FI/04-access-token.png,partner-center-upload/screenshots/sv-SE/04-access-token.png
+DesktopScreenshot5,104,Относительный путь (или URL-адрес файла в Центре партнеров),,partner-center-upload/screenshots/en-US/05-application-settings.png,partner-center-upload/screenshots/es-ES/05-application-settings.png,partner-center-upload/screenshots/it-IT/05-application-settings.png,partner-center-upload/screenshots/pt-PT/05-application-settings.png,partner-center-upload/screenshots/ru-RU/05-application-settings.png,partner-center-upload/screenshots/tr-TR/05-application-settings.png,partner-center-upload/screenshots/fr-FR/05-application-settings.png,partner-center-upload/screenshots/en-US/05-application-settings.png,partner-center-upload/screenshots/da-DK/05-application-settings.png,partner-center-upload/screenshots/de-DE/05-application-settings.png,partner-center-upload/screenshots/pl-PL/05-application-settings.png,partner-center-upload/screenshots/uk-UA/05-application-settings.png,partner-center-upload/screenshots/fi-FI/05-application-settings.png,partner-center-upload/screenshots/sv-SE/05-application-settings.png
+DesktopScreenshot6,105,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot7,106,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot8,107,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot9,108,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot10,109,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot11,110,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot12,111,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot13,112,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot14,113,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot15,114,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot16,115,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot17,116,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot18,117,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot19,118,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot20,119,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot21,120,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot22,121,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot23,122,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot24,123,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot25,124,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot26,125,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot27,126,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot28,127,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot29,128,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshot30,129,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+DesktopScreenshotCaption1,150,Текст,,"Switch Keenetic routing policies right from the Windows system tray instantly, without opening the router interface.","Cambia al instante las políticas de enrutamiento de Keenetic desde la bandeja del sistema de Windows, sin abrir la interfaz del router.","Cambia subito i criteri di routing Keenetic dall’area di notifica di Windows, senza aprire l’interfaccia del router.","Altere instantaneamente as políticas de encaminhamento do Keenetic na área de notificação do Windows, sem abrir a interface do router.","Мгновенно переключайте политики маршрутизации Keenetic из системного трея Windows, не открывая интерфейс роутера.",Keenetic yönlendirme politikalarını yönlendirici arayüzünü açmadan doğrudan Windows sistem tepsisinden anında değiştirin.,"Changez instantanément de politique de routage Keenetic depuis la zone de notification Windows, sans ouvrir l’interface du routeur.","Switch Keenetic routing policies right from the Windows system tray instantly, without opening the router interface.",Skift Keenetic-routingpolitikker direkte fra meddelelsesområdet i Windows – med det samme og uden at åbne routerens brugerflade.,"Wechseln Sie Keenetic-Routingrichtlinien sofort über den Windows-Infobereich, ohne die Routeroberfläche zu öffnen.",Błyskawicznie przełączaj zasady routingu Keenetic z zasobnika systemowego Windows — bez otwierania interfejsu routera.,"Миттєво перемикайте політики маршрутизації Keenetic із системного трея Windows, не відкриваючи інтерфейс маршрутизатора.",Vaihda Keeneticin reitityskäytäntöjä heti Windowsin ilmaisinalueelta avaamatta reitittimen käyttöliittymää.,Växla Keenetic-routningsprinciper direkt från meddelandefältet i Windows utan att öppna routerns gränssnitt.
+DesktopScreenshotCaption2,151,Текст,,"Bind a profile to each Windows network and RouterTray selects it automatically at home, at work, or in the lab.","Asocia un perfil a cada red de Windows y RouterTray lo seleccionará automáticamente en casa, en el trabajo o en el laboratorio.","Associa un profilo a ogni rete Windows e RouterTray lo selezionerà automaticamente a casa, al lavoro o in laboratorio.","Associe um perfil a cada rede Windows e o RouterTray seleciona-o automaticamente em casa, no trabalho ou no laboratório.","Привяжите профиль к каждой сети Windows — RouterTray автоматически выберет его дома, на работе или в лаборатории.","Her Windows ağına bir profil bağlayın; RouterTray evde, işte veya laboratuvarda doğru profili otomatik olarak seçsin.","Associez un profil à chaque réseau Windows : RouterTray le sélectionne automatiquement à la maison, au travail ou au laboratoire.","Bind a profile to each Windows network and RouterTray selects it automatically at home, at work, or in the lab.","Knyt en profil til hvert Windows-netværk, så vælger RouterTray den automatisk derhjemme, på arbejdet eller i laboratoriet.","Verknüpfen Sie jedes Windows-Netzwerk mit einem Profil. RouterTray wählt es zu Hause, im Büro oder im Labor automatisch aus.","Przypisz profil do każdej sieci Windows, a RouterTray wybierze go automatycznie w domu, w pracy lub w laboratorium.","Прив’яжіть профіль до кожної мережі Windows — RouterTray автоматично вибере його вдома, на роботі чи в лабораторії.","Liitä profiili kuhunkin Windows-verkkoon, niin RouterTray valitsee sen automaattisesti kotona, töissä tai laboratoriossa.","Koppla en profil till varje Windows-nätverk så väljer RouterTray den automatiskt hemma, på jobbet eller i labbet."
+DesktopScreenshotCaption3,152,Текст,,"Configure router access, credentials, and Windows network bindings in one place.","Configura el acceso al router, las credenciales y las asociaciones de red de Windows desde un solo lugar.","Configura in un unico posto l’accesso al router, le credenziali e le associazioni alle reti Windows.","Configure o acesso ao router, as credenciais e as associações de rede do Windows num único local.","Настраивайте доступ к роутеру, учётные данные и привязки к сетям Windows в одном месте.","Yönlendirici erişimini, kimlik bilgilerini ve Windows ağ bağlantılarını tek bir yerden yapılandırın.","Configurez l’accès au routeur, les identifiants et les associations aux réseaux Windows au même endroit.","Configure router access, credentials, and Windows network bindings in one place.","Konfigurer routeradgang, legitimationsoplysninger og Windows-netværkstilknytninger samlet ét sted.","Konfigurieren Sie Routerzugriff, Anmeldedaten und Windows-Netzwerkzuordnungen zentral an einem Ort.","Skonfiguruj w jednym miejscu dostęp do routera, dane logowania i powiązania z sieciami Windows.","Налаштовуйте доступ до маршрутизатора, облікові дані та прив’язки до мереж Windows в одному місці.","Määritä reitittimen käyttöoikeudet, tunnistetiedot ja Windows-verkkojen sidonnat yhdessä paikassa.","Konfigurera routeråtkomst, inloggningsuppgifter och Windows-nätverkskopplingar på ett och samma ställe."
+DesktopScreenshotCaption4,153,Текст,,Sign in with an access token on supported Keenetic and Netcraze firmware.,Inicia sesión con un token de acceso en firmware compatible de Keenetic y Netcraze.,Accedi con un token di accesso sui firmware Keenetic e Netcraze supportati.,Inicie sessão com um token de acesso em firmware Keenetic e Netcraze compatível.,Входите с помощью токена доступа на поддерживаемых прошивках Keenetic и Netcraze.,Desteklenen Keenetic ve Netcraze ürün yazılımlarında erişim belirteciyle oturum açın.,Connectez-vous avec un jeton d’accès sur les firmwares Keenetic et Netcraze compatibles.,Sign in with an access token on supported Keenetic and Netcraze firmware.,Log på med et adgangstoken på understøttet Keenetic- og Netcraze-firmware.,Melden Sie sich auf unterstützter Keenetic- und Netcraze-Firmware mit einem Zugriffstoken an.,Loguj się tokenem dostępu w obsługiwanym oprogramowaniu Keenetic i Netcraze.,Входьте за допомогою токена доступу на підтримуваних прошивках Keenetic і Netcraze.,Kirjaudu käyttöoikeustunnuksella tuettuun Keenetic- tai Netcraze-laiteohjelmistoon.,Logga in med en åtkomsttoken på fast programvara från Keenetic och Netcraze som stöds.
+DesktopScreenshotCaption5,154,Текст,,"Choose automatic profile selection, Windows startup, and policy change notifications.","Elige la selección automática de perfiles, el inicio con Windows y las notificaciones de cambio de política.","Scegli la selezione automatica del profilo, l’avvio con Windows e le notifiche al cambio di criterio.","Escolha a seleção automática de perfis, o arranque com o Windows e as notificações de mudança de política.","Настройте автоматический выбор профиля, запуск вместе с Windows и уведомления о смене политики.","Otomatik profil seçimini, Windows ile başlangıcı ve politika değişikliği bildirimlerini ayarlayın.","Choisissez la sélection automatique du profil, le démarrage avec Windows et les notifications de changement de politique.","Choose automatic profile selection, Windows startup, and policy change notifications.","Vælg automatisk profilvalg, start med Windows og meddelelser ved skift af adgangspolitik.","Wählen Sie automatische Profilauswahl, Start mit Windows und Benachrichtigungen bei Richtlinienwechseln.","Wybierz automatyczny wybór profilu, uruchamianie z systemem Windows i powiadomienia o zmianie zasad.","Налаштуйте автоматичний вибір профілю, запуск разом із Windows і сповіщення про зміну політики.","Valitse automaattinen profiilin valinta, käynnistys Windowsin mukana ja ilmoitukset käytäntöjen vaihdoista.","Välj automatiskt profilval, start med Windows och aviseringar vid principbyte."
+DesktopScreenshotCaption6,155,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption7,156,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption8,157,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption9,158,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption10,159,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption11,160,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption12,161,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption13,162,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption14,163,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption15,164,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption16,165,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption17,166,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption18,167,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption19,168,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption20,169,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption21,170,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption22,171,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption23,172,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption24,173,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption25,174,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption26,175,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption27,176,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption28,177,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption29,178,Текст,,,,,,,,,,,,,,,
+DesktopScreenshotCaption30,179,Текст,,,,,,,,,,,,,,,
+MobileScreenshot1,200,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot2,201,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot3,202,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot4,203,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot5,204,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot6,205,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot7,206,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot8,207,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot9,208,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot10,209,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot11,210,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot12,211,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot13,212,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot14,213,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot15,214,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot16,215,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot17,216,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot18,217,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot19,218,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot20,219,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot21,220,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot22,221,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot23,222,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot24,223,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot25,224,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot26,225,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot27,226,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot28,227,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot29,228,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshot30,229,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+MobileScreenshotCaption1,250,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption2,251,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption3,252,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption4,253,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption5,254,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption6,255,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption7,256,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption8,257,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption9,258,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption10,259,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption11,260,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption12,261,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption13,262,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption14,263,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption15,264,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption16,265,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption17,266,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption18,267,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption19,268,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption20,269,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption21,270,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption22,271,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption23,272,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption24,273,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption25,274,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption26,275,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption27,276,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption28,277,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption29,278,Текст,,,,,,,,,,,,,,,
+MobileScreenshotCaption30,279,Текст,,,,,,,,,,,,,,,
+XboxScreenshot1,300,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot2,301,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot3,302,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot4,303,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot5,304,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot6,305,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot7,306,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot8,307,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot9,308,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot10,309,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot11,310,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot12,311,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot13,312,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot14,313,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot15,314,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot16,315,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot17,316,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot18,317,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot19,318,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot20,319,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot21,320,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot22,321,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot23,322,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot24,323,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot25,324,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot26,325,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot27,326,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot28,327,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot29,328,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshot30,329,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxScreenshotCaption1,350,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption2,351,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption3,352,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption4,353,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption5,354,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption6,355,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption7,356,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption8,357,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption9,358,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption10,359,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption11,360,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption12,361,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption13,362,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption14,363,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption15,364,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption16,365,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption17,366,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption18,367,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption19,368,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption20,369,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption21,370,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption22,371,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption23,372,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption24,373,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption25,374,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption26,375,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption27,376,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption28,377,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption29,378,Текст,,,,,,,,,,,,,,,
+XboxScreenshotCaption30,379,Текст,,,,,,,,,,,,,,,
+HolographicScreenshot1,400,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot2,401,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot3,402,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot4,403,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot5,404,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot6,405,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot7,406,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot8,407,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot9,408,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot10,409,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot11,410,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot12,411,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot13,412,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot14,413,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot15,414,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot16,415,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot17,416,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot18,417,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot19,418,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot20,419,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot21,420,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot22,421,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot23,422,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot24,423,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot25,424,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot26,425,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot27,426,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot28,427,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot29,428,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshot30,429,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+HolographicScreenshotCaption1,450,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption2,451,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption3,452,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption4,453,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption5,454,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption6,455,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption7,456,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption8,457,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption9,458,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption10,459,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption11,460,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption12,461,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption13,462,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption14,463,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption15,464,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption16,465,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption17,466,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption18,467,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption19,468,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption20,469,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption21,470,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption22,471,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption23,472,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption24,473,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption25,474,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption26,475,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption27,476,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption28,477,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption29,478,Текст,,,,,,,,,,,,,,,
+HolographicScreenshotCaption30,479,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshot11,510,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot12,511,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot13,512,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot14,513,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot15,514,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot16,515,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot17,516,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot18,517,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot19,518,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot20,519,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot21,520,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot22,521,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot23,522,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot24,523,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot25,524,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot26,525,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot27,526,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot28,527,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot29,528,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshot30,529,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption11,560,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption12,561,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption13,562,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption14,563,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption15,564,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption16,565,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption17,566,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption18,567,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption19,568,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption20,569,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption21,570,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption22,571,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption23,572,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption24,573,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption25,574,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption26,575,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption27,576,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption28,577,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption29,578,Текст,,,,,,,,,,,,,,,
+SurfaceHubScreenshotCaption30,579,Текст,,,,,,,,,,,,,,,
+StoreLogo720x1080,600,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+StoreLogo1080x1080,601,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+StoreLogo300x300,602,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+OverrideLogosForWin10,603,True/False,,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+StoreLogoOverride150x150,604,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+StoreLogoOverride71x71,605,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+PromoImage1920x1080,606,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+PromoImage2400x1200,607,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxBrandedKeyArt584x800,608,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxTitledHero1920x1080,609,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+XboxFeaturedPromo1080x1080,610,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+OptionalPromo358x358,611,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+OptionalPromo1000x800,612,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+OptionalPromo414x180,613,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+Feature1,700,Текст,,,,,,,,,,,,,,,
+Feature2,701,Текст,,,,,,,,,,,,,,,
+Feature3,702,Текст,,,,,,,,,,,,,,,
+Feature4,703,Текст,,,,,,,,,,,,,,,
+Feature5,704,Текст,,,,,,,,,,,,,,,
+Feature6,705,Текст,,,,,,,,,,,,,,,
+Feature7,706,Текст,,,,,,,,,,,,,,,
+Feature8,707,Текст,,,,,,,,,,,,,,,
+Feature9,708,Текст,,,,,,,,,,,,,,,
+Feature10,709,Текст,,,,,,,,,,,,,,,
+Feature11,710,Текст,,,,,,,,,,,,,,,
+Feature12,711,Текст,,,,,,,,,,,,,,,
+Feature13,712,Текст,,,,,,,,,,,,,,,
+Feature14,713,Текст,,,,,,,,,,,,,,,
+Feature15,714,Текст,,,,,,,,,,,,,,,
+Feature16,715,Текст,,,,,,,,,,,,,,,
+Feature17,716,Текст,,,,,,,,,,,,,,,
+Feature18,717,Текст,,,,,,,,,,,,,,,
+Feature19,718,Текст,,,,,,,,,,,,,,,
+Feature20,719,Текст,,,,,,,,,,,,,,,
+MinimumHardwareReq1,800,Текст,,Compatible Keenetic or Netcraze router with a local RCI API,Router Keenetic o Netcraze compatible con una API RCI local,Router Keenetic o Netcraze compatibile con API RCI locale,Router Keenetic ou Netcraze compatível com uma API RCI local,Совместимый роутер Keenetic или Netcraze с локальным RCI API,Yerel RCI API’sine sahip uyumlu Keenetic veya Netcraze yönlendirici,Routeur Keenetic ou Netcraze compatible avec une API RCI locale,Compatible Keenetic or Netcraze router with a local RCI API,Kompatibel Keenetic- eller Netcraze-router med lokal RCI API,Kompatibler Keenetic- oder Netcraze-Router mit lokaler RCI-API,Zgodny router Keenetic lub Netcraze z lokalnym interfejsem RCI API,Сумісний маршрутизатор Keenetic або Netcraze з локальним RCI API,"Yhteensopiva Keenetic- tai Netcraze-reititin, jossa on paikallinen RCI API",Kompatibel Keenetic- eller Netcraze-router med lokalt RCI API
+MinimumHardwareReq2,801,Текст,,Access policy configured on the router in advance,Política de acceso configurada previamente en el router,Criterio di accesso configurato in precedenza sul router,Política de acesso previamente configurada no router,Заранее настроенная на роутере политика доступа,Yönlendiricide önceden yapılandırılmış erişim politikası,Politique d’accès configurée au préalable sur le routeur,Access policy configured on the router in advance,"Adgangspolitik, der er konfigureret på routeren på forhånd",Vorab auf dem Router konfigurierte Zugriffsrichtlinie,Polityka dostępu skonfigurowana wcześniej na routerze,Заздалегідь налаштована на маршрутизаторі політика доступу,Reitittimeen etukäteen määritetty käyttöoikeuskäytäntö,Åtkomstprincip som har konfigurerats på routern i förväg
+MinimumHardwareReq3,802,Текст,,Computer connected to the router’s local network,Equipo conectado a la red local del router,Computer connesso alla rete locale del router,Computador ligado à rede local do router,Подключение компьютера к локальной сети роутера,Bilgisayarın yönlendiricinin yerel ağına bağlı olması,Ordinateur connecté au réseau local du routeur,Computer connected to the router’s local network,Computer tilsluttet routerens lokalnetværk,Computer ist mit dem lokalen Netzwerk des Routers verbunden,Komputer połączony z lokalną siecią routera,Підключення комп’ютера до локальної мережі маршрутизатора,Tietokone on yhdistetty reitittimen paikallisverkkoon,Datorn är ansluten till routerns lokala nätverk
+MinimumHardwareReq4,803,Текст,,,,,,,,,,,,,,,
+MinimumHardwareReq5,804,Текст,,,,,,,,,,,,,,,
+MinimumHardwareReq6,805,Текст,,,,,,,,,,,,,,,
+MinimumHardwareReq7,806,Текст,,,,,,,,,,,,,,,
+MinimumHardwareReq8,807,Текст,,,,,,,,,,,,,,,
+MinimumHardwareReq9,808,Текст,,,,,,,,,,,,,,,
+MinimumHardwareReq10,809,Текст,,,,,,,,,,,,,,,
+MinimumHardwareReq11,810,Текст,,,,,,,,,,,,,,,
+RecommendedHardwareReq1,850,Текст,,Firmware version 5.2 or later for access-token authentication,Firmware 5.2 o posterior para autenticación mediante token de acceso,Firmware versione 5.2 o successiva per l’autenticazione tramite token di accesso,Firmware versão 5.2 ou posterior para autenticação por token de acesso,Прошивка версии 5.2 или новее для авторизации по токену доступа,Erişim belirteciyle kimlik doğrulama için ürün yazılımı sürümü 5.2 veya üzeri,Micrologiciel version 5.2 ou ultérieure pour l’authentification par jeton d’accès,Firmware version 5.2 or later for access-token authentication,Firmwareversion 5.2 eller nyere til godkendelse med adgangstoken,Firmwareversion 5.2 oder neuer für die Authentifizierung per Zugriffstoken,Oprogramowanie układowe w wersji 5.2 lub nowszej do uwierzytelniania tokenem dostępu,Прошивка версії 5.2 або новішої для авторизації за токеном доступу,Laiteohjelmistoversio 5.2 tai uudempi käyttöoikeustunnuksella todentamiseen,Firmwareversion 5.2 eller senare för autentisering med åtkomsttoken
+RecommendedHardwareReq2,851,Текст,,,,,,,,,,,,,,,
+RecommendedHardwareReq3,852,Текст,,,,,,,,,,,,,,,
+RecommendedHardwareReq4,853,Текст,,,,,,,,,,,,,,,
+RecommendedHardwareReq5,854,Текст,,,,,,,,,,,,,,,
+RecommendedHardwareReq6,855,Текст,,,,,,,,,,,,,,,
+RecommendedHardwareReq7,856,Текст,,,,,,,,,,,,,,,
+RecommendedHardwareReq8,857,Текст,,,,,,,,,,,,,,,
+RecommendedHardwareReq9,858,Текст,,,,,,,,,,,,,,,
+RecommendedHardwareReq10,859,Текст,,,,,,,,,,,,,,,
+RecommendedHardwareReq11,860,Текст,,,,,,,,,,,,,,,
+SearchTerm1,900,Текст,,Keenetic,Keenetic,Keenetic,Keenetic,Keenetic,Keenetic,Keenetic,Keenetic,Keenetic,Keenetic,Keenetic,Keenetic,Keenetic,Keenetic
+SearchTerm2,901,Текст,,Netcraze,Netcraze,Netcraze,Netcraze," Netcraze",Netcraze,Netcraze,Netcraze,Netcraze,Netcraze,Netcraze,Netcraze,Netcraze,Netcraze
+SearchTerm3,902,Текст,,Keenetic,Keenetic,Keenetic,Keenetic,"Keenetic ",Keenetic,Keenetic,Keenetic,Keenetic,Keenetic,Keenetic,Keenetic,Keenetic,Keenetic
+SearchTerm4,903,Текст,,Netcraze,Netcraze,Netcraze,Netcraze,"Netcraze ",Netcraze,Netcraze,Netcraze,Netcraze,Netcraze,Netcraze,Netcraze,Netcraze,Netcraze
+SearchTerm5,904,Текст,,access policies,políticas de acceso,criteri di accesso,políticas de acesso,политики доступа,erişim politikaları,politiques d’accès,access policies,adgangspolitikker,Zugriffsrichtlinien,polityki dostępu,політики доступу,käyttöoikeuskäytännöt,åtkomstprinciper
+SearchTerm6,905,Текст,,,,,,,,,,,,,,,
+SearchTerm7,906,Текст,,,,,,,,,,,,,,,
+TrailerToPlayAtTopOfListing,999,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+Trailer1,1000,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+Trailer2,1001,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+Trailer3,1002,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+Trailer4,1003,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+Trailer5,1004,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+Trailer6,1005,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+Trailer7,1006,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+Trailer8,1007,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+Trailer9,1008,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+Trailer10,1009,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+Trailer11,1010,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+Trailer12,1011,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+Trailer13,1012,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+Trailer14,1013,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+Trailer15,1014,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerTitle1,1020,Текст,,,,,,,,,,,,,,,
+TrailerTitle2,1021,Текст,,,,,,,,,,,,,,,
+TrailerTitle3,1022,Текст,,,,,,,,,,,,,,,
+TrailerTitle4,1023,Текст,,,,,,,,,,,,,,,
+TrailerTitle5,1024,Текст,,,,,,,,,,,,,,,
+TrailerTitle6,1025,Текст,,,,,,,,,,,,,,,
+TrailerTitle7,1026,Текст,,,,,,,,,,,,,,,
+TrailerTitle8,1027,Текст,,,,,,,,,,,,,,,
+TrailerTitle9,1028,Текст,,,,,,,,,,,,,,,
+TrailerTitle10,1029,Текст,,,,,,,,,,,,,,,
+TrailerTitle11,1030,Текст,,,,,,,,,,,,,,,
+TrailerTitle12,1031,Текст,,,,,,,,,,,,,,,
+TrailerTitle13,1032,Текст,,,,,,,,,,,,,,,
+TrailerTitle14,1033,Текст,,,,,,,,,,,,,,,
+TrailerTitle15,1034,Текст,,,,,,,,,,,,,,,
+TrailerThumbnail1,1040,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerThumbnail2,1041,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerThumbnail3,1042,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerThumbnail4,1043,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerThumbnail5,1044,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerThumbnail6,1045,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerThumbnail7,1046,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerThumbnail8,1047,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerThumbnail9,1048,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerThumbnail10,1049,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerThumbnail11,1050,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerThumbnail12,1051,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerThumbnail13,1052,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerThumbnail14,1053,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerThumbnail15,1054,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerClosedCaption1,1055,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerClosedCaption2,1056,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerClosedCaption3,1057,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerClosedCaption4,1058,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerClosedCaption5,1059,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerClosedCaption6,1060,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerClosedCaption7,1061,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerClosedCaption8,1062,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerClosedCaption9,1063,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerClosedCaption10,1064,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerClosedCaption11,1065,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerClosedCaption12,1066,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerClosedCaption13,1067,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerClosedCaption14,1068,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerClosedCaption15,1069,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerAudioDescription1,1070,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerAudioDescription2,1071,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerAudioDescription3,1072,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerAudioDescription4,1073,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerAudioDescription5,1074,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerAudioDescription6,1075,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerAudioDescription7,1076,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerAudioDescription8,1077,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerAudioDescription9,1078,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerAudioDescription10,1079,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerAudioDescription11,1080,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerAudioDescription12,1081,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerAudioDescription13,1082,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerAudioDescription14,1083,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
+TrailerAudioDescription15,1084,Относительный путь (или URL-адрес файла в Центре партнеров),,,,,,,,,,,,,,,
