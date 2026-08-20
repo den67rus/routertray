@@ -305,8 +305,8 @@ try {
     Compress-Archive -Path (Join-Path $uploadInputRoot '*') -DestinationPath $uploadZipPath -CompressionLevel Optimal
     Move-Item -LiteralPath $uploadZipPath -Destination $uploadPath
 
-    Write-Host "Microsoft Store upload package: $uploadPath"
-    Write-Host "Unsigned bundle for inspection: $bundlePath"
+    Write-Host "Partner Center submission (upload this file only): $uploadPath"
+    Write-Host "Unsigned bundle for inspection only (do not upload it alongside the .msixupload): $bundlePath"
 }
 finally {
     $resolvedWorkRoot = [IO.Path]::GetFullPath($workRoot)

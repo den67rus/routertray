@@ -51,13 +51,10 @@ jobs:
           }
           .\packaging\MicrosoftStore\Build-StorePackage.ps1 @parameters
 
-      - name: Upload Microsoft Store package
-        uses: actions/upload-artifact@v4
+      - name: Upload Partner Center submission
+        uses: actions/upload-artifact@v7
         with:
-          name: RouterTray-MicrosoftStore-${{ inputs.version }}
-          path: |
-            artifacts/store/*.msixupload
-            artifacts/store/*.msixbundle
-            artifacts/store/packages/*.msix
+          name: RouterTray-PartnerCenter-${{ inputs.version }}
+          path: artifacts/store/*.msixupload
           if-no-files-found: error
           retention-days: 30
