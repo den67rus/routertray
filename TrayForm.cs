@@ -20,6 +20,7 @@ internal sealed class TrayForm : Form
     private readonly FileLogger _logger;
     private readonly NetworkInterfaceService _interfaceService;
     private readonly AutoStartService _autoStartService;
+    private readonly AppUpdateService _updateService;
     private readonly ContextMenuStrip _menu;
     private readonly NotifyIcon _notifyIcon;
     private readonly ToolStripMenuItem _profilesMenu;
@@ -49,6 +50,7 @@ internal sealed class TrayForm : Form
     private long _networkChangeVersion;
     private AboutForm? _aboutForm;
     private SettingsForm? _settingsForm;
+    private Action? _scheduledUpdateApply;
     private bool _isShuttingDown;
     private bool _shutdownComplete;
     private bool _resourcesDisposed;
@@ -60,6 +62,11 @@ internal sealed class TrayForm : Form
         _logger = logger;
         _interfaceService = new NetworkInterfaceService();
         _autoStartService = new AutoStartService("RouterTray", Application.ExecutablePath);
+        _updateService = new AppUpdateService(
+            logger,
+            ScheduleUpdateApply,
+            settings.CheckForUpdatesAutomatically,
+            settings.UpdateChannel);
 
         ShowInTaskbar = false;
         WindowState = FormWindowState.Minimized;
@@ -137,6 +144,7 @@ internal sealed class TrayForm : Form
     {
         base.OnShown(e);
         Hide();
+        _updateService.Start();
 
         try
         {
@@ -168,6 +176,7 @@ internal sealed class TrayForm : Form
 
         _isShuttingDown = true;
         _notifyIcon.Visible = false;
+        _updateService.Dispose();
         _lifetimeCts.Cancel();
         _connectionCts.Cancel();
 
@@ -1385,7 +1394,10 @@ internal sealed class TrayForm : Form
             _logger.Error("Failed to identify the current Windows network for Settings.", ex);
         }
 
-        using var form = new SettingsForm(_settings, currentNetwork)
+        using var form = new SettingsForm(
+            _settings,
+            currentNetwork,
+            _updateService.CheckNowAsync)
         {
             StartPosition = FormStartPosition.CenterScreen
         };
@@ -1414,6 +1426,10 @@ internal sealed class TrayForm : Form
 
             var previousAutoStart = _settings.AutoStart;
             _settings = candidate;
+            _updateService.SetConfiguration(
+                _settings.CheckForUpdatesAutomatically,
+                _settings.UpdateChannel);
+
             MarkPolicyCacheStale();
             try
             {
@@ -1437,6 +1453,7 @@ internal sealed class TrayForm : Form
         finally
         {
             _settingsForm = null;
+            TryApplyScheduledUpdate();
         }
     }
 
@@ -1480,7 +1497,11 @@ internal sealed class TrayForm : Form
         {
             StartPosition = FormStartPosition.CenterScreen
         };
-        _aboutForm.FormClosed += (_, _) => _aboutForm = null;
+        _aboutForm.FormClosed += (_, _) =>
+        {
+            _aboutForm = null;
+            TryApplyScheduledUpdate();
+        };
         _aboutForm.Show(this);
     }
 
@@ -1497,11 +1518,61 @@ internal sealed class TrayForm : Form
         _notifyIcon.ShowBalloonTip(3000);
     }
 
+    private void ScheduleUpdateApply(Action applyUpdate)
+    {
+        if (_isShuttingDown || _resourcesDisposed || !IsHandleCreated)
+        {
+            return;
+        }
+
+        try
+        {
+            BeginInvoke(new Action(() =>
+            {
+                if (_isShuttingDown || _resourcesDisposed)
+                {
+                    return;
+                }
+
+                _scheduledUpdateApply = applyUpdate;
+                TryApplyScheduledUpdate();
+            }));
+        }
+        catch (InvalidOperationException) when (_isShuttingDown || IsDisposed)
+        {
+        }
+    }
+
+    private void TryApplyScheduledUpdate()
+    {
+        if (_scheduledUpdateApply is null ||
+            _settingsForm is not null ||
+            _aboutForm is not null ||
+            _isShuttingDown ||
+            _resourcesDisposed)
+        {
+            return;
+        }
+
+        var applyUpdate = _scheduledUpdateApply;
+        _scheduledUpdateApply = null;
+        try
+        {
+            applyUpdate();
+            Close();
+        }
+        catch (Exception ex)
+        {
+            _logger.Error("Failed to start the downloaded application update.", ex);
+        }
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing && !_resourcesDisposed)
         {
             _resourcesDisposed = true;
+            _updateService.Dispose();
             NetworkChange.NetworkAddressChanged -= OnNetworkAddressChanged;
             _notifyIcon.Visible = false;
             _notifyIcon.MouseClick -= OnNotifyIconMouseClick;

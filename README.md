@@ -49,6 +49,7 @@ If your router has several access policies, RouterTray puts them in the system t
 - **Sign in with a password or token.** Token authentication is available starting with firmware 5.2.
 - **Keep secrets out of plain text.** Passwords and tokens are protected with Windows DPAPI.
 - **Start with Windows if you want.**
+- **Stay up to date automatically.**
 
 ## Tray controls
 
@@ -83,11 +84,11 @@ Installers and portable versions are published on the [Releases page](https://gi
 
 | Device | Installer asset | Portable asset |
 | --- | --- | --- |
-| Most Intel/AMD PCs | `RouterTray-setup-win-x64.exe` | `RouterTray-portable-win-x64.zip` |
-| Windows on ARM | `RouterTray-setup-win-arm64.exe` | `RouterTray-portable-win-arm64.zip` |
-| 32-bit Windows | `RouterTray-setup-win-x86.exe` | `RouterTray-portable-win-x86.zip` |
+| Most Intel/AMD PCs | `RouterTray.App-win-x64-Setup.exe` | `RouterTray.App-win-x64-Portable.zip` |
+| Windows on ARM | `RouterTray.App-win-arm64-Setup.exe` | `RouterTray.App-win-arm64-Portable.zip` |
+| 32-bit Windows | `RouterTray.App-win-x86-Setup.exe` | `RouterTray.App-win-x86-Portable.zip` |
 
-The installer does not require administrator rights and installs RouterTray only for the current user. Builds are not code-signed yet, so Windows SmartScreen may show a warning. Only download files from this repository's Releases page.
+The installer does not require administrator rights and installs RouterTray only for the current user.
 
 ### 2. Prepare your router
 
@@ -148,8 +149,8 @@ If you use Ethernet, Wi-Fi, or virtual adapters at the same time, you can select
 - Settings are stored in `%LOCALAPPDATA%\RouterTray\appsettings.json`.
 - Logs are stored in `%LOCALAPPDATA%\RouterTray\routertray.log`.
 - Passwords and access tokens are protected with Windows DPAPI in the `CurrentUser` scope.
-- RouterTray communicates with the router over your local network and does not connect to cloud services.
-- The installed version is located in `%LOCALAPPDATA%\Programs\RouterTray`.
+- RouterTray communicates with the router over your local network. When automatic update checks are enabled, its only external request is to this repository's GitHub Releases.
+- The Velopack-installed version is located in `%LOCALAPPDATA%\RouterTray.App`; user settings remain in `%LOCALAPPDATA%\RouterTray` and are not replaced by updates.
 
 ## Troubleshooting
 
@@ -199,6 +200,7 @@ git clone https://github.com/den67rus/routertray.git
 cd routertray
 
 dotnet restore tests/RouterTray.Tests/RouterTray.Tests.csproj
+dotnet tool restore
 dotnet build RouterTray.csproj -c Release --no-restore -warnaserror
 dotnet test tests/RouterTray.Tests/RouterTray.Tests.csproj -c Release --no-restore
 ```
@@ -206,7 +208,7 @@ dotnet test tests/RouterTray.Tests/RouterTray.Tests.csproj -c Release --no-resto
 Choose the target platform for the build: `win-x64`, `win-arm64`, or `win-x86`.
 
 ```powershell
-dotnet publish RouterTray.csproj -c Release -r win-x64 --self-contained true
+dotnet publish RouterTray.csproj -c Release -r win-x64 --self-contained true -o artifacts/publish/win-x64
 ```
 
 ## Contributing

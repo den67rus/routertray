@@ -2,6 +2,8 @@
 bin/
 obj/
 publish/
+artifacts/
+Releases/
 
 # Visual Studio / VS Code
 .vs/

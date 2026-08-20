@@ -93,6 +93,42 @@
   <data name="SettingsAutoStart" xml:space="preserve">
     <value>Start with Windows</value>
   </data>
+  <data name="SettingsCheckForUpdates" xml:space="preserve">
+    <value>Check for updates automatically</value>
+  </data>
+  <data name="SettingsCheckForUpdatesNow" xml:space="preserve">
+    <value>Check for updates</value>
+  </data>
+  <data name="SettingsUpdateChannel" xml:space="preserve">
+    <value>Update channel</value>
+  </data>
+  <data name="SettingsUpdateChannelStable" xml:space="preserve">
+    <value>Stable</value>
+  </data>
+  <data name="SettingsUpdateChannelPreview" xml:space="preserve">
+    <value>Preview / Beta</value>
+  </data>
+  <data name="SettingsUpdatesTab" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="SettingsUpdateScheduleDescription" xml:space="preserve">
+    <value>RouterTray checks shortly after each start. If the application remains running, the next check occurs after 14 days.</value>
+  </data>
+  <data name="SettingsUpdateCheckInProgress" xml:space="preserve">
+    <value>Checking for updates...</value>
+  </data>
+  <data name="SettingsUpdateUpToDate" xml:space="preserve">
+    <value>You already have the latest version.</value>
+  </data>
+  <data name="SettingsUpdateReady" xml:space="preserve">
+    <value>The update is downloaded. Close Settings to install it and restart RouterTray.</value>
+  </data>
+  <data name="SettingsUpdateCheckUnavailable" xml:space="preserve">
+    <value>Update checks are available only for a version installed through Velopack.</value>
+  </data>
+  <data name="SettingsUpdateCheckFailed" xml:space="preserve">
+    <value>Failed to check for updates. Details were written to the log.</value>
+  </data>
   <data name="SettingsCancel" xml:space="preserve">
     <value>Cancel</value>
   </data>

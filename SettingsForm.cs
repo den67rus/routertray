@@ -7,6 +7,11 @@ internal sealed class SettingsForm : Form
 
     private readonly AppSettings _workingSettings;
     private readonly RouterNetworkBinding? _currentNetwork;
+    private readonly Func<
+        ApplicationUpdateChannel,
+        CancellationToken,
+        Task<ApplicationUpdateCheckResult>> _checkForUpdates;
+    private readonly CancellationTokenSource _updateCheckCancellation = new();
 
     private TabControl _settingsTabs = null!;
     private TabPage _profilesPage = null!;
@@ -33,17 +38,30 @@ internal sealed class SettingsForm : Form
     private Button _removeNetworkButton = null!;
     private CheckBox _automaticProfileSelectionCheckBox = null!;
     private CheckBox _autoStartCheckBox = null!;
+    private CheckBox _checkForUpdatesCheckBox = null!;
+    private ComboBox _updateChannelComboBox = null!;
+    private Button _checkForUpdatesButton = null!;
+    private Label _updateStatusLabel = null!;
     private CheckBox _notifyPolicyCheckBox = null!;
 
     private RouterProfile? _editingProfile;
     private bool _loadingProfile;
     private bool _profileEditorsStacked;
     private bool _updatingProfilesLayout;
+    private bool _updateCheckCancellationDisposed;
 
-    public SettingsForm(AppSettings settings, RouterNetworkBinding? currentNetwork)
+    public SettingsForm(
+        AppSettings settings,
+        RouterNetworkBinding? currentNetwork,
+        Func<
+            ApplicationUpdateChannel,
+            CancellationToken,
+            Task<ApplicationUpdateCheckResult>> checkForUpdates)
     {
+        ArgumentNullException.ThrowIfNull(checkForUpdates);
         _workingSettings = settings.Clone();
         _currentNetwork = currentNetwork?.Clone();
+        _checkForUpdates = checkForUpdates;
 
         Text = UiText.SettingsTitle;
         StartPosition = FormStartPosition.CenterParent;
@@ -78,6 +96,7 @@ internal sealed class SettingsForm : Form
         _profilesPage = CreateProfilesPage();
         _settingsTabs.TabPages.Add(_profilesPage);
         _settingsTabs.TabPages.Add(CreateApplicationPage());
+        _settingsTabs.TabPages.Add(CreateUpdatesPage());
 
         var footer = new Panel
         {
@@ -138,6 +157,28 @@ internal sealed class SettingsForm : Form
     }
 
     public AppSettings ResultSettings => _workingSettings.Clone();
+
+    protected override void OnFormClosed(FormClosedEventArgs e)
+    {
+        if (!_updateCheckCancellationDisposed)
+        {
+            _updateCheckCancellation.Cancel();
+        }
+
+        base.OnFormClosed(e);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing && !_updateCheckCancellationDisposed)
+        {
+            _updateCheckCancellationDisposed = true;
+            _updateCheckCancellation.Cancel();
+            _updateCheckCancellation.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
 
     private TabPage CreateProfilesPage()
     {
@@ -545,6 +586,145 @@ internal sealed class SettingsForm : Form
         scrollHost.Controls.Add(layout);
         scrollHost.ClientSizeChanged += (_, _) => UpdateCheckBoxLayout();
         scrollHost.Layout += (_, _) => UpdateCheckBoxLayout();
+        page.Controls.Add(scrollHost);
+        return page;
+    }
+
+    private TabPage CreateUpdatesPage()
+    {
+        var page = new TabPage(UiText.SettingsUpdatesTab)
+        {
+            Padding = Padding.Empty,
+            BackColor = SystemColors.Window,
+            UseVisualStyleBackColor = false
+        };
+
+        var scrollHost = new Panel
+        {
+            Dock = DockStyle.Fill,
+            AutoScroll = true,
+            Padding = new Padding(16),
+            BackColor = SystemColors.Window
+        };
+        var layout = new TableLayoutPanel
+        {
+            Dock = DockStyle.Top,
+            ColumnCount = 1,
+            RowCount = 6,
+            AutoSize = true,
+            AutoSizeMode = AutoSizeMode.GrowAndShrink,
+            Margin = Padding.Empty,
+            BackColor = SystemColors.Window
+        };
+        layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        layout.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+
+        _checkForUpdatesCheckBox = new CheckBox
+        {
+            Text = UiText.SettingsCheckForUpdates,
+            AutoSize = false,
+            Dock = DockStyle.Fill,
+            Checked = _workingSettings.CheckForUpdatesAutomatically,
+            Margin = new Padding(0, 0, 0, 10)
+        };
+        var scheduleDescriptionLabel = new Label
+        {
+            Text = UiText.SettingsUpdateScheduleDescription,
+            AutoSize = true,
+            ForeColor = SystemColors.GrayText,
+            Margin = new Padding(0, 0, 0, 18)
+        };
+        var channelLabel = CreateCompactFieldLabel(UiText.SettingsUpdateChannel);
+        _updateChannelComboBox = new ComboBox
+        {
+            DropDownStyle = ComboBoxStyle.DropDownList,
+            Anchor = AnchorStyles.Left | AnchorStyles.Right,
+            Margin = new Padding(0, 4, 0, 14)
+        };
+        _updateChannelComboBox.Items.Add(new UpdateChannelItem(
+            ApplicationUpdateChannel.Stable,
+            UiText.SettingsUpdateChannelStable));
+        _updateChannelComboBox.Items.Add(new UpdateChannelItem(
+            ApplicationUpdateChannel.Preview,
+            UiText.SettingsUpdateChannelPreview));
+        _updateChannelComboBox.SelectedIndex =
+            _workingSettings.UpdateChannel == ApplicationUpdateChannel.Preview ? 1 : 0;
+
+        _checkForUpdatesButton = new Button
+        {
+            Text = UiText.SettingsCheckForUpdatesNow,
+            AutoSize = true,
+            MinimumSize = new Size(160, 32),
+            Anchor = AnchorStyles.Left,
+            Margin = new Padding(0, 0, 0, 12)
+        };
+        _checkForUpdatesButton.Click += OnCheckForUpdatesClick;
+        _updateStatusLabel = new Label
+        {
+            AutoSize = true,
+            ForeColor = SystemColors.ControlText,
+            Margin = Padding.Empty,
+            Visible = false
+        };
+
+        layout.Controls.Add(_checkForUpdatesCheckBox, 0, 0);
+        layout.Controls.Add(scheduleDescriptionLabel, 0, 1);
+        layout.Controls.Add(channelLabel, 0, 2);
+        layout.Controls.Add(_updateChannelComboBox, 0, 3);
+        layout.Controls.Add(_checkForUpdatesButton, 0, 4);
+        layout.Controls.Add(_updateStatusLabel, 0, 5);
+
+        var updatingLayout = false;
+        void UpdateLayout()
+        {
+            if (updatingLayout)
+            {
+                return;
+            }
+
+            var availableWidth = scrollHost.ClientSize.Width - scrollHost.Padding.Horizontal;
+            if (scrollHost.VerticalScroll.Visible)
+            {
+                availableWidth -= SystemInformation.VerticalScrollBarWidth;
+            }
+
+            if (availableWidth <= 0)
+            {
+                return;
+            }
+
+            updatingLayout = true;
+            try
+            {
+                var checkBoxTextWidth = Math.Max(
+                    1,
+                    availableWidth - _checkForUpdatesCheckBox.Font.Height - 12);
+                var checkBoxTextSize = TextRenderer.MeasureText(
+                    _checkForUpdatesCheckBox.Text,
+                    _checkForUpdatesCheckBox.Font,
+                    new Size(checkBoxTextWidth, int.MaxValue),
+                    TextFormatFlags.WordBreak | TextFormatFlags.NoPrefix);
+                _checkForUpdatesCheckBox.MinimumSize = new Size(
+                    0,
+                    Math.Max(_checkForUpdatesCheckBox.Font.Height + 8, checkBoxTextSize.Height + 8));
+                _checkForUpdatesCheckBox.Height = _checkForUpdatesCheckBox.MinimumSize.Height;
+                scheduleDescriptionLabel.MaximumSize = new Size(availableWidth, 0);
+                _updateStatusLabel.MaximumSize = new Size(availableWidth, 0);
+            }
+            finally
+            {
+                updatingLayout = false;
+            }
+        }
+
+        scrollHost.Controls.Add(layout);
+        scrollHost.ClientSizeChanged += (_, _) => UpdateLayout();
+        scrollHost.Layout += (_, _) => UpdateLayout();
         page.Controls.Add(scrollHost);
         return page;
     }
@@ -989,6 +1169,64 @@ internal sealed class SettingsForm : Form
         return name.Length <= maximumLength ? name : $"{name[..(maximumLength - 1)]}…";
     }
 
+    private async void OnCheckForUpdatesClick(object? sender, EventArgs e)
+    {
+        if (_updateChannelComboBox.SelectedItem is not UpdateChannelItem channelItem)
+        {
+            return;
+        }
+
+        var updateScheduled = false;
+        _checkForUpdatesButton.Enabled = false;
+        _updateChannelComboBox.Enabled = false;
+        _updateStatusLabel.Text = UiText.SettingsUpdateCheckInProgress;
+        _updateStatusLabel.ForeColor = SystemColors.ControlText;
+        _updateStatusLabel.Visible = true;
+
+        try
+        {
+            var result = await _checkForUpdates(
+                channelItem.Channel,
+                _updateCheckCancellation.Token);
+            if (_updateCheckCancellation.IsCancellationRequested || IsDisposed)
+            {
+                return;
+            }
+
+            updateScheduled = result == ApplicationUpdateCheckResult.UpdateScheduled;
+            _updateStatusLabel.Text = result switch
+            {
+                ApplicationUpdateCheckResult.UpToDate => UiText.SettingsUpdateUpToDate,
+                ApplicationUpdateCheckResult.UpdateScheduled => UiText.SettingsUpdateReady,
+                ApplicationUpdateCheckResult.NotPackaged => UiText.SettingsUpdateCheckUnavailable,
+                _ => UiText.SettingsUpdateCheckFailed
+            };
+            _updateStatusLabel.ForeColor = result == ApplicationUpdateCheckResult.Failed
+                ? Color.Firebrick
+                : SystemColors.ControlText;
+        }
+        catch (OperationCanceledException) when (_updateCheckCancellation.IsCancellationRequested)
+        {
+        }
+        catch (Exception)
+        {
+            if (!IsDisposed)
+            {
+                _updateStatusLabel.Text = UiText.SettingsUpdateCheckFailed;
+                _updateStatusLabel.ForeColor = Color.Firebrick;
+                _updateStatusLabel.Visible = true;
+            }
+        }
+        finally
+        {
+            if (!IsDisposed && !_updateCheckCancellation.IsCancellationRequested)
+            {
+                _updateChannelComboBox.Enabled = true;
+                _checkForUpdatesButton.Enabled = !updateScheduled;
+            }
+        }
+    }
+
     private void OnSaveClick(object? sender, EventArgs e)
     {
         CommitProfileEditor();
@@ -1060,6 +1298,8 @@ internal sealed class SettingsForm : Form
 
         _workingSettings.AutomaticProfileSelection = _automaticProfileSelectionCheckBox.Checked;
         _workingSettings.AutoStart = _autoStartCheckBox.Checked;
+        _workingSettings.CheckForUpdatesAutomatically = _checkForUpdatesCheckBox.Checked;
+        _workingSettings.UpdateChannel = SelectedUpdateChannel;
         _workingSettings.ShowPolicyNotifications = _notifyPolicyCheckBox.Checked;
         if (_workingSettings.FindProfile(_workingSettings.SelectedProfileId) is null)
         {
@@ -1106,6 +1346,10 @@ internal sealed class SettingsForm : Form
 
     private RouterAuthMode SelectedAuthMode =>
         (_authModeComboBox.SelectedItem as AuthModeItem)?.Mode ?? RouterAuthMode.Password;
+
+    private ApplicationUpdateChannel SelectedUpdateChannel =>
+        (_updateChannelComboBox.SelectedItem as UpdateChannelItem)?.Channel ??
+        ApplicationUpdateChannel.Stable;
 
     private void UpdateAuthModeVisibility()
     {
@@ -1237,6 +1481,13 @@ internal sealed class SettingsForm : Form
     }
 
     private sealed record AuthModeItem(RouterAuthMode Mode, string DisplayName)
+    {
+        public override string ToString() => DisplayName;
+    }
+
+    private sealed record UpdateChannelItem(
+        ApplicationUpdateChannel Channel,
+        string DisplayName)
     {
         public override string ToString() => DisplayName;
     }

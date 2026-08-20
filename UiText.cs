@@ -38,6 +38,7 @@ internal static class UiText
     public static string SettingsTitle => Get(nameof(SettingsTitle));
     public static string SettingsProfilesTab => Get(nameof(SettingsProfilesTab));
     public static string SettingsApplicationTab => Get(nameof(SettingsApplicationTab));
+    public static string SettingsUpdatesTab => Get(nameof(SettingsUpdatesTab));
     public static string SettingsProfile => Get(nameof(SettingsProfile));
     public static string SettingsProfileName => Get(nameof(SettingsProfileName));
     public static string SettingsProfileAdd => Get(nameof(SettingsProfileAdd));
@@ -65,6 +66,17 @@ internal static class UiText
     public static string SettingsAccessToken => Get(nameof(SettingsAccessToken));
     public static string SettingsShowAccessToken => Get(nameof(SettingsShowAccessToken));
     public static string SettingsAutoStart => Get(nameof(SettingsAutoStart));
+    public static string SettingsCheckForUpdates => Get(nameof(SettingsCheckForUpdates));
+    public static string SettingsCheckForUpdatesNow => Get(nameof(SettingsCheckForUpdatesNow));
+    public static string SettingsUpdateChannel => Get(nameof(SettingsUpdateChannel));
+    public static string SettingsUpdateChannelStable => Get(nameof(SettingsUpdateChannelStable));
+    public static string SettingsUpdateChannelPreview => Get(nameof(SettingsUpdateChannelPreview));
+    public static string SettingsUpdateScheduleDescription => Get(nameof(SettingsUpdateScheduleDescription));
+    public static string SettingsUpdateCheckInProgress => Get(nameof(SettingsUpdateCheckInProgress));
+    public static string SettingsUpdateUpToDate => Get(nameof(SettingsUpdateUpToDate));
+    public static string SettingsUpdateReady => Get(nameof(SettingsUpdateReady));
+    public static string SettingsUpdateCheckUnavailable => Get(nameof(SettingsUpdateCheckUnavailable));
+    public static string SettingsUpdateCheckFailed => Get(nameof(SettingsUpdateCheckFailed));
     public static string SettingsShowPolicyNotifications => Get(nameof(SettingsShowPolicyNotifications));
     public static string SettingsSave => Get(nameof(SettingsSave));
     public static string SettingsCancel => Get(nameof(SettingsCancel));

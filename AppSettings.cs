@@ -9,6 +9,12 @@ internal enum RouterAuthMode
     AccessToken
 }
 
+internal enum ApplicationUpdateChannel
+{
+    Stable,
+    Preview
+}
+
 internal sealed class RouterNetworkBinding
 {
     public string NetworkId { get; set; } = string.Empty;
@@ -148,6 +154,8 @@ internal sealed class AppSettings
     public bool AutomaticProfileSelection { get; set; } = true;
     public string SelectedProfileId { get; set; } = string.Empty;
     public bool AutoStart { get; set; }
+    public bool CheckForUpdatesAutomatically { get; set; } = true;
+    public ApplicationUpdateChannel UpdateChannel { get; set; } = ApplicationUpdateChannel.Stable;
     public bool ShowPolicyNotifications { get; set; } = true;
 
     internal bool ContainsLegacyPlaintextPassword { get; private set; }
@@ -188,6 +196,8 @@ internal sealed class AppSettings
             AutomaticProfileSelection = stored.AutomaticProfileSelection,
             SelectedProfileId = stored.SelectedProfileId ?? string.Empty,
             AutoStart = stored.AutoStart,
+            CheckForUpdatesAutomatically = stored.CheckForUpdatesAutomatically,
+            UpdateChannel = stored.UpdateChannel,
             ShowPolicyNotifications = stored.ShowPolicyNotifications,
             ContainsLegacyPlaintextPassword = hasLegacyPassword,
             RequiresMigrationSave = isLegacyFormat
@@ -205,6 +215,8 @@ internal sealed class AppSettings
             AutomaticProfileSelection = AutomaticProfileSelection,
             SelectedProfileId = SelectedProfileId,
             AutoStart = AutoStart,
+            CheckForUpdatesAutomatically = CheckForUpdatesAutomatically,
+            UpdateChannel = UpdateChannel,
             ShowPolicyNotifications = ShowPolicyNotifications,
             ContainsLegacyPlaintextPassword = ContainsLegacyPlaintextPassword,
             RequiresMigrationSave = RequiresMigrationSave
@@ -237,6 +249,8 @@ internal sealed class AppSettings
             AutomaticProfileSelection = AutomaticProfileSelection,
             SelectedProfileId = SelectedProfileId,
             AutoStart = AutoStart,
+            CheckForUpdatesAutomatically = CheckForUpdatesAutomatically,
+            UpdateChannel = UpdateChannel,
             ShowPolicyNotifications = ShowPolicyNotifications
         };
 
@@ -248,6 +262,11 @@ internal sealed class AppSettings
 
     internal void NormalizeAndValidate()
     {
+        if (!Enum.IsDefined(UpdateChannel))
+        {
+            throw new InvalidDataException("Unsupported application update channel.");
+        }
+
         Profiles ??= new List<RouterProfile>();
         if (Profiles.Any(profile => profile is null))
         {
@@ -379,6 +398,9 @@ internal sealed class AppSettings
         public bool AutomaticProfileSelection { get; set; } = true;
         public string? SelectedProfileId { get; set; }
         public bool AutoStart { get; set; }
+        public bool CheckForUpdatesAutomatically { get; set; } = true;
+        [JsonConverter(typeof(JsonStringEnumConverter<ApplicationUpdateChannel>))]
+        public ApplicationUpdateChannel UpdateChannel { get; set; } = ApplicationUpdateChannel.Stable;
         public bool ShowPolicyNotifications { get; set; } = true;
 
         // Read-only migration fields used by the single-profile formats.

@@ -34,21 +34,65 @@ jobs:
     if: github.event_name == 'release'
     needs: verify
     runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [win-x64, win-arm64, win-x86]
+    concurrency:
+      group: release-${{ github.event.release.id }}-${{ matrix.target }}
+      cancel-in-progress: false
     permissions:
       contents: write
+    env:
+      PACK_ID: RouterTray.App
+      TARGET: ${{ matrix.target }}
+      VPK_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
+      - name: Check whether channel is already published
+        id: channel
+        shell: pwsh
+        env:
+          RELEASE_API_URL: ${{ github.event.release.url }}
+        run: |
+          $headers = @{
+            Authorization = "Bearer $env:VPK_TOKEN"
+            Accept = "application/vnd.github+json"
+            "X-GitHub-Api-Version" = "2022-11-28"
+            "User-Agent" = "RouterTray-Release-Workflow"
+          }
+          $release = Invoke-RestMethod -Uri $env:RELEASE_API_URL -Headers $headers
+          $feedName = "releases.$env:TARGET.json"
+          $published = @($release.assets | Where-Object name -EQ $feedName).Count -gt 0
+          "published=$($published.ToString().ToLowerInvariant())" |
+            Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+          if ($published) {
+            Write-Host "$feedName already exists; this completed channel will be skipped."
+          }
+
       - name: Checkout
+        if: steps.channel.outputs.published != 'true'
         uses: actions/checkout@v4
 
       - name: Setup .NET
+        if: steps.channel.outputs.published != 'true'
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
-      - name: Compute version from tag
+      - name: Restore Velopack CLI
+        if: steps.channel.outputs.published != 'true'
+        run: dotnet tool restore
+
+      - name: Compute release metadata
+        if: steps.channel.outputs.published != 'true'
         shell: pwsh
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_NAME: ${{ github.event.release.name }}
+          RELEASE_PRERELEASE: ${{ github.event.release.prerelease }}
         run: |
-          $version = "${{ github.ref_name }}"
+          $version = $env:RELEASE_TAG
           if ($version.StartsWith("v")) { $version = $version.Substring(1) }
           if ($version -match '^(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z.-]+))?(?:\+([0-9A-Za-z.-]+))?$') {
             $major = $matches[1]
@@ -57,71 +101,128 @@ jobs:
           } else {
             throw "Release tag '$version' must be a valid semantic version such as v1.2.3."
           }
+
           $assemblyVersion = "$major.$minor.$patch.0"
+          $releaseName = $env:RELEASE_NAME
+          if ([string]::IsNullOrWhiteSpace($releaseName)) {
+            $releaseName = "RouterTray $version"
+          }
+
           "APP_VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Append
           "ASSEMBLY_VERSION=$assemblyVersion" | Out-File -FilePath $env:GITHUB_ENV -Append
           "FILE_VERSION=$assemblyVersion" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "RELEASE_NAME=$releaseName" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "IS_PRERELEASE=$($env:RELEASE_PRERELEASE.ToLowerInvariant())" | Out-File -FilePath $env:GITHUB_ENV -Append
 
-      - name: Publish win-x64
-        run: dotnet publish RouterTray.csproj -c Release -r win-x64 --self-contained true -p:Version=$env:APP_VERSION -p:InformationalVersion=$env:APP_VERSION -p:AssemblyVersion=$env:ASSEMBLY_VERSION -p:FileVersion=$env:FILE_VERSION
-
-      - name: Publish win-arm64
-        run: dotnet publish RouterTray.csproj -c Release -r win-arm64 --self-contained true -p:Version=$env:APP_VERSION -p:InformationalVersion=$env:APP_VERSION -p:AssemblyVersion=$env:ASSEMBLY_VERSION -p:FileVersion=$env:FILE_VERSION
-
-      - name: Publish win-x86
-        run: dotnet publish RouterTray.csproj -c Release -r win-x86 --self-contained true -p:Version=$env:APP_VERSION -p:InformationalVersion=$env:APP_VERSION -p:AssemblyVersion=$env:ASSEMBLY_VERSION -p:FileVersion=$env:FILE_VERSION
-
-      - name: Install Inno Setup
-        run: choco install innosetup -y
-
-      - name: Package win-x64
+      - name: Prepare release notes
+        if: steps.channel.outputs.published != 'true'
         shell: pwsh
         run: |
-          $publishPath = "bin\Release\net8.0-windows\win-x64\publish"
-          $zipPath = "RouterTray-portable-win-x64.zip"
-          if (Test-Path $zipPath) { Remove-Item $zipPath }
-          Compress-Archive -Path "$publishPath\*" -DestinationPath $zipPath
-
-      - name: Package win-arm64
-        shell: pwsh
-        run: |
-          $publishPath = "bin\Release\net8.0-windows\win-arm64\publish"
-          $zipPath = "RouterTray-portable-win-arm64.zip"
-          if (Test-Path $zipPath) { Remove-Item $zipPath }
-          Compress-Archive -Path "$publishPath\*" -DestinationPath $zipPath
-
-      - name: Package win-x86
-        shell: pwsh
-        run: |
-          $publishPath = "bin\Release\net8.0-windows\win-x86\publish"
-          $zipPath = "RouterTray-portable-win-x86.zip"
-          if (Test-Path $zipPath) { Remove-Item $zipPath }
-          Compress-Archive -Path "$publishPath\*" -DestinationPath $zipPath
-
-      - name: Build setup installers
-        shell: pwsh
-        run: |
-          $iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
-          if (-not (Test-Path $iscc)) { throw "ISCC not found at $iscc" }
           New-Item -ItemType Directory -Force -Path "artifacts" | Out-Null
-          $targets = @(
-            @{ Arch = "win-x64"; PublishDir = "bin\Release\net8.0-windows\win-x64\publish" },
-            @{ Arch = "win-arm64"; PublishDir = "bin\Release\net8.0-windows\win-arm64\publish" },
-            @{ Arch = "win-x86"; PublishDir = "bin\Release\net8.0-windows\win-x86\publish" }
+          $event = Get-Content -LiteralPath $env:GITHUB_EVENT_PATH -Raw | ConvertFrom-Json
+          $notes = $event.release.body
+          if ([string]::IsNullOrWhiteSpace($notes)) {
+            $notes = "RouterTray $env:APP_VERSION"
+          }
+          Set-Content -LiteralPath "artifacts\release-notes.md" -Value $notes -Encoding utf8NoBOM
+
+      - name: Publish application runtime
+        if: steps.channel.outputs.published != 'true'
+        shell: pwsh
+        run: |
+          dotnet publish RouterTray.csproj `
+            -c Release `
+            -r $env:TARGET `
+            --self-contained true `
+            -o "artifacts\publish\$env:TARGET" `
+            -p:Version=$env:APP_VERSION `
+            -p:InformationalVersion=$env:APP_VERSION `
+            -p:AssemblyVersion=$env:ASSEMBLY_VERSION `
+            -p:FileVersion=$env:FILE_VERSION
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Build Velopack releases
+        if: steps.channel.outputs.published != 'true'
+        shell: pwsh
+        run: |
+          $releaseDir = "artifacts\velopack\$env:TARGET"
+          New-Item -ItemType Directory -Force -Path $releaseDir | Out-Null
+
+          $downloadArgs = @(
+            "vpk", "download", "github",
+            "--repoUrl", "https://github.com/${{ github.repository }}",
+            "--channel", $env:TARGET,
+            "--outputDir", $releaseDir
           )
-          foreach ($target in $targets) {
-            $env:APP_ARCH = $target.Arch
-            $env:PUBLISH_DIR = (Join-Path $PWD $target.PublishDir)
-            & $iscc "installer\RouterTray.iss"
+          if ($env:IS_PRERELEASE -eq "true") { $downloadArgs += "--pre" }
+
+          $PSNativeCommandUseErrorActionPreference = $false
+          dotnet @downloadArgs
+          if ($LASTEXITCODE -ne 0) {
+            Write-Warning "No previous Velopack release was downloaded for $env:TARGET; a full package will be created."
           }
 
-      - name: Upload release assets
-        uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            RouterTray-portable-win-x64.zip
-            RouterTray-portable-win-arm64.zip
-            RouterTray-portable-win-x86.zip
-            artifacts/RouterTray-setup-win-x64.exe
-            artifacts/RouterTray-setup-win-arm64.exe
-            artifacts/RouterTray-setup-win-x86.exe
+          dotnet vpk pack `
+            --packId $env:PACK_ID `
+            --packVersion $env:APP_VERSION `
+            --packDir "artifacts\publish\$env:TARGET" `
+            --mainExe RouterTray.exe `
+            --packTitle RouterTray `
+            --packAuthors "Denis Sevostyanov" `
+            --releaseNotes "artifacts\release-notes.md" `
+            --icon favicon.ico `
+            --runtime $env:TARGET `
+            --channel $env:TARGET `
+            --outputDir $releaseDir `
+            --shortcuts StartMenuRoot `
+            --aumid RouterTray.App `
+            --delta BestSize `
+            --yes
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Remove assets from an interrupted channel upload
+        if: steps.channel.outputs.published != 'true'
+        shell: pwsh
+        env:
+          RELEASE_API_URL: ${{ github.event.release.url }}
+        run: |
+          $headers = @{
+            Authorization = "Bearer $env:VPK_TOKEN"
+            Accept = "application/vnd.github+json"
+            "X-GitHub-Api-Version" = "2022-11-28"
+            "User-Agent" = "RouterTray-Release-Workflow"
+          }
+          $release = Invoke-RestMethod -Uri $env:RELEASE_API_URL -Headers $headers
+          $manifestPath = "artifacts\velopack\$env:TARGET\assets.$env:TARGET.json"
+          $assetNames = @(
+            (Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json).RelativeFileName
+          )
+
+          foreach ($asset in $release.assets) {
+            if ($asset.name -in $assetNames) {
+              Write-Warning "Deleting partial asset '$($asset.name)' before retrying the channel."
+              Invoke-RestMethod -Method Delete -Uri $asset.url -Headers $headers
+            }
+          }
+
+      - name: Publish Velopack assets to GitHub Release
+        if: steps.channel.outputs.published != 'true'
+        shell: pwsh
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          $uploadArgs = @(
+            "vpk", "upload", "github",
+            "--repoUrl", "https://github.com/${{ github.repository }}",
+            "--channel", $env:TARGET,
+            "--outputDir", "artifacts\velopack\$env:TARGET",
+            "--releaseName", $env:RELEASE_NAME,
+            "--tag", $env:RELEASE_TAG,
+            "--targetCommitish", "${{ github.sha }}",
+            "--merge",
+            "--publish"
+          )
+          if ($env:IS_PRERELEASE -eq "true") { $uploadArgs += "--pre" }
+
+          dotnet @uploadArgs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

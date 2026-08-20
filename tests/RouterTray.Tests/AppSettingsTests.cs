@@ -13,6 +13,28 @@ public sealed class AppSettingsTests
         var profile = Assert.Single(settings.Profiles);
         Assert.Empty(profile.RouterUrl);
         Assert.True(settings.AutomaticProfileSelection);
+        Assert.True(settings.CheckForUpdatesAutomatically);
+        Assert.Equal(ApplicationUpdateChannel.Stable, settings.UpdateChannel);
+    }
+
+    [Fact]
+    public void SaveAndLoad_PersistsAutomaticUpdatePreference()
+    {
+        using var temp = new TemporaryDirectory();
+        var path = Path.Combine(temp.Path, "appsettings.json");
+        var settings = CreateSettings("secret");
+        settings.CheckForUpdatesAutomatically = false;
+        settings.UpdateChannel = ApplicationUpdateChannel.Preview;
+
+        settings.Save(path);
+
+        Assert.Contains(
+            "\"UpdateChannel\": \"Preview\"",
+            File.ReadAllText(path),
+            StringComparison.Ordinal);
+        var loaded = AppSettings.Load(path);
+        Assert.False(loaded.CheckForUpdatesAutomatically);
+        Assert.Equal(ApplicationUpdateChannel.Preview, loaded.UpdateChannel);
     }
 
     [Fact]
@@ -169,6 +191,8 @@ public sealed class AppSettingsTests
         Assert.Equal("legacy-secret", profile.Password);
         Assert.Equal("legacy-interface", profile.PreferredInterfaceId);
         Assert.Equal(RouterAuthMode.Password, profile.AuthMode);
+        Assert.True(loaded.CheckForUpdatesAutomatically);
+        Assert.Equal(ApplicationUpdateChannel.Stable, loaded.UpdateChannel);
 
         loaded.Save(path);
 
@@ -272,9 +296,13 @@ public sealed class AppSettingsTests
         var clone = settings.Clone();
         clone.Profiles[0].Name = "Changed";
         clone.Profiles[0].Networks[0].NetworkName = "Changed network";
+        clone.CheckForUpdatesAutomatically = false;
+        clone.UpdateChannel = ApplicationUpdateChannel.Preview;
 
         Assert.Equal("Home", settings.Profiles[0].Name);
         Assert.Equal("Home", settings.Profiles[0].Networks[0].NetworkName);
+        Assert.True(settings.CheckForUpdatesAutomatically);
+        Assert.Equal(ApplicationUpdateChannel.Stable, settings.UpdateChannel);
     }
 
     [Fact]

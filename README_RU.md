@@ -49,6 +49,7 @@
 - **Входить по паролю или токену.** Авторизация по токену доступна начиная с прошивки 5.2.
 - **Хранить секреты не в открытом виде.** Пароли и токены защищаются через Windows DPAPI.
 - **Запускаться вместе с Windows по желанию.**
+- **Обновляться автоматически.**
 
 ## Управление из трея
 
@@ -83,11 +84,11 @@
 
 | Устройство | Установщик | Портативная версия |
 | --- | --- | --- |
-| Большинство компьютеров Intel/AMD | `RouterTray-setup-win-x64.exe` | `RouterTray-portable-win-x64.zip` |
-| Windows on ARM | `RouterTray-setup-win-arm64.exe` | `RouterTray-portable-win-arm64.zip` |
-| 32-разрядная Windows | `RouterTray-setup-win-x86.exe` | `RouterTray-portable-win-x86.zip` |
+| Большинство компьютеров Intel/AMD | `RouterTray.App-win-x64-Setup.exe` | `RouterTray.App-win-x64-Portable.zip` |
+| Windows on ARM | `RouterTray.App-win-arm64-Setup.exe` | `RouterTray.App-win-arm64-Portable.zip` |
+| 32-разрядная Windows | `RouterTray.App-win-x86-Setup.exe` | `RouterTray.App-win-x86-Portable.zip` |
 
-Установщик не требует прав администратора и ставит программу только для текущего пользователя. Пока сборки не подписаны сертификатом, поэтому Windows SmartScreen может показать предупреждение. Загружайте файлы только со страницы Releases этого репозитория.
+Установщик не требует прав администратора и ставит программу только для текущего пользователя.
 
 ### 2. Подготовьте роутер
 
@@ -148,8 +149,8 @@ flowchart LR
 - Основной файл: `%LOCALAPPDATA%\RouterTray\appsettings.json`.
 - Лог: `%LOCALAPPDATA%\RouterTray\routertray.log`.
 - Пароли и токены сохраняются через Windows DPAPI в области `CurrentUser`.
-- RouterTray обращается к роутеру по локальной сети и не подключается к облачным сервисам.
-- Установленная версия находится в `%LOCALAPPDATA%\Programs\RouterTray`.
+- RouterTray обращается к роутеру по локальной сети. Если автоматическая проверка обновлений включена, единственный внешний запрос выполняется к GitHub Releases этого репозитория.
+- Версия, установленная через Velopack, находится в `%LOCALAPPDATA%\RouterTray.App`; пользовательские настройки остаются в `%LOCALAPPDATA%\RouterTray` и не заменяются при обновлении.
 
 ## Если что-то не работает
 
@@ -199,6 +200,7 @@ git clone https://github.com/den67rus/routertray.git
 cd routertray
 
 dotnet restore tests/RouterTray.Tests/RouterTray.Tests.csproj
+dotnet tool restore
 dotnet build RouterTray.csproj -c Release --no-restore -warnaserror
 dotnet test tests/RouterTray.Tests/RouterTray.Tests.csproj -c Release --no-restore
 ```
@@ -206,7 +208,7 @@ dotnet test tests/RouterTray.Tests/RouterTray.Tests.csproj -c Release --no-resto
 Для сборки выберите нужную платформу: `win-x64`, `win-arm64` или `win-x86`.
 
 ```powershell
-dotnet publish RouterTray.csproj -c Release -r win-x64 --self-contained true
+dotnet publish RouterTray.csproj -c Release -r win-x64 --self-contained true -o artifacts/publish/win-x64
 ```
 
 ## Как помочь

@@ -1,14 +1,23 @@
 using System.Globalization;
+using Velopack;
 
 namespace RouterTray;
 
 internal static class Program
 {
+    private const string AppUserModelId = "RouterTray.App";
     private const string SingleInstanceName = @"Local\RouterTray.6FEC1E8E-0DA0-4E5B-9A4B-0A3F5CF6E6A1";
 
     [STAThread]
     private static void Main()
     {
+        VelopackApp.Build()
+            .SetAutoApplyOnStartup(true)
+            .SetAppUserModelId(AppUserModelId)
+            .OnBeforeUninstallFastCallback(_ =>
+                AutoStartService.RemoveEntry("RouterTray", Application.ExecutablePath))
+            .Run();
+
         using var singleInstance = SingleInstanceGuard.Acquire(SingleInstanceName);
         if (!singleInstance.IsPrimaryInstance)
         {
