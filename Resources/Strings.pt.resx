@@ -13,196 +13,196 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppConfigLoadFailedMessage" xml:space="preserve">
-    <value>Не удалось загрузить appsettings.json. Проверьте файл и перезапустите приложение.</value>
+    <value>Não foi possível carregar o ficheiro appsettings.json. Verifique o ficheiro e reinicie a aplicação.</value>
   </data>
   <data name="AppConfigRecoveredMessage" xml:space="preserve">
-    <value>Файл настроек повреждён или недоступен. Загружены безопасные значения по умолчанию; проверьте настройки перед управлением роутером.</value>
+    <value>O ficheiro de definições estava danificado ou indisponível. Foram carregados valores predefinidos seguros; reveja as definições antes de utilizar os controlos do router.</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>RouterTray</value>
   </data>
   <data name="AuthFailedMessage" xml:space="preserve">
-    <value>Ошибка аутентификации. Проверьте указанные учётные данные или токен доступа.</value>
+    <value>Falha na autenticação. Verifique as credenciais configuradas ou o token de acesso.</value>
   </data>
   <data name="AutoStartDisabledMessage" xml:space="preserve">
-    <value>Автозапуск отключен.</value>
+    <value>Arranque automático desativado.</value>
   </data>
   <data name="AutoStartEnabledMessage" xml:space="preserve">
-    <value>Автозапуск включен.</value>
+    <value>Arranque automático ativado.</value>
   </data>
   <data name="AutoStartFailedMessage" xml:space="preserve">
-    <value>Не удалось изменить автозапуск.</value>
+    <value>Não foi possível alterar o arranque automático.</value>
   </data>
   <data name="InterfacesLoadFailedMenu" xml:space="preserve">
-    <value>Не удалось загрузить интерфейсы</value>
+    <value>Não foi possível carregar as interfaces de rede</value>
   </data>
   <data name="InterfacesLoadFailedMessage" xml:space="preserve">
-    <value>Не удалось загрузить интерфейсы.</value>
+    <value>Não foi possível carregar as interfaces de rede.</value>
   </data>
   <data name="InterfacesNone" xml:space="preserve">
-    <value>Интерфейсы не найдены</value>
+    <value>Nenhuma interface de rede encontrada</value>
   </data>
   <data name="InterfacesAutomatic" xml:space="preserve">
-    <value>Автоматический выбор</value>
+    <value>Seleção automática</value>
   </data>
   <data name="Loading" xml:space="preserve">
-    <value>Загрузка...</value>
+    <value>A carregar...</value>
   </data>
   <data name="MenuExit" xml:space="preserve">
-    <value>Выход</value>
+    <value>Sair</value>
   </data>
   <data name="MenuInterfaces" xml:space="preserve">
-    <value>Интерфейсы</value>
+    <value>Interfaces de rede</value>
   </data>
   <data name="MenuPolicies" xml:space="preserve">
-    <value>Политики</value>
+    <value>Políticas de acesso</value>
   </data>
   <data name="MenuSettings" xml:space="preserve">
-    <value>Настройки</value>
+    <value>Definições</value>
   </data>
   <data name="MenuAbout" xml:space="preserve">
-    <value>О программе</value>
+    <value>Acerca de</value>
   </data>
   <data name="PoliciesLoadFailedMenu" xml:space="preserve">
-    <value>Не удалось загрузить политики</value>
+    <value>Não foi possível carregar as políticas de acesso</value>
   </data>
   <data name="PoliciesNone" xml:space="preserve">
-    <value>Политики не найдены</value>
+    <value>Nenhuma política de acesso encontrada</value>
   </data>
   <data name="PolicyDefaultDisplay" xml:space="preserve">
-    <value>По умолчанию</value>
+    <value>Predefinida</value>
   </data>
   <data name="PolicySetMessageFormat" xml:space="preserve">
-    <value>Политика установлена: {0}</value>
+    <value>Política aplicada: {0}</value>
   </data>
   <data name="PolicyTitle" xml:space="preserve">
-    <value>Политика</value>
+    <value>Política de acesso</value>
   </data>
   <data name="RequestTimeoutMessage" xml:space="preserve">
-    <value>Время ожидания запроса истекло.</value>
+    <value>O tempo limite do pedido foi excedido.</value>
   </data>
   <data name="RouterApiErrorMessage" xml:space="preserve">
-    <value>Ошибка API роутера.</value>
+    <value>Erro da API do router.</value>
   </data>
   <data name="RouterUnreachableMessage" xml:space="preserve">
-    <value>Роутер недоступен.</value>
+    <value>Não é possível aceder ao router.</value>
   </data>
   <data name="RouterEndpointUnavailableMessage" xml:space="preserve">
-    <value>Адрес роутера или активный сетевой интерфейс недоступен. Проверьте настройки и подключение к сети.</value>
+    <value>O endereço do router ou a interface de rede ativa não está disponível. Verifique as definições e a ligação de rede.</value>
   </data>
   <data name="SettingsAutoStart" xml:space="preserve">
-    <value>Запускать вместе с Windows</value>
+    <value>Iniciar com o Windows</value>
   </data>
   <data name="SettingsCheckForUpdates" xml:space="preserve">
-    <value>Проверять обновления автоматически</value>
+    <value>Procurar atualizações automaticamente</value>
   </data>
   <data name="SettingsCheckForUpdatesNow" xml:space="preserve">
-    <value>Проверить обновления</value>
+    <value>Procurar atualizações</value>
   </data>
   <data name="SettingsUpdateChannel" xml:space="preserve">
-    <value>Канал обновлений</value>
+    <value>Canal de atualização</value>
   </data>
   <data name="SettingsUpdateChannelStable" xml:space="preserve">
-    <value>Стабильный</value>
+    <value>Estável</value>
   </data>
   <data name="SettingsUpdateChannelPreview" xml:space="preserve">
-    <value>Предварительная версия / бета</value>
+    <value>Pré-lançamento / Beta</value>
   </data>
   <data name="SettingsUpdatesTab" xml:space="preserve">
-    <value>Обновления</value>
+    <value>Atualizações</value>
   </data>
   <data name="SettingsUpdateScheduleDescription" xml:space="preserve">
-    <value>RouterTray выполняет проверку вскоре после каждого запуска. Если программа продолжает работать, следующая проверка выполняется через 14 дней.</value>
+    <value>RouterTray procura atualizações pouco depois de cada arranque. Se a aplicação continuar em execução, a próxima verificação ocorrerá após 14 dias.</value>
   </data>
   <data name="SettingsUpdateCheckInProgress" xml:space="preserve">
-    <value>Проверка обновлений...</value>
+    <value>A procurar atualizações...</value>
   </data>
   <data name="SettingsUpdateUpToDate" xml:space="preserve">
-    <value>Установлена последняя версия.</value>
+    <value>Já tem a versão mais recente.</value>
   </data>
   <data name="SettingsUpdateReady" xml:space="preserve">
-    <value>Обновление загружено. Закройте настройки, чтобы установить его и перезапустить RouterTray.</value>
+    <value>A atualização foi transferida. Feche as Definições para a instalar e reiniciar o RouterTray.</value>
   </data>
   <data name="SettingsUpdateCheckUnavailable" xml:space="preserve">
-    <value>Проверка доступна только для версии, установленной через Velopack.</value>
+    <value>A procura de atualizações só está disponível numa versão instalada através do Velopack.</value>
   </data>
   <data name="SettingsUpdateCheckFailed" xml:space="preserve">
-    <value>Не удалось проверить обновления. Подробности записаны в журнал.</value>
+    <value>Não foi possível procurar atualizações. Os detalhes foram escritos no ficheiro de registo.</value>
   </data>
   <data name="SettingsCancel" xml:space="preserve">
-    <value>Отмена</value>
+    <value>Cancelar</value>
   </data>
   <data name="SettingsLogin" xml:space="preserve">
-    <value>Логин</value>
+    <value>Nome de utilizador</value>
   </data>
   <data name="SettingsAuthMode" xml:space="preserve">
-    <value>Способ входа</value>
+    <value>Método de autenticação</value>
   </data>
   <data name="SettingsAuthModePassword" xml:space="preserve">
-    <value>Логин и пароль</value>
+    <value>Nome de utilizador e palavra-passe</value>
   </data>
   <data name="SettingsAuthModeAccessToken" xml:space="preserve">
-    <value>Токен доступа</value>
+    <value>Token de acesso</value>
   </data>
   <data name="SettingsPassword" xml:space="preserve">
-    <value>Пароль</value>
+    <value>Palavra-passe</value>
   </data>
   <data name="SettingsAccessToken" xml:space="preserve">
-    <value>Токен доступа</value>
+    <value>Token de acesso</value>
   </data>
   <data name="SettingsSave" xml:space="preserve">
-    <value>Сохранить</value>
+    <value>Guardar</value>
   </data>
   <data name="SettingsSaveFailedMessage" xml:space="preserve">
-    <value>Не удалось сохранить настройки.</value>
+    <value>Não foi possível guardar as definições.</value>
   </data>
   <data name="SettingsSavedMessage" xml:space="preserve">
-    <value>Настройки сохранены.</value>
+    <value>Definições guardadas.</value>
   </data>
   <data name="SettingsShowPassword" xml:space="preserve">
-    <value>Показывать пароль</value>
+    <value>Mostrar palavra-passe</value>
   </data>
   <data name="SettingsShowAccessToken" xml:space="preserve">
-    <value>Показывать токен доступа</value>
+    <value>Mostrar token de acesso</value>
   </data>
   <data name="SettingsShowPolicyNotifications" xml:space="preserve">
-    <value>Показывать уведомление при смене политики</value>
+    <value>Mostrar uma notificação ao mudar de política de acesso</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Настройки</value>
+    <value>Definições</value>
   </data>
   <data name="SettingsRouterUrl" xml:space="preserve">
-    <value>URL роутера</value>
+    <value>URL do router</value>
   </data>
   <data name="SettingsRouterUrlHint" xml:space="preserve">
-    <value>Оставьте поле пустым, чтобы автоматически использовать шлюз выбранного сетевого интерфейса.</value>
+    <value>Deixe este campo vazio para utilizar automaticamente o gateway da interface de rede selecionada.</value>
   </data>
   <data name="SettingsRouterUrlValidationMessage" xml:space="preserve">
-    <value>Укажите полный адрес роутера, например http://192.168.1.1/, без учётных данных, строки запроса и фрагмента.</value>
+    <value>Introduza o endereço completo do router, por exemplo http://192.168.1.1/, sem credenciais, cadeia de consulta ou fragmento.</value>
   </data>
   <data name="SettingsValidationMessage" xml:space="preserve">
-    <value>Необходимо указать логин и пароль.</value>
+    <value>O nome de utilizador e a palavra-passe são obrigatórios.</value>
   </data>
   <data name="SettingsAccessTokenValidationMessage" xml:space="preserve">
-    <value>Необходимо указать токен доступа.</value>
+    <value>O token de acesso é obrigatório.</value>
   </data>
   <data name="UnexpectedErrorMessage" xml:space="preserve">
-    <value>Непредвиденная ошибка.</value>
+    <value>Erro inesperado.</value>
   </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>О программе</value>
+    <value>Acerca de</value>
   </data>
   <data name="AboutVersionFormat" xml:space="preserve">
     <value>{0}</value>
   </data>
   <data name="AboutDescription" xml:space="preserve">
-    <value>Трей-утилита для управления политиками доступа роутера.</value>
+    <value>Utilitário da área de notificação para gerir as políticas de acesso do router.</value>
   </data>
   <data name="AboutOk" xml:space="preserve">
-    <value>ОК</value>
+    <value>OK</value>
   </data>
   <data name="AboutLicenseText" xml:space="preserve">
-    <value>Распространяется по лицензии MIT.</value>
+    <value>Distribuído ao abrigo da licença MIT.</value>
   </data>
   <data name="AboutLicenseUrl" xml:space="preserve">
     <value>https://github.com/den67rus/routertray?tab=MIT-1-ov-file#MIT-1-ov-file</value>
@@ -217,87 +217,87 @@
     <value>© 2026 Sevostyanov Denis.</value>
   </data>
   <data name="MenuProfiles" xml:space="preserve">
-    <value>Профили роутеров</value>
+    <value>Perfis de router</value>
   </data>
   <data name="ProfilesAutomatic" xml:space="preserve">
-    <value>Автоматический выбор</value>
+    <value>Seleção automática</value>
   </data>
   <data name="ProfilesActiveFormat" xml:space="preserve">
-    <value>Активный: {0}</value>
+    <value>Ativo: {0}</value>
   </data>
   <data name="ProfilesNoneActive" xml:space="preserve">
-    <value>Нет профиля для текущей сети</value>
+    <value>Nenhum perfil para a rede atual</value>
   </data>
   <data name="ProfileChangedMessageFormat" xml:space="preserve">
-    <value>Активный профиль роутера: {0}</value>
+    <value>Perfil de router ativo: {0}</value>
   </data>
   <data name="RouterProfileUnavailableMessage" xml:space="preserve">
-    <value>К текущей сети не привязан профиль роутера. Привяжите сеть в настройках или выберите профиль вручную.</value>
+    <value>Nenhum perfil de router está associado à rede atual. Associe a rede nas Definições ou selecione um perfil manualmente.</value>
   </data>
   <data name="SettingsProfilesTab" xml:space="preserve">
-    <value>Профили роутеров</value>
+    <value>Perfis de router</value>
   </data>
   <data name="SettingsApplicationTab" xml:space="preserve">
-    <value>Приложение</value>
+    <value>Aplicação</value>
   </data>
   <data name="SettingsProfile" xml:space="preserve">
-    <value>Профиль</value>
+    <value>Perfil</value>
   </data>
   <data name="SettingsProfileName" xml:space="preserve">
-    <value>Название профиля</value>
+    <value>Nome do perfil</value>
   </data>
   <data name="SettingsProfileAdd" xml:space="preserve">
-    <value>Добавить профиль</value>
+    <value>Adicionar perfil</value>
   </data>
   <data name="SettingsProfileRemove" xml:space="preserve">
-    <value>Удалить профиль</value>
+    <value>Remover perfil</value>
   </data>
   <data name="SettingsUnnamedProfile" xml:space="preserve">
-    <value>Без названия</value>
+    <value>Perfil sem nome</value>
   </data>
   <data name="SettingsConnectionSection" xml:space="preserve">
-    <value>Подключение</value>
+    <value>Ligação</value>
   </data>
   <data name="SettingsAuthenticationSection" xml:space="preserve">
-    <value>Аутентификация</value>
+    <value>Autenticação</value>
   </data>
   <data name="SettingsProfileNetworks" xml:space="preserve">
-    <value>Привязки для автоматического выбора</value>
+    <value>Associações de rede para seleção automática</value>
   </data>
   <data name="SettingsCurrentNetworkFormat" xml:space="preserve">
-    <value>Текущая сеть: {0}</value>
+    <value>Rede atual: {0}</value>
   </data>
   <data name="SettingsCurrentNetworkUnavailable" xml:space="preserve">
-    <value>Системе Windows не удалось определить текущую сеть.</value>
+    <value>O Windows não conseguiu identificar a rede atual.</value>
   </data>
   <data name="SettingsBindCurrentNetwork" xml:space="preserve">
-    <value>Привязать текущую сеть</value>
+    <value>Associar rede atual</value>
   </data>
   <data name="SettingsRemoveNetwork" xml:space="preserve">
-    <value>Удалить привязку</value>
+    <value>Remover associação</value>
   </data>
   <data name="SettingsAutomaticProfileSelection" xml:space="preserve">
-    <value>Автоматически выбирать профиль роутера для текущей сети Windows</value>
+    <value>Selecionar automaticamente um perfil de router para a rede Windows atual</value>
   </data>
   <data name="SettingsProfileNameValidationMessage" xml:space="preserve">
-    <value>Необходимо указать название профиля.</value>
+    <value>O nome do perfil é obrigatório.</value>
   </data>
   <data name="SettingsProfileDuplicateNameMessage" xml:space="preserve">
-    <value>Названия профилей не должны повторяться.</value>
+    <value>Os nomes dos perfis têm de ser exclusivos.</value>
   </data>
   <data name="SettingsProfileValidationFormat" xml:space="preserve">
-    <value>Профиль «{0}»: {1}</value>
+    <value>Perfil «{0}»: {1}</value>
   </data>
   <data name="SettingsNewProfileNameFormat" xml:space="preserve">
-    <value>Роутер {0}</value>
+    <value>Router {0}</value>
   </data>
   <data name="SettingsRemoveProfileConfirmationFormat" xml:space="preserve">
-    <value>Удалить профиль роутера «{0}»?</value>
+    <value>Remover o perfil de router «{0}»?</value>
   </data>
   <data name="SettingsCannotRemoveLastProfileMessage" xml:space="preserve">
-    <value>Должен остаться хотя бы один профиль роутера.</value>
+    <value>É necessário pelo menos um perfil de router.</value>
   </data>
   <data name="SettingsMoveNetworkConfirmationFormat" xml:space="preserve">
-    <value>Текущая сеть уже привязана к профилю «{0}». Перенести её в этот профиль?</value>
+    <value>A rede atual já está associada ao perfil «{0}». Movê-la para este perfil?</value>
   </data>
 </root>
