@@ -303,4 +303,292 @@
   <data name="SettingsMoveNetworkConfirmationFormat" xml:space="preserve">
     <value>Das aktuelle Netzwerk ist bereits dem Profil „{0}“ zugeordnet. In dieses Profil verschieben?</value>
   </data>
+  <data name="SetupTitle" xml:space="preserve">
+    <value>RouterTray einrichten</value>
+  </data>
+  <data name="SetupAddProfileTitle" xml:space="preserve">
+    <value>RouterTray-Profil hinzufügen</value>
+  </data>
+  <data name="SetupSidebarCaption" xml:space="preserve">
+    <value>Ersteinrichtung</value>
+  </data>
+  <data name="SetupAddProfileSidebarCaption" xml:space="preserve">
+    <value>Neues Routerprofil</value>
+  </data>
+  <data name="SetupStepWelcome" xml:space="preserve">
+    <value>Willkommen</value>
+  </data>
+  <data name="SetupStepRouter" xml:space="preserve">
+    <value>Router</value>
+  </data>
+  <data name="SetupStepAuthentication" xml:space="preserve">
+    <value>Anmeldung</value>
+  </data>
+  <data name="SetupStepDevice" xml:space="preserve">
+    <value>Gerät</value>
+  </data>
+  <data name="SetupStepFinish" xml:space="preserve">
+    <value>Prüfen und abschließen</value>
+  </data>
+  <data name="SetupWelcomeTitle" xml:space="preserve">
+    <value>Verbinden wir RouterTray mit Ihrem Router</value>
+  </data>
+  <data name="SetupWelcomeSubtitle" xml:space="preserve">
+    <value>Dieser Assistent erstellt in fünf Schritten Ihr erstes Routerprofil und erklärt alles, was für eine funktionierende Verbindung erforderlich ist.</value>
+  </data>
+  <data name="SetupAddProfileWelcomeTitle" xml:space="preserve">
+    <value>Fügen wir RouterTray einen weiteren Router hinzu</value>
+  </data>
+  <data name="SetupAddProfileWelcomeSubtitle" xml:space="preserve">
+    <value>Dieser Assistent erstellt in fünf Schritten ein neues Routerprofil und führt dieselben Verbindungs- und Geräteprüfungen wie bei der Ersteinrichtung aus.</value>
+  </data>
+  <data name="SetupWelcomeBeforeTitle" xml:space="preserve">
+    <value>Vor dem Start</value>
+  </data>
+  <data name="SetupWelcomeRouterTitle" xml:space="preserve">
+    <value>Diesen PC mit dem Router verbinden</value>
+  </data>
+  <data name="SetupWelcomeRouterDescription" xml:space="preserve">
+    <value>Verwenden Sie das WLAN- oder Ethernet-Netzwerk des Keenetic- oder Netcraze-Routers, den Sie steuern möchten.</value>
+  </data>
+  <data name="SetupWelcomePoliciesTitle" xml:space="preserve">
+    <value>Zugangsrichtlinien auf dem Router erstellen</value>
+  </data>
+  <data name="SetupWelcomePoliciesDescription" xml:space="preserve">
+    <value>RouterTray schaltet vorhandene Richtlinien um, ohne sie zu ändern. Der Assistent kann diesen PC als Gerät im Heimnetzwerk registrieren.</value>
+  </data>
+  <data name="SetupWelcomeCredentialsTitle" xml:space="preserve">
+    <value>Anmeldedaten bereithalten</value>
+  </data>
+  <data name="SetupWelcomeCredentialsDescription" xml:space="preserve">
+    <value>Verwenden Sie ein Administratorkonto, einen eigenen Benutzer mit Zugriff auf die Weboberfläche oder bei Firmware 5.2 oder neuer ein Zugriffstoken.</value>
+  </data>
+  <data name="SetupWelcomeSecurityNote" xml:space="preserve">
+    <value>Ihr Kennwort oder Token wird für den aktuellen Windows-Benutzer verschlüsselt und niemals im Klartext gespeichert.</value>
+  </data>
+  <data name="SetupRouterTitle" xml:space="preserve">
+    <value>Wo befindet sich Ihr Router?</value>
+  </data>
+  <data name="SetupRouterSubtitle" xml:space="preserve">
+    <value>Benennen Sie diese Verbindung. Lassen Sie RouterTray anschließend den Router automatisch finden oder geben Sie seine Adresse selbst ein.</value>
+  </data>
+  <data name="SetupDefaultProfileName" xml:space="preserve">
+    <value>Hauptrouter</value>
+  </data>
+  <data name="SetupAutomaticAddress" xml:space="preserve">
+    <value>Gateway des aktuellen Netzwerks verwenden (empfohlen)</value>
+  </data>
+  <data name="SetupAutomaticAddressDescription" xml:space="preserve">
+    <value>Geeignet, wenn der Router das Gateway dieses WLAN- oder Ethernet-Netzwerks ist. Es muss keine Adresse gespeichert werden.</value>
+  </data>
+  <data name="SetupDetectingNetwork" xml:space="preserve">
+    <value>Aktuelles Netzwerk und Gateway werden ermittelt...</value>
+  </data>
+  <data name="SetupRouterDetectedFormat" xml:space="preserve">
+    <value>Ermittelte Routeradresse: {0}</value>
+  </data>
+  <data name="SetupRouterNotDetected" xml:space="preserve">
+    <value>Derzeit ist kein Gateway sichtbar. Sie können fortfahren; RouterTray versucht es erneut, sobald das Netzwerk verfügbar ist.</value>
+  </data>
+  <data name="SetupManualAddress" xml:space="preserve">
+    <value>Routeradresse manuell eingeben</value>
+  </data>
+  <data name="SetupManualAddressDescription" xml:space="preserve">
+    <value>Geben Sie eine vollständige HTTP- oder HTTPS-Adresse ein, zum Beispiel http://192.168.1.1/.</value>
+  </data>
+  <data name="SetupBindCurrentNetwork" xml:space="preserve">
+    <value>Dieses Profil im aktuellen Windows-Netzwerk automatisch verwenden</value>
+  </data>
+  <data name="SetupCurrentNetworkFormat" xml:space="preserve">
+    <value>Aktuelles Netzwerk: {0}</value>
+  </data>
+  <data name="SetupNetworkUnavailable" xml:space="preserve">
+    <value>Windows konnte das aktuelle Netzwerk nicht ermitteln. Sie können dieses Profil im Infobereich manuell auswählen.</value>
+  </data>
+  <data name="SetupAuthenticationTitle" xml:space="preserve">
+    <value>Wie soll sich RouterTray anmelden?</value>
+  </data>
+  <data name="SetupAuthenticationSubtitle" xml:space="preserve">
+    <value>Wählen Sie eine Methode. Diese Anmeldedaten werden nur für die Kommunikation mit dem Router in Ihrem lokalen Netzwerk verwendet.</value>
+  </data>
+  <data name="SetupCredentialsInstruction" xml:space="preserve">
+    <value>Erstellen Sie für minimale Berechtigungen einen eigenen Routerbenutzer und gewähren Sie ihm nur Zugriff auf die Weboberfläche. Ein Administratorkonto funktioniert ebenfalls.</value>
+  </data>
+  <data name="SetupPasswordMethodDescription" xml:space="preserve">
+    <value>Funktioniert mit unterstützter Keenetic- und Netcraze-Firmware über NDW2- oder NDW4-Authentifizierung.</value>
+  </data>
+  <data name="SetupTokenMethodDescription" xml:space="preserve">
+    <value>Verfügbar ab Firmware 5.2. Fügen Sie das vom Router erzeugte Token ein.</value>
+  </data>
+  <data name="SetupOpenRouter" xml:space="preserve">
+    <value>Weboberfläche des Routers öffnen</value>
+  </data>
+  <data name="SetupDeviceTitle" xml:space="preserve">
+    <value>Dieses Gerät prüfen</value>
+  </data>
+  <data name="SetupDeviceSubtitle" xml:space="preserve">
+    <value>Der Router muss die MAC-Adresse dieses PCs kennen, damit RouterTray ihm zuverlässig Zugangsrichtlinien zuweisen kann.</value>
+  </data>
+  <data name="SetupDeviceCurrentTitle" xml:space="preserve">
+    <value>Aktuelle Verbindung</value>
+  </data>
+  <data name="SetupDeviceAdapter" xml:space="preserve">
+    <value>Netzwerkadapter</value>
+  </data>
+  <data name="SetupDeviceMacAddress" xml:space="preserve">
+    <value>MAC-Adresse</value>
+  </data>
+  <data name="SetupDeviceUnavailable" xml:space="preserve">
+    <value>Nicht erkannt</value>
+  </data>
+  <data name="SetupTemporaryMacWarning" xml:space="preserve">
+    <value>Eine lokal verwaltete MAC-Adresse wurde erkannt. Windows verwendet dieses Format für zufällige Hardwareadressen. Wenn sich die Adresse ändert, erkennt der Router diesen PC nicht mehr und die Richtlinienumschaltung funktioniert nicht korrekt. Deaktivieren Sie „Zufällige Hardwareadressen“ für dieses WLAN, stellen Sie die Verbindung neu her und wählen Sie „Erneut prüfen“.</value>
+  </data>
+  <data name="SetupTemporaryMacAcknowledge" xml:space="preserve">
+    <value>Ich verstehe das Risiko und möchte mit der aktuellen MAC-Adresse fortfahren</value>
+  </data>
+  <data name="SetupOpenWifiSettings" xml:space="preserve">
+    <value>Windows-WLAN-Einstellungen öffnen</value>
+  </data>
+  <data name="SetupDeviceRegistrationTitle" xml:space="preserve">
+    <value>Registrierung am Router</value>
+  </data>
+  <data name="SetupDeviceRegistrationDescription" xml:space="preserve">
+    <value>Falls das Gerät noch nicht registriert ist, geben Sie ihm einen eindeutigen Namen und fügen Sie es der Heimnetz-Geräteliste des Routers hinzu.</value>
+  </data>
+  <data name="SetupDeviceName" xml:space="preserve">
+    <value>Gerätename</value>
+  </data>
+  <data name="SetupDeviceNotChecked" xml:space="preserve">
+    <value>Die Geräteregistrierung wurde noch nicht geprüft.</value>
+  </data>
+  <data name="SetupCheckingDevice" xml:space="preserve">
+    <value>MAC-Adresse wird am Router geprüft...</value>
+  </data>
+  <data name="SetupDeviceRegisteredFormat" xml:space="preserve">
+    <value>Das Gerät ist als „{0}“ registriert.</value>
+  </data>
+  <data name="SetupDeviceRegisteredNoName" xml:space="preserve">
+    <value>Das Gerät ist bereits am Router registriert.</value>
+  </data>
+  <data name="SetupDeviceNotRegistered" xml:space="preserve">
+    <value>Diese MAC-Adresse ist nicht registriert. Geben Sie einen Namen ein und wählen Sie „Registrieren“.</value>
+  </data>
+  <data name="SetupRegisterDevice" xml:space="preserve">
+    <value>Registrieren</value>
+  </data>
+  <data name="SetupRegisteringDevice" xml:space="preserve">
+    <value>Gerät wird registriert und Routereinstellungen werden gespeichert...</value>
+  </data>
+  <data name="SetupRecheckDevice" xml:space="preserve">
+    <value>Erneut prüfen</value>
+  </data>
+  <data name="SetupDeviceRegistrationRequired" xml:space="preserve">
+    <value>Registrieren Sie das Gerät am Router, bevor Sie fortfahren.</value>
+  </data>
+  <data name="SetupTemporaryMacConfirmationRequired" xml:space="preserve">
+    <value>Deaktivieren Sie die zufällige MAC-Adresse und prüfen Sie erneut oder bestätigen Sie, dass Sie das Risiko verstehen.</value>
+  </data>
+  <data name="SetupDeviceNameRequired" xml:space="preserve">
+    <value>Geben Sie einen Gerätenamen für die Registrierung ein.</value>
+  </data>
+  <data name="SetupDeviceNoMac" xml:space="preserve">
+    <value>Die MAC-Adresse der aktiven Verbindung konnte nicht ermittelt werden. Verbinden Sie sich mit dem Router und prüfen Sie erneut.</value>
+  </data>
+  <data name="SetupDeviceRegistrationFailed" xml:space="preserve">
+    <value>Das Gerät konnte nicht geprüft oder registriert werden. Überprüfen Sie die Berechtigungen des Routerbenutzers und versuchen Sie es erneut.</value>
+  </data>
+  <data name="SetupFinishTitle" xml:space="preserve">
+    <value>Verbindung prüfen</value>
+  </data>
+  <data name="SetupFinishSubtitle" xml:space="preserve">
+    <value>Überprüfen Sie das Profil und stellen Sie sicher, dass RouterTray das registrierte Gerät erkennt und die Zugangsrichtlinien laden kann.</value>
+  </data>
+  <data name="SetupSummaryRouter" xml:space="preserve">
+    <value>Router</value>
+  </data>
+  <data name="SetupSummaryAuthentication" xml:space="preserve">
+    <value>Anmeldemethode</value>
+  </data>
+  <data name="SetupSummaryNetwork" xml:space="preserve">
+    <value>Profilauswahl</value>
+  </data>
+  <data name="SetupSummaryDevice" xml:space="preserve">
+    <value>Gerät</value>
+  </data>
+  <data name="SetupAutomaticAddressSummaryFormat" xml:space="preserve">
+    <value>Automatisch über {0}</value>
+  </data>
+  <data name="SetupAutomaticAddressUnavailable" xml:space="preserve">
+    <value>Automatisch über das Gateway des aktiven Netzwerks</value>
+  </data>
+  <data name="SetupNetworkNotBound" xml:space="preserve">
+    <value>Dieses Profil manuell im Infobereich auswählen</value>
+  </data>
+  <data name="SetupConnectionCheckTitle" xml:space="preserve">
+    <value>Verbindungstest</value>
+  </data>
+  <data name="SetupConnectionCheckDescription" xml:space="preserve">
+    <value>RouterTray meldet sich an und ruft die Liste der Zugangsrichtlinien ab, ohne die Routereinstellungen zu ändern.</value>
+  </data>
+  <data name="SetupConnectionNotChecked" xml:space="preserve">
+    <value>Die Verbindung wurde noch nicht geprüft.</value>
+  </data>
+  <data name="SetupTestConnection" xml:space="preserve">
+    <value>Verbindung testen</value>
+  </data>
+  <data name="SetupTestingConnection" xml:space="preserve">
+    <value>Verbindung zum Router wird hergestellt...</value>
+  </data>
+  <data name="SetupConnectionSuccessFormat" xml:space="preserve">
+    <value>Verbindung hergestellt. Gefundene Richtlinien: {0}.</value>
+  </data>
+  <data name="SetupConnectionSuccessNoPolicies" xml:space="preserve">
+    <value>Die Verbindung wurde hergestellt, aber es wurden keine Zugangsrichtlinien gefunden. Erstellen Sie diese in der Weboberfläche des Routers.</value>
+  </data>
+  <data name="SetupConnectionNoEndpoint" xml:space="preserve">
+    <value>Die Routeradresse ist nicht verfügbar. Verbinden Sie sich mit dem Routernetzwerk oder gehen Sie zurück und geben Sie die Adresse manuell ein.</value>
+  </data>
+  <data name="SetupConnectionAuthFailed" xml:space="preserve">
+    <value>Authentifizierung fehlgeschlagen. Gehen Sie zurück und überprüfen Sie Benutzername, Kennwort oder Zugriffstoken.</value>
+  </data>
+  <data name="SetupConnectionUnreachable" xml:space="preserve">
+    <value>Der Router ist nicht erreichbar. Überprüfen Sie die Adresse und Ihre Netzwerkverbindung.</value>
+  </data>
+  <data name="SetupConnectionTimeout" xml:space="preserve">
+    <value>Der Router hat nicht rechtzeitig geantwortet. Überprüfen Sie das Netzwerk und versuchen Sie es erneut.</value>
+  </data>
+  <data name="SetupConnectionApiFailed" xml:space="preserve">
+    <value>Der Router hat geantwortet, aber seine API konnte nicht gelesen werden. Überprüfen Sie Firmwareunterstützung und Berechtigungen.</value>
+  </data>
+  <data name="SetupConnectionDeviceNotRegistered" xml:space="preserve">
+    <value>Die Verbindung funktioniert, aber die aktuelle MAC-Adresse ist nicht mehr am Router registriert. Kehren Sie zum Schritt „Gerät“ zurück.</value>
+  </data>
+  <data name="SetupTrayHint" xml:space="preserve">
+    <value>Nach der Einrichtung bleibt RouterTray im Windows-Infobereich. Klicken Sie mit der linken Maustaste auf das blaue R-Symbol, um eine Richtlinie auszuwählen, und mit der rechten Maustaste, um die Einstellungen zu öffnen.</value>
+  </data>
+  <data name="SetupBack" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="SetupNext" xml:space="preserve">
+    <value>Weiter</value>
+  </data>
+  <data name="SetupFinish" xml:space="preserve">
+    <value>Einrichtung abschließen</value>
+  </data>
+  <data name="SetupAddProfileFinish" xml:space="preserve">
+    <value>Profil hinzufügen</value>
+  </data>
+  <data name="SetupCancel" xml:space="preserve">
+    <value>Einrichtung beenden</value>
+  </data>
+  <data name="SetupCancelConfirmation" xml:space="preserve">
+    <value>Die Einrichtung ist noch nicht abgeschlossen, daher wird RouterTray nicht gestartet. Jetzt beenden?</value>
+  </data>
+  <data name="SetupAddProfileCancelConfirmation" xml:space="preserve">
+    <value>Hinzufügen dieses Profils abbrechen? Ihre Eingaben werden nicht gespeichert.</value>
+  </data>
+  <data name="SetupProgressFormat" xml:space="preserve">
+    <value>Schritt {0} von {1}</value>
+  </data>
 </root>

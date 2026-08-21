@@ -13,8 +13,75 @@ public sealed class AppSettingsTests
         var profile = Assert.Single(settings.Profiles);
         Assert.Empty(profile.RouterUrl);
         Assert.True(settings.AutomaticProfileSelection);
+        Assert.True(settings.AutoStart);
+        Assert.False(settings.ShowPolicyNotifications);
         Assert.True(settings.CheckForUpdatesAutomatically);
         Assert.Equal(ApplicationUpdateChannel.Stable, settings.UpdateChannel);
+        Assert.True(Guid.TryParseExact(profile.Id, "D", out var profileId));
+        Assert.NotEqual(Guid.Empty, profileId);
+    }
+
+    [Fact]
+    public void Load_MigratesPackagedTemplateIdToUniqueStandardGuid()
+    {
+        using var temp = new TemporaryDirectory();
+        var path = Path.Combine(temp.Path, "appsettings.json");
+        const string templateId = "00000000000000000000000000000001";
+        File.WriteAllText(
+            path,
+            $$"""
+            {
+              "Profiles": [
+                {
+                  "Id": "{{templateId}}",
+                  "Name": "Default"
+                }
+              ],
+              "SelectedProfileId": "{{templateId}}"
+            }
+            """);
+
+        var loaded = AppSettings.Load(path);
+        var profile = Assert.Single(loaded.Profiles);
+
+        Assert.True(Guid.TryParseExact(profile.Id, "D", out _));
+        Assert.NotEqual(
+            Guid.Parse("00000000-0000-0000-0000-000000000001"),
+            Guid.Parse(profile.Id));
+        Assert.Equal(profile.Id, loaded.SelectedProfileId);
+        Assert.True(loaded.AutomaticProfileSelection);
+        Assert.True(loaded.AutoStart);
+        Assert.False(loaded.ShowPolicyNotifications);
+        Assert.True(loaded.RequiresMigrationSave);
+    }
+
+    [Fact]
+    public void Load_NormalizesCompactIdsWithoutChangingSelectedProfile()
+    {
+        using var temp = new TemporaryDirectory();
+        var path = Path.Combine(temp.Path, "appsettings.json");
+        var homeId = Guid.NewGuid();
+        var workId = Guid.NewGuid();
+        File.WriteAllText(
+            path,
+            $$"""
+            {
+              "Profiles": [
+                { "Id": "{{homeId:N}}", "Name": "Home" },
+                { "Id": "{{workId:N}}", "Name": "Work" }
+              ],
+              "SelectedProfileId": "{{workId:N}}"
+            }
+            """);
+
+        var loaded = AppSettings.Load(path);
+
+        Assert.Equal(workId.ToString("D"), loaded.SelectedProfileId);
+        Assert.Equal("Work", loaded.SelectedProfile?.Name);
+        Assert.All(
+            loaded.Profiles,
+            profile => Assert.True(Guid.TryParseExact(profile.Id, "D", out _)));
+        Assert.True(loaded.RequiresMigrationSave);
     }
 
     [Fact]
@@ -232,6 +299,24 @@ public sealed class AppSettingsTests
     }
 
     [Fact]
+    public void SettingsStore_MissingUserSettingsMarksFirstRunAndLoadsTemplate()
+    {
+        using var temp = new TemporaryDirectory();
+        var primaryPath = Path.Combine(temp.Path, "user", "appsettings.json");
+        var fallbackPath = Path.Combine(temp.Path, "packaged.json");
+        CreateSettings("template-secret").Save(fallbackPath);
+
+        var result = SettingsStore.Load(primaryPath, fallbackPath);
+
+        Assert.True(result.IsFirstRun);
+        Assert.False(result.Recovered);
+        Assert.True(result.NeedsSave);
+        Assert.Equal(fallbackPath, result.SourcePath);
+        Assert.Equal("template-secret", result.Settings.Profiles[0].Password);
+        Assert.False(File.Exists(primaryPath));
+    }
+
+    [Fact]
     public void Save_CreatesUsableBackupBeforeReplacingExistingProfiles()
     {
         using var temp = new TemporaryDirectory();
@@ -260,6 +345,7 @@ public sealed class AppSettingsTests
 
         Assert.True(result.Recovered);
         Assert.True(result.NeedsSave);
+        Assert.False(result.IsFirstRun);
         Assert.Equal("fallback-secret", result.Settings.Profiles[0].Password);
         Assert.Single(Directory.GetFiles(
             Path.GetDirectoryName(primaryPath)!,
@@ -279,6 +365,7 @@ public sealed class AppSettingsTests
 
         Assert.True(result.Recovered);
         Assert.True(result.NeedsSave);
+        Assert.False(result.IsFirstRun);
         Assert.Equal("backup-secret", result.Settings.Profiles[0].Password);
     }
 

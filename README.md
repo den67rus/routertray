@@ -104,13 +104,11 @@ On firmware 5.2 or newer, you can use an access token instead of a login and pas
 
 ### 3. Configure a profile
 
-1. Start RouterTray and find the blue **R** icon in the notification area. It may be inside the tray overflow menu.
-2. Right-click the icon and select **Settings**.
-3. Enter a name for the profile.
-4. Enter the router URL. If it is the router for your current network, you can leave the field empty and RouterTray will try to find it through the gateway.
-5. Select the sign-in method and enter your credentials.
-6. If you have several profiles, select **Bind current network**.
-7. Select **Save**.
+1. Start RouterTray. If there is no user settings file yet, the initial setup wizard opens automatically.
+2. Follow its five steps: prepare the router, choose automatic gateway detection or enter its URL, select the sign-in method, verify the device MAC registration, and test the connection.
+3. If the MAC address is not registered, the wizard asks for a name and adds the device to the router's known hosts. A locally administered address triggers a warning about possible Windows MAC randomization.
+4. Select **Finish setup**. The profile is saved and RouterTray moves to the Windows notification area.
+5. For additional router profiles, right-click the blue **R** icon and select **Settings**. The icon may be inside the tray overflow menu.
 
 ### 4. Switch a policy
 

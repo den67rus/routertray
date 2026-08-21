@@ -86,6 +86,98 @@ internal static class UiText
     public static string SettingsSavedMessage => Get(nameof(SettingsSavedMessage));
     public static string SettingsSaveFailedMessage => Get(nameof(SettingsSaveFailedMessage));
 
+    public static string SetupTitle => Get(nameof(SetupTitle));
+    public static string SetupAddProfileTitle => Get(nameof(SetupAddProfileTitle));
+    public static string SetupSidebarCaption => Get(nameof(SetupSidebarCaption));
+    public static string SetupAddProfileSidebarCaption => Get(nameof(SetupAddProfileSidebarCaption));
+    public static string SetupStepWelcome => Get(nameof(SetupStepWelcome));
+    public static string SetupStepRouter => Get(nameof(SetupStepRouter));
+    public static string SetupStepAuthentication => Get(nameof(SetupStepAuthentication));
+    public static string SetupStepDevice => Get(nameof(SetupStepDevice));
+    public static string SetupStepFinish => Get(nameof(SetupStepFinish));
+    public static string SetupWelcomeTitle => Get(nameof(SetupWelcomeTitle));
+    public static string SetupWelcomeSubtitle => Get(nameof(SetupWelcomeSubtitle));
+    public static string SetupAddProfileWelcomeTitle => Get(nameof(SetupAddProfileWelcomeTitle));
+    public static string SetupAddProfileWelcomeSubtitle => Get(nameof(SetupAddProfileWelcomeSubtitle));
+    public static string SetupWelcomeBeforeTitle => Get(nameof(SetupWelcomeBeforeTitle));
+    public static string SetupWelcomeRouterTitle => Get(nameof(SetupWelcomeRouterTitle));
+    public static string SetupWelcomeRouterDescription => Get(nameof(SetupWelcomeRouterDescription));
+    public static string SetupWelcomePoliciesTitle => Get(nameof(SetupWelcomePoliciesTitle));
+    public static string SetupWelcomePoliciesDescription => Get(nameof(SetupWelcomePoliciesDescription));
+    public static string SetupWelcomeCredentialsTitle => Get(nameof(SetupWelcomeCredentialsTitle));
+    public static string SetupWelcomeCredentialsDescription => Get(nameof(SetupWelcomeCredentialsDescription));
+    public static string SetupWelcomeSecurityNote => Get(nameof(SetupWelcomeSecurityNote));
+    public static string SetupRouterTitle => Get(nameof(SetupRouterTitle));
+    public static string SetupRouterSubtitle => Get(nameof(SetupRouterSubtitle));
+    public static string SetupDefaultProfileName => Get(nameof(SetupDefaultProfileName));
+    public static string SetupAutomaticAddress => Get(nameof(SetupAutomaticAddress));
+    public static string SetupAutomaticAddressDescription => Get(nameof(SetupAutomaticAddressDescription));
+    public static string SetupDetectingNetwork => Get(nameof(SetupDetectingNetwork));
+    public static string SetupRouterNotDetected => Get(nameof(SetupRouterNotDetected));
+    public static string SetupManualAddress => Get(nameof(SetupManualAddress));
+    public static string SetupManualAddressDescription => Get(nameof(SetupManualAddressDescription));
+    public static string SetupBindCurrentNetwork => Get(nameof(SetupBindCurrentNetwork));
+    public static string SetupNetworkUnavailable => Get(nameof(SetupNetworkUnavailable));
+    public static string SetupAuthenticationTitle => Get(nameof(SetupAuthenticationTitle));
+    public static string SetupAuthenticationSubtitle => Get(nameof(SetupAuthenticationSubtitle));
+    public static string SetupCredentialsInstruction => Get(nameof(SetupCredentialsInstruction));
+    public static string SetupPasswordMethodDescription => Get(nameof(SetupPasswordMethodDescription));
+    public static string SetupTokenMethodDescription => Get(nameof(SetupTokenMethodDescription));
+    public static string SetupOpenRouter => Get(nameof(SetupOpenRouter));
+    public static string SetupDeviceTitle => Get(nameof(SetupDeviceTitle));
+    public static string SetupDeviceSubtitle => Get(nameof(SetupDeviceSubtitle));
+    public static string SetupDeviceCurrentTitle => Get(nameof(SetupDeviceCurrentTitle));
+    public static string SetupDeviceAdapter => Get(nameof(SetupDeviceAdapter));
+    public static string SetupDeviceMacAddress => Get(nameof(SetupDeviceMacAddress));
+    public static string SetupDeviceUnavailable => Get(nameof(SetupDeviceUnavailable));
+    public static string SetupTemporaryMacWarning => Get(nameof(SetupTemporaryMacWarning));
+    public static string SetupTemporaryMacAcknowledge => Get(nameof(SetupTemporaryMacAcknowledge));
+    public static string SetupOpenWifiSettings => Get(nameof(SetupOpenWifiSettings));
+    public static string SetupDeviceRegistrationTitle => Get(nameof(SetupDeviceRegistrationTitle));
+    public static string SetupDeviceRegistrationDescription => Get(nameof(SetupDeviceRegistrationDescription));
+    public static string SetupDeviceName => Get(nameof(SetupDeviceName));
+    public static string SetupDeviceNotChecked => Get(nameof(SetupDeviceNotChecked));
+    public static string SetupCheckingDevice => Get(nameof(SetupCheckingDevice));
+    public static string SetupDeviceRegisteredNoName => Get(nameof(SetupDeviceRegisteredNoName));
+    public static string SetupDeviceNotRegistered => Get(nameof(SetupDeviceNotRegistered));
+    public static string SetupRegisterDevice => Get(nameof(SetupRegisterDevice));
+    public static string SetupRegisteringDevice => Get(nameof(SetupRegisteringDevice));
+    public static string SetupRecheckDevice => Get(nameof(SetupRecheckDevice));
+    public static string SetupDeviceRegistrationRequired => Get(nameof(SetupDeviceRegistrationRequired));
+    public static string SetupTemporaryMacConfirmationRequired => Get(nameof(SetupTemporaryMacConfirmationRequired));
+    public static string SetupDeviceNameRequired => Get(nameof(SetupDeviceNameRequired));
+    public static string SetupDeviceNoMac => Get(nameof(SetupDeviceNoMac));
+    public static string SetupDeviceRegistrationFailed => Get(nameof(SetupDeviceRegistrationFailed));
+    public static string SetupFinishTitle => Get(nameof(SetupFinishTitle));
+    public static string SetupFinishSubtitle => Get(nameof(SetupFinishSubtitle));
+    public static string SetupSummaryRouter => Get(nameof(SetupSummaryRouter));
+    public static string SetupSummaryAuthentication => Get(nameof(SetupSummaryAuthentication));
+    public static string SetupSummaryNetwork => Get(nameof(SetupSummaryNetwork));
+    public static string SetupSummaryDevice => Get(nameof(SetupSummaryDevice));
+    public static string SetupAutomaticAddressUnavailable => Get(nameof(SetupAutomaticAddressUnavailable));
+    public static string SetupNetworkNotBound => Get(nameof(SetupNetworkNotBound));
+    public static string SetupConnectionCheckTitle => Get(nameof(SetupConnectionCheckTitle));
+    public static string SetupConnectionCheckDescription => Get(nameof(SetupConnectionCheckDescription));
+    public static string SetupConnectionNotChecked => Get(nameof(SetupConnectionNotChecked));
+    public static string SetupTestConnection => Get(nameof(SetupTestConnection));
+    public static string SetupTestingConnection => Get(nameof(SetupTestingConnection));
+    public static string SetupConnectionSuccessNoPolicies => Get(nameof(SetupConnectionSuccessNoPolicies));
+    public static string SetupConnectionNoEndpoint => Get(nameof(SetupConnectionNoEndpoint));
+    public static string SetupConnectionAuthFailed => Get(nameof(SetupConnectionAuthFailed));
+    public static string SetupConnectionUnreachable => Get(nameof(SetupConnectionUnreachable));
+    public static string SetupConnectionTimeout => Get(nameof(SetupConnectionTimeout));
+    public static string SetupConnectionApiFailed => Get(nameof(SetupConnectionApiFailed));
+    public static string SetupConnectionDeviceNotRegistered => Get(nameof(SetupConnectionDeviceNotRegistered));
+    public static string SetupTrayHint => Get(nameof(SetupTrayHint));
+    public static string SetupBack => Get(nameof(SetupBack));
+    public static string SetupNext => Get(nameof(SetupNext));
+    public static string SetupFinish => Get(nameof(SetupFinish));
+    public static string SetupAddProfileFinish => Get(nameof(SetupAddProfileFinish));
+    public static string SetupCancel => Get(nameof(SetupCancel));
+    public static string SetupCancelConfirmation => Get(nameof(SetupCancelConfirmation));
+    public static string SetupAddProfileCancelConfirmation =>
+        Get(nameof(SetupAddProfileCancelConfirmation));
+
     public static string AboutTitle => Get(nameof(AboutTitle));
     public static string AboutVersionFormat => Get(nameof(AboutVersionFormat));
     public static string AboutDescription => Get(nameof(AboutDescription));
@@ -144,6 +236,24 @@ internal static class UiText
 
     public static string SettingsMoveNetworkConfirmation(string profileName) =>
         Format("SettingsMoveNetworkConfirmationFormat", profileName);
+
+    public static string SetupRouterDetected(string address) =>
+        Format("SetupRouterDetectedFormat", address);
+
+    public static string SetupCurrentNetwork(string networkName) =>
+        Format("SetupCurrentNetworkFormat", networkName);
+
+    public static string SetupProgress(int currentStep, int stepCount) =>
+        Format("SetupProgressFormat", currentStep, stepCount);
+
+    public static string SetupAutomaticAddressSummary(string address) =>
+        Format("SetupAutomaticAddressSummaryFormat", address);
+
+    public static string SetupConnectionSuccess(int policyCount) =>
+        Format("SetupConnectionSuccessFormat", policyCount);
+
+    public static string SetupDeviceRegistered(string deviceName) =>
+        Format("SetupDeviceRegisteredFormat", deviceName);
 
     private static string Format(string key, params object[] arguments)
     {

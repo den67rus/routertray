@@ -50,7 +50,7 @@ internal sealed class RouterNetworkBinding
 
 internal sealed class RouterProfile
 {
-    public string Id { get; set; } = Guid.NewGuid().ToString("N");
+    public string Id { get; set; } = Guid.NewGuid().ToString("D");
     public string Name { get; set; } = "Default";
     public List<RouterNetworkBinding> Networks { get; set; } = new();
     public string RouterUrl { get; set; } = string.Empty;
@@ -94,7 +94,7 @@ internal sealed class RouterProfile
             throw new InvalidDataException("Router profile contains an invalid profile ID.");
         }
 
-        Id = profileId.ToString("N");
+        Id = profileId.ToString("D");
         Name = Name.Trim();
         if (string.IsNullOrWhiteSpace(Name))
         {
@@ -136,6 +136,8 @@ internal sealed class RouterProfile
 internal sealed class AppSettings
 {
     public const string RouterUrlExample = "http://192.168.1.1/";
+    private static readonly Guid LegacyTemplateProfileId =
+        new("00000000-0000-0000-0000-000000000001");
 
     private static readonly JsonSerializerOptions LoadOptions = new()
     {
@@ -153,10 +155,10 @@ internal sealed class AppSettings
     public List<RouterProfile> Profiles { get; set; } = new() { new RouterProfile() };
     public bool AutomaticProfileSelection { get; set; } = true;
     public string SelectedProfileId { get; set; } = string.Empty;
-    public bool AutoStart { get; set; }
+    public bool AutoStart { get; set; } = true;
     public bool CheckForUpdatesAutomatically { get; set; } = true;
     public ApplicationUpdateChannel UpdateChannel { get; set; } = ApplicationUpdateChannel.Stable;
-    public bool ShowPolicyNotifications { get; set; } = true;
+    public bool ShowPolicyNotifications { get; set; }
 
     internal bool ContainsLegacyPlaintextPassword { get; private set; }
     internal bool RequiresMigrationSave { get; private set; }
@@ -230,6 +232,12 @@ internal sealed class AppSettings
             return null;
         }
 
+        if (Guid.TryParse(profileId, out var requestedId))
+        {
+            return Profiles.FirstOrDefault(profile =>
+                Guid.TryParse(profile.Id, out var candidateId) && candidateId == requestedId);
+        }
+
         return Profiles.FirstOrDefault(profile =>
             string.Equals(profile.Id, profileId, StringComparison.OrdinalIgnoreCase));
     }
@@ -278,9 +286,17 @@ internal sealed class AppSettings
             Profiles.Add(new RouterProfile());
         }
 
+        // Keep the selected profile object before normalizing ID formatting so a
+        // legacy 32-character ID still points to the same profile afterwards.
+        var selectedProfile = FindProfile(SelectedProfileId);
         foreach (var profile in Profiles)
         {
+            var originalId = profile.Id.Trim();
             profile.NormalizeAndValidate();
+            if (!string.Equals(originalId, profile.Id, StringComparison.Ordinal))
+            {
+                RequiresMigrationSave = true;
+            }
         }
 
         var duplicateProfileId = Profiles
@@ -308,11 +324,25 @@ internal sealed class AppSettings
             throw new InvalidDataException("A Windows network can be bound to only one router profile.");
         }
 
-        SelectedProfileId = SelectedProfileId.Trim();
-        if (FindProfile(SelectedProfileId) is null)
+        // Early packaged templates used a conspicuous all-zero ID ending in 1.
+        // Replace that marker once with a real per-installation profile ID.
+        var templateProfile = Profiles.FirstOrDefault(profile =>
+            Guid.TryParse(profile.Id, out var profileId) && profileId == LegacyTemplateProfileId);
+        if (templateProfile is not null)
         {
-            SelectedProfileId = Profiles[0].Id;
+            templateProfile.Id = Guid.NewGuid().ToString("D");
+            RequiresMigrationSave = true;
         }
+
+        SelectedProfileId = SelectedProfileId.Trim();
+        selectedProfile ??= FindProfile(SelectedProfileId);
+        selectedProfile ??= Profiles[0];
+        if (!string.Equals(SelectedProfileId, selectedProfile.Id, StringComparison.Ordinal))
+        {
+            RequiresMigrationSave = true;
+        }
+
+        SelectedProfileId = selectedProfile.Id;
     }
 
     private static RouterProfile LoadLegacyProfile(StoredSettings stored)
@@ -397,11 +427,11 @@ internal sealed class AppSettings
         public List<StoredProfile>? Profiles { get; set; }
         public bool AutomaticProfileSelection { get; set; } = true;
         public string? SelectedProfileId { get; set; }
-        public bool AutoStart { get; set; }
+        public bool AutoStart { get; set; } = true;
         public bool CheckForUpdatesAutomatically { get; set; } = true;
         [JsonConverter(typeof(JsonStringEnumConverter<ApplicationUpdateChannel>))]
         public ApplicationUpdateChannel UpdateChannel { get; set; } = ApplicationUpdateChannel.Stable;
-        public bool ShowPolicyNotifications { get; set; } = true;
+        public bool ShowPolicyNotifications { get; set; }
 
         // Read-only migration fields used by the single-profile formats.
         public string? RouterUrl { get; set; }

@@ -303,4 +303,292 @@
   <data name="SettingsMoveNetworkConfirmationFormat" xml:space="preserve">
     <value>Geçerli ağ zaten “{0}” profiliyle eşlenmiş. Bu profile taşınsın mı?</value>
   </data>
+  <data name="SetupTitle" xml:space="preserve">
+    <value>RouterTray'i yapılandır</value>
+  </data>
+  <data name="SetupAddProfileTitle" xml:space="preserve">
+    <value>RouterTray profili ekle</value>
+  </data>
+  <data name="SetupSidebarCaption" xml:space="preserve">
+    <value>İlk kurulum</value>
+  </data>
+  <data name="SetupAddProfileSidebarCaption" xml:space="preserve">
+    <value>Yeni yönlendirici profili</value>
+  </data>
+  <data name="SetupStepWelcome" xml:space="preserve">
+    <value>Hoş geldiniz</value>
+  </data>
+  <data name="SetupStepRouter" xml:space="preserve">
+    <value>Yönlendirici</value>
+  </data>
+  <data name="SetupStepAuthentication" xml:space="preserve">
+    <value>Oturum açma</value>
+  </data>
+  <data name="SetupStepDevice" xml:space="preserve">
+    <value>Cihaz</value>
+  </data>
+  <data name="SetupStepFinish" xml:space="preserve">
+    <value>Kontrol ve tamamlama</value>
+  </data>
+  <data name="SetupWelcomeTitle" xml:space="preserve">
+    <value>RouterTray'i yönlendiricinize bağlayalım</value>
+  </data>
+  <data name="SetupWelcomeSubtitle" xml:space="preserve">
+    <value>Bu sihirbaz beş adımda ilk yönlendirici profilinizi oluşturur ve çalışan bir bağlantı için gereken her şeyi açıklar.</value>
+  </data>
+  <data name="SetupAddProfileWelcomeTitle" xml:space="preserve">
+    <value>RouterTray'e başka bir yönlendirici ekleyelim</value>
+  </data>
+  <data name="SetupAddProfileWelcomeSubtitle" xml:space="preserve">
+    <value>Bu sihirbaz beş adımda yeni bir yönlendirici profili oluşturur ve ilk kurulumdaki bağlantı ve cihaz kontrollerinin aynısını gerçekleştirir.</value>
+  </data>
+  <data name="SetupWelcomeBeforeTitle" xml:space="preserve">
+    <value>Başlamadan önce</value>
+  </data>
+  <data name="SetupWelcomeRouterTitle" xml:space="preserve">
+    <value>Bu bilgisayarı yönlendiriciye bağlayın</value>
+  </data>
+  <data name="SetupWelcomeRouterDescription" xml:space="preserve">
+    <value>Yönetmek istediğiniz Keenetic veya Netcraze yönlendiricinin Wi-Fi ya da Ethernet ağını kullanın.</value>
+  </data>
+  <data name="SetupWelcomePoliciesTitle" xml:space="preserve">
+    <value>Yönlendiricide erişim politikaları oluşturun</value>
+  </data>
+  <data name="SetupWelcomePoliciesDescription" xml:space="preserve">
+    <value>RouterTray mevcut politikaları değiştirmeden aralarında geçiş yapar. Sihirbaz bu bilgisayarı ev ağı cihazı olarak kaydedebilir.</value>
+  </data>
+  <data name="SetupWelcomeCredentialsTitle" xml:space="preserve">
+    <value>Oturum açma bilgilerini hazırlayın</value>
+  </data>
+  <data name="SetupWelcomeCredentialsDescription" xml:space="preserve">
+    <value>Yönetici hesabı, web arayüzüne erişebilen ayrı bir kullanıcı veya ürün yazılımı 5.2 ve sonrasında bir erişim belirteci kullanın.</value>
+  </data>
+  <data name="SetupWelcomeSecurityNote" xml:space="preserve">
+    <value>Parolanız veya belirteciniz geçerli Windows kullanıcısı için şifrelenir ve hiçbir zaman düz metin olarak saklanmaz.</value>
+  </data>
+  <data name="SetupRouterTitle" xml:space="preserve">
+    <value>Yönlendiriciniz nerede?</value>
+  </data>
+  <data name="SetupRouterSubtitle" xml:space="preserve">
+    <value>Bu bağlantıya bir ad verin, ardından RouterTray'in yönlendiriciyi otomatik bulmasına izin verin veya adresini kendiniz girin.</value>
+  </data>
+  <data name="SetupDefaultProfileName" xml:space="preserve">
+    <value>Ana yönlendirici</value>
+  </data>
+  <data name="SetupAutomaticAddress" xml:space="preserve">
+    <value>Geçerli ağın ağ geçidini kullan (önerilir)</value>
+  </data>
+  <data name="SetupAutomaticAddressDescription" xml:space="preserve">
+    <value>Yönlendirici bu Wi-Fi veya Ethernet ağının ağ geçidiyse en uygun seçenektir. Adres kaydetmek gerekmez.</value>
+  </data>
+  <data name="SetupDetectingNetwork" xml:space="preserve">
+    <value>Geçerli ağ ve ağ geçidi algılanıyor...</value>
+  </data>
+  <data name="SetupRouterDetectedFormat" xml:space="preserve">
+    <value>Algılanan yönlendirici adresi: {0}</value>
+  </data>
+  <data name="SetupRouterNotDetected" xml:space="preserve">
+    <value>Şu anda görünür bir ağ geçidi yok. Devam edebilirsiniz; ağ kullanılabilir olduğunda RouterTray yeniden dener.</value>
+  </data>
+  <data name="SetupManualAddress" xml:space="preserve">
+    <value>Yönlendirici adresini el ile gir</value>
+  </data>
+  <data name="SetupManualAddressDescription" xml:space="preserve">
+    <value>Eksiksiz bir HTTP veya HTTPS adresi kullanın; örneğin http://192.168.1.1/.</value>
+  </data>
+  <data name="SetupBindCurrentNetwork" xml:space="preserve">
+    <value>Bu profili geçerli Windows ağında otomatik olarak kullan</value>
+  </data>
+  <data name="SetupCurrentNetworkFormat" xml:space="preserve">
+    <value>Geçerli ağ: {0}</value>
+  </data>
+  <data name="SetupNetworkUnavailable" xml:space="preserve">
+    <value>Windows geçerli ağı tanımlayamadı. Bu profili bildirim alanından el ile seçebilirsiniz.</value>
+  </data>
+  <data name="SetupAuthenticationTitle" xml:space="preserve">
+    <value>RouterTray nasıl oturum açsın?</value>
+  </data>
+  <data name="SetupAuthenticationSubtitle" xml:space="preserve">
+    <value>Bir yöntem seçin. Bu kimlik bilgileri yalnızca yerel ağınız üzerinden yönlendiriciyle iletişim kurmak için kullanılır.</value>
+  </data>
+  <data name="SetupCredentialsInstruction" xml:space="preserve">
+    <value>En az ayrıcalık için ayrı bir yönlendirici kullanıcısı oluşturun ve yalnızca web arayüzü erişimi verin. Yönetici hesabı da kullanılabilir.</value>
+  </data>
+  <data name="SetupPasswordMethodDescription" xml:space="preserve">
+    <value>NDW2 veya NDW4 kimlik doğrulamasıyla desteklenen Keenetic ve Netcraze ürün yazılımlarında çalışır.</value>
+  </data>
+  <data name="SetupTokenMethodDescription" xml:space="preserve">
+    <value>Ürün yazılımı 5.2 ve sonrasında kullanılabilir. Yönlendiricinin oluşturduğu belirteci yapıştırın.</value>
+  </data>
+  <data name="SetupOpenRouter" xml:space="preserve">
+    <value>Yönlendiricinin web arayüzünü aç</value>
+  </data>
+  <data name="SetupDeviceTitle" xml:space="preserve">
+    <value>Bu cihazı kontrol edin</value>
+  </data>
+  <data name="SetupDeviceSubtitle" xml:space="preserve">
+    <value>RouterTray'in bu bilgisayara güvenilir biçimde erişim politikaları atayabilmesi için yönlendiricinin bilgisayarın MAC adresini bilmesi gerekir.</value>
+  </data>
+  <data name="SetupDeviceCurrentTitle" xml:space="preserve">
+    <value>Geçerli bağlantı</value>
+  </data>
+  <data name="SetupDeviceAdapter" xml:space="preserve">
+    <value>Ağ bağdaştırıcısı</value>
+  </data>
+  <data name="SetupDeviceMacAddress" xml:space="preserve">
+    <value>MAC adresi</value>
+  </data>
+  <data name="SetupDeviceUnavailable" xml:space="preserve">
+    <value>Algılanmadı</value>
+  </data>
+  <data name="SetupTemporaryMacWarning" xml:space="preserve">
+    <value>Yerel olarak yönetilen bir MAC adresi algılandı. Windows bu biçimi rastgele donanım adresleri için kullanır. Adres değişirse yönlendirici bu bilgisayarı artık tanımaz ve politika geçişi doğru çalışmaz. Bu Wi-Fi ağı için “Rastgele donanım adresleri” seçeneğini kapatın, yeniden bağlanın ve “Yeniden kontrol et” seçeneğini belirleyin.</value>
+  </data>
+  <data name="SetupTemporaryMacAcknowledge" xml:space="preserve">
+    <value>Riski anlıyorum ve geçerli MAC adresiyle devam etmek istiyorum</value>
+  </data>
+  <data name="SetupOpenWifiSettings" xml:space="preserve">
+    <value>Windows Wi-Fi ayarlarını aç</value>
+  </data>
+  <data name="SetupDeviceRegistrationTitle" xml:space="preserve">
+    <value>Yönlendiriciye kayıt</value>
+  </data>
+  <data name="SetupDeviceRegistrationDescription" xml:space="preserve">
+    <value>Cihaz henüz kayıtlı değilse tanınabilir bir ad verin ve yönlendiricinin ev ağı cihazları listesine ekleyin.</value>
+  </data>
+  <data name="SetupDeviceName" xml:space="preserve">
+    <value>Cihaz adı</value>
+  </data>
+  <data name="SetupDeviceNotChecked" xml:space="preserve">
+    <value>Cihaz kaydı henüz kontrol edilmedi.</value>
+  </data>
+  <data name="SetupCheckingDevice" xml:space="preserve">
+    <value>Yönlendiricide MAC adresi kontrol ediliyor...</value>
+  </data>
+  <data name="SetupDeviceRegisteredFormat" xml:space="preserve">
+    <value>Cihaz “{0}” olarak kayıtlı.</value>
+  </data>
+  <data name="SetupDeviceRegisteredNoName" xml:space="preserve">
+    <value>Cihaz yönlendiricide zaten kayıtlı.</value>
+  </data>
+  <data name="SetupDeviceNotRegistered" xml:space="preserve">
+    <value>Bu MAC adresi kayıtlı değil. Bir ad girin ve “Kaydet” seçeneğini belirleyin.</value>
+  </data>
+  <data name="SetupRegisterDevice" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="SetupRegisteringDevice" xml:space="preserve">
+    <value>Cihaz kaydediliyor ve yönlendirici ayarları saklanıyor...</value>
+  </data>
+  <data name="SetupRecheckDevice" xml:space="preserve">
+    <value>Yeniden kontrol et</value>
+  </data>
+  <data name="SetupDeviceRegistrationRequired" xml:space="preserve">
+    <value>Devam etmeden önce cihazı yönlendiriciye kaydedin.</value>
+  </data>
+  <data name="SetupTemporaryMacConfirmationRequired" xml:space="preserve">
+    <value>Rastgele MAC adresini kapatıp yeniden kontrol edin veya riski anladığınızı onaylayın.</value>
+  </data>
+  <data name="SetupDeviceNameRequired" xml:space="preserve">
+    <value>Kayıt için bir cihaz adı girin.</value>
+  </data>
+  <data name="SetupDeviceNoMac" xml:space="preserve">
+    <value>Etkin bağlantının MAC adresi algılanamadı. Yönlendiriciye bağlanıp yeniden kontrol edin.</value>
+  </data>
+  <data name="SetupDeviceRegistrationFailed" xml:space="preserve">
+    <value>Cihaz kontrol edilemedi veya kaydedilemedi. Yönlendirici kullanıcısının izinlerini doğrulayıp yeniden deneyin.</value>
+  </data>
+  <data name="SetupFinishTitle" xml:space="preserve">
+    <value>Bağlantıyı kontrol edin</value>
+  </data>
+  <data name="SetupFinishSubtitle" xml:space="preserve">
+    <value>Profili gözden geçirin ve RouterTray'in kayıtlı cihazı görebildiğini ve erişim politikalarını yükleyebildiğini doğrulayın.</value>
+  </data>
+  <data name="SetupSummaryRouter" xml:space="preserve">
+    <value>Yönlendirici</value>
+  </data>
+  <data name="SetupSummaryAuthentication" xml:space="preserve">
+    <value>Oturum açma yöntemi</value>
+  </data>
+  <data name="SetupSummaryNetwork" xml:space="preserve">
+    <value>Profil seçimi</value>
+  </data>
+  <data name="SetupSummaryDevice" xml:space="preserve">
+    <value>Cihaz</value>
+  </data>
+  <data name="SetupAutomaticAddressSummaryFormat" xml:space="preserve">
+    <value>{0} üzerinden otomatik</value>
+  </data>
+  <data name="SetupAutomaticAddressUnavailable" xml:space="preserve">
+    <value>Etkin ağın ağ geçidi üzerinden otomatik</value>
+  </data>
+  <data name="SetupNetworkNotBound" xml:space="preserve">
+    <value>Bu profili bildirim alanından el ile seç</value>
+  </data>
+  <data name="SetupConnectionCheckTitle" xml:space="preserve">
+    <value>Bağlantı testi</value>
+  </data>
+  <data name="SetupConnectionCheckDescription" xml:space="preserve">
+    <value>RouterTray oturum açar ve yönlendirici ayarlarını değiştirmeden erişim politikalarının listesini ister.</value>
+  </data>
+  <data name="SetupConnectionNotChecked" xml:space="preserve">
+    <value>Bağlantı henüz kontrol edilmedi.</value>
+  </data>
+  <data name="SetupTestConnection" xml:space="preserve">
+    <value>Bağlantıyı test et</value>
+  </data>
+  <data name="SetupTestingConnection" xml:space="preserve">
+    <value>Yönlendiriciye bağlanılıyor...</value>
+  </data>
+  <data name="SetupConnectionSuccessFormat" xml:space="preserve">
+    <value>Bağlantı kuruldu. Bulunan politika sayısı: {0}.</value>
+  </data>
+  <data name="SetupConnectionSuccessNoPolicies" xml:space="preserve">
+    <value>Bağlantı kuruldu ancak erişim politikası bulunamadı. Politikaları yönlendiricinin web arayüzünde oluşturun.</value>
+  </data>
+  <data name="SetupConnectionNoEndpoint" xml:space="preserve">
+    <value>Yönlendirici adresi kullanılamıyor. Yönlendiricinin ağına bağlanın veya geri dönüp adresi el ile girin.</value>
+  </data>
+  <data name="SetupConnectionAuthFailed" xml:space="preserve">
+    <value>Kimlik doğrulama başarısız. Geri dönüp kullanıcı adını, parolayı veya erişim belirtecini kontrol edin.</value>
+  </data>
+  <data name="SetupConnectionUnreachable" xml:space="preserve">
+    <value>Yönlendiriciye ulaşılamadı. Adresi ve ağ bağlantınızı kontrol edin.</value>
+  </data>
+  <data name="SetupConnectionTimeout" xml:space="preserve">
+    <value>Yönlendirici zamanında yanıt vermedi. Ağı kontrol edip yeniden deneyin.</value>
+  </data>
+  <data name="SetupConnectionApiFailed" xml:space="preserve">
+    <value>Yönlendirici yanıt verdi ancak API'si okunamadı. Ürün yazılımı desteğini ve izinleri kontrol edin.</value>
+  </data>
+  <data name="SetupConnectionDeviceNotRegistered" xml:space="preserve">
+    <value>Bağlantı çalışıyor ancak geçerli MAC adresi artık yönlendiricide kayıtlı değil. “Cihaz” adımına dönün.</value>
+  </data>
+  <data name="SetupTrayHint" xml:space="preserve">
+    <value>Kurulumdan sonra RouterTray Windows bildirim alanında kalır. Politika seçmek için mavi R simgesine sol, ayarları açmak için sağ tıklayın.</value>
+  </data>
+  <data name="SetupBack" xml:space="preserve">
+    <value>Geri</value>
+  </data>
+  <data name="SetupNext" xml:space="preserve">
+    <value>İleri</value>
+  </data>
+  <data name="SetupFinish" xml:space="preserve">
+    <value>Kurulumu tamamla</value>
+  </data>
+  <data name="SetupAddProfileFinish" xml:space="preserve">
+    <value>Profil ekle</value>
+  </data>
+  <data name="SetupCancel" xml:space="preserve">
+    <value>Kurulumdan çık</value>
+  </data>
+  <data name="SetupCancelConfirmation" xml:space="preserve">
+    <value>Kurulum tamamlanmadığından RouterTray başlatılmayacak. Şimdi çıkılsın mı?</value>
+  </data>
+  <data name="SetupAddProfileCancelConfirmation" xml:space="preserve">
+    <value>Bu profilin eklenmesi iptal edilsin mi? Girdiğiniz bilgiler kaydedilmeyecek.</value>
+  </data>
+  <data name="SetupProgressFormat" xml:space="preserve">
+    <value>Adım {0}/{1}</value>
+  </data>
 </root>

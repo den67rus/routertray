@@ -111,17 +111,8 @@ internal sealed class TrayForm : Form
         _menu.Items.Add(new ToolStripSeparator());
         _menu.Items.Add(exitMenu);
 
-        var extractedIcon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-        if (extractedIcon is null)
-        {
-            _icon = SystemIcons.Application;
-            _ownsIcon = false;
-        }
-        else
-        {
-            _icon = extractedIcon;
-            _ownsIcon = true;
-        }
+        _icon = AppIconProvider.CreateIcon();
+        _ownsIcon = true;
 
         _inactiveIcon = CreateInactiveIcon(_icon);
         if (!_settings.AutomaticProfileSelection)
@@ -1404,6 +1395,7 @@ internal sealed class TrayForm : Form
             _settings,
             currentNetwork,
             _updateService.CheckNowAsync,
+            _logger,
             _usesPackageManagedUpdates)
         {
             StartPosition = FormStartPosition.CenterScreen

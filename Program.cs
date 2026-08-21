@@ -68,14 +68,16 @@ internal static class Program
 
         AppSettings settings;
         var recovered = false;
+        var isFirstRun = !File.Exists(settingsPath) && !File.Exists(settingsPath + ".bak");
         try
         {
             var loadResult = SettingsStore.Load(settingsPath, packagedSettingsPath);
             settings = loadResult.Settings;
             recovered = loadResult.Recovered;
+            isFirstRun = loadResult.IsFirstRun;
 
             var containedLegacyPassword = settings.ContainsLegacyPlaintextPassword;
-            if (loadResult.NeedsSave)
+            if (loadResult.NeedsSave && !isFirstRun)
             {
                 settings.Save(settingsPath);
             }
@@ -109,6 +111,32 @@ internal static class Program
                 UiText.AppName,
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Warning);
+        }
+
+        if (isFirstRun)
+        {
+            using var setupForm = new FirstRunSetupForm(settings, logger);
+            if (setupForm.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            settings = setupForm.ResultSettings;
+            try
+            {
+                settings.Save(settingsPath);
+                logger.Info("First-run setup completed.");
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Failed to save first-run settings.", ex);
+                MessageBox.Show(
+                    UiText.SettingsSaveFailedMessage,
+                    UiText.SetupTitle,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
         }
 
         try

@@ -303,4 +303,292 @@
   <data name="SettingsMoveNetworkConfirmationFormat" xml:space="preserve">
     <value>Det aktuella nätverket är redan kopplat till profilen ”{0}”. Flytta det till den här profilen?</value>
   </data>
+  <data name="SetupTitle" xml:space="preserve">
+    <value>Konfigurera RouterTray</value>
+  </data>
+  <data name="SetupAddProfileTitle" xml:space="preserve">
+    <value>Lägg till en RouterTray-profil</value>
+  </data>
+  <data name="SetupSidebarCaption" xml:space="preserve">
+    <value>Första konfigurationen</value>
+  </data>
+  <data name="SetupAddProfileSidebarCaption" xml:space="preserve">
+    <value>Ny routerprofil</value>
+  </data>
+  <data name="SetupStepWelcome" xml:space="preserve">
+    <value>Välkommen</value>
+  </data>
+  <data name="SetupStepRouter" xml:space="preserve">
+    <value>Router</value>
+  </data>
+  <data name="SetupStepAuthentication" xml:space="preserve">
+    <value>Inloggning</value>
+  </data>
+  <data name="SetupStepDevice" xml:space="preserve">
+    <value>Enhet</value>
+  </data>
+  <data name="SetupStepFinish" xml:space="preserve">
+    <value>Kontroll och avslut</value>
+  </data>
+  <data name="SetupWelcomeTitle" xml:space="preserve">
+    <value>Nu ansluter vi RouterTray till routern</value>
+  </data>
+  <data name="SetupWelcomeSubtitle" xml:space="preserve">
+    <value>Den här guiden skapar din första routerprofil i fem steg och förklarar allt som krävs för en fungerande anslutning.</value>
+  </data>
+  <data name="SetupAddProfileWelcomeTitle" xml:space="preserve">
+    <value>Nu lägger vi till en router till i RouterTray</value>
+  </data>
+  <data name="SetupAddProfileWelcomeSubtitle" xml:space="preserve">
+    <value>Den här guiden skapar en ny routerprofil i fem steg och utför samma anslutnings- och enhetskontroller som den första konfigurationen.</value>
+  </data>
+  <data name="SetupWelcomeBeforeTitle" xml:space="preserve">
+    <value>Innan du börjar</value>
+  </data>
+  <data name="SetupWelcomeRouterTitle" xml:space="preserve">
+    <value>Anslut den här datorn till routern</value>
+  </data>
+  <data name="SetupWelcomeRouterDescription" xml:space="preserve">
+    <value>Använd Wi-Fi- eller Ethernet-nätverket för den Keenetic- eller Netcraze-router som du vill styra.</value>
+  </data>
+  <data name="SetupWelcomePoliciesTitle" xml:space="preserve">
+    <value>Skapa åtkomstprinciper på routern</value>
+  </data>
+  <data name="SetupWelcomePoliciesDescription" xml:space="preserve">
+    <value>RouterTray växlar mellan befintliga principer utan att ändra dem. Guiden kan registrera den här datorn som en enhet i hemnätverket.</value>
+  </data>
+  <data name="SetupWelcomeCredentialsTitle" xml:space="preserve">
+    <value>Ha inloggningsuppgifterna till hands</value>
+  </data>
+  <data name="SetupWelcomeCredentialsDescription" xml:space="preserve">
+    <value>Använd ett administratörskonto, en separat användare med åtkomst till webbgränssnittet eller en åtkomsttoken med firmware 5.2 eller senare.</value>
+  </data>
+  <data name="SetupWelcomeSecurityNote" xml:space="preserve">
+    <value>Lösenordet eller token krypteras för den aktuella Windows-användaren och lagras aldrig som klartext.</value>
+  </data>
+  <data name="SetupRouterTitle" xml:space="preserve">
+    <value>Var finns routern?</value>
+  </data>
+  <data name="SetupRouterSubtitle" xml:space="preserve">
+    <value>Ge anslutningen ett namn och låt sedan RouterTray hitta routern automatiskt, eller ange adressen själv.</value>
+  </data>
+  <data name="SetupDefaultProfileName" xml:space="preserve">
+    <value>Huvudrouter</value>
+  </data>
+  <data name="SetupAutomaticAddress" xml:space="preserve">
+    <value>Använd det aktuella nätverkets gateway (rekommenderas)</value>
+  </data>
+  <data name="SetupAutomaticAddressDescription" xml:space="preserve">
+    <value>Bäst när routern är gateway för det här Wi-Fi- eller Ethernet-nätverket. Ingen adress behöver sparas.</value>
+  </data>
+  <data name="SetupDetectingNetwork" xml:space="preserve">
+    <value>Identifierar det aktuella nätverket och dess gateway...</value>
+  </data>
+  <data name="SetupRouterDetectedFormat" xml:space="preserve">
+    <value>Identifierad routeradress: {0}</value>
+  </data>
+  <data name="SetupRouterNotDetected" xml:space="preserve">
+    <value>Ingen gateway är synlig just nu. Du kan fortsätta. RouterTray försöker igen när nätverket är tillgängligt.</value>
+  </data>
+  <data name="SetupManualAddress" xml:space="preserve">
+    <value>Ange routerns adress manuellt</value>
+  </data>
+  <data name="SetupManualAddressDescription" xml:space="preserve">
+    <value>Använd en fullständig HTTP- eller HTTPS-adress, till exempel http://192.168.1.1/.</value>
+  </data>
+  <data name="SetupBindCurrentNetwork" xml:space="preserve">
+    <value>Använd den här profilen automatiskt i det aktuella Windows-nätverket</value>
+  </data>
+  <data name="SetupCurrentNetworkFormat" xml:space="preserve">
+    <value>Aktuellt nätverk: {0}</value>
+  </data>
+  <data name="SetupNetworkUnavailable" xml:space="preserve">
+    <value>Windows kunde inte identifiera det aktuella nätverket. Du kan välja den här profilen manuellt i meddelandefältet.</value>
+  </data>
+  <data name="SetupAuthenticationTitle" xml:space="preserve">
+    <value>Hur ska RouterTray logga in?</value>
+  </data>
+  <data name="SetupAuthenticationSubtitle" xml:space="preserve">
+    <value>Välj en metod. Inloggningsuppgifterna används bara för kommunikation med routern i det lokala nätverket.</value>
+  </data>
+  <data name="SetupCredentialsInstruction" xml:space="preserve">
+    <value>Skapa en separat routeranvändare med enbart åtkomst till webbgränssnittet för att följa principen om minsta behörighet. Ett administratörskonto fungerar också.</value>
+  </data>
+  <data name="SetupPasswordMethodDescription" xml:space="preserve">
+    <value>Fungerar med firmware som stöds på Keenetic och Netcraze via NDW2- eller NDW4-autentisering.</value>
+  </data>
+  <data name="SetupTokenMethodDescription" xml:space="preserve">
+    <value>Tillgängligt med firmware 5.2 eller senare. Klistra in den token som routern skapade.</value>
+  </data>
+  <data name="SetupOpenRouter" xml:space="preserve">
+    <value>Öppna routerns webbgränssnitt</value>
+  </data>
+  <data name="SetupDeviceTitle" xml:space="preserve">
+    <value>Kontrollera den här enheten</value>
+  </data>
+  <data name="SetupDeviceSubtitle" xml:space="preserve">
+    <value>Routern måste känna till datorns MAC-adress för att RouterTray ska kunna tilldela den åtkomstprinciper på ett tillförlitligt sätt.</value>
+  </data>
+  <data name="SetupDeviceCurrentTitle" xml:space="preserve">
+    <value>Aktuell anslutning</value>
+  </data>
+  <data name="SetupDeviceAdapter" xml:space="preserve">
+    <value>Nätverkskort</value>
+  </data>
+  <data name="SetupDeviceMacAddress" xml:space="preserve">
+    <value>MAC-adress</value>
+  </data>
+  <data name="SetupDeviceUnavailable" xml:space="preserve">
+    <value>Identifierades inte</value>
+  </data>
+  <data name="SetupTemporaryMacWarning" xml:space="preserve">
+    <value>En lokalt administrerad MAC-adress identifierades. Windows använder det här formatet för slumpmässiga maskinvaruadresser. Om adressen ändras känner routern inte längre igen datorn och principväxlingen fungerar inte korrekt. Inaktivera ”Slumpmässiga maskinvaruadresser” för det här Wi-Fi-nätverket, anslut igen och välj ”Kontrollera igen”.</value>
+  </data>
+  <data name="SetupTemporaryMacAcknowledge" xml:space="preserve">
+    <value>Jag förstår risken och vill fortsätta med den aktuella MAC-adressen</value>
+  </data>
+  <data name="SetupOpenWifiSettings" xml:space="preserve">
+    <value>Öppna Wi-Fi-inställningarna i Windows</value>
+  </data>
+  <data name="SetupDeviceRegistrationTitle" xml:space="preserve">
+    <value>Registrering på routern</value>
+  </data>
+  <data name="SetupDeviceRegistrationDescription" xml:space="preserve">
+    <value>Om enheten inte är registrerad ännu ger du den ett tydligt namn och lägger till den i routerns lista över enheter i hemnätverket.</value>
+  </data>
+  <data name="SetupDeviceName" xml:space="preserve">
+    <value>Enhetsnamn</value>
+  </data>
+  <data name="SetupDeviceNotChecked" xml:space="preserve">
+    <value>Enhetens registrering har inte kontrollerats ännu.</value>
+  </data>
+  <data name="SetupCheckingDevice" xml:space="preserve">
+    <value>Kontrollerar MAC-adressen på routern...</value>
+  </data>
+  <data name="SetupDeviceRegisteredFormat" xml:space="preserve">
+    <value>Enheten är registrerad som ”{0}”.</value>
+  </data>
+  <data name="SetupDeviceRegisteredNoName" xml:space="preserve">
+    <value>Enheten är redan registrerad på routern.</value>
+  </data>
+  <data name="SetupDeviceNotRegistered" xml:space="preserve">
+    <value>Den här MAC-adressen är inte registrerad. Ange ett namn och välj ”Registrera”.</value>
+  </data>
+  <data name="SetupRegisterDevice" xml:space="preserve">
+    <value>Registrera</value>
+  </data>
+  <data name="SetupRegisteringDevice" xml:space="preserve">
+    <value>Registrerar enheten och sparar routerinställningarna...</value>
+  </data>
+  <data name="SetupRecheckDevice" xml:space="preserve">
+    <value>Kontrollera igen</value>
+  </data>
+  <data name="SetupDeviceRegistrationRequired" xml:space="preserve">
+    <value>Registrera enheten på routern innan du fortsätter.</value>
+  </data>
+  <data name="SetupTemporaryMacConfirmationRequired" xml:space="preserve">
+    <value>Inaktivera den slumpmässiga MAC-adressen och kontrollera igen, eller bekräfta att du förstår risken.</value>
+  </data>
+  <data name="SetupDeviceNameRequired" xml:space="preserve">
+    <value>Ange ett enhetsnamn för registreringen.</value>
+  </data>
+  <data name="SetupDeviceNoMac" xml:space="preserve">
+    <value>Det gick inte att identifiera den aktiva anslutningens MAC-adress. Anslut till routern och kontrollera igen.</value>
+  </data>
+  <data name="SetupDeviceRegistrationFailed" xml:space="preserve">
+    <value>Det gick inte att kontrollera eller registrera enheten. Kontrollera routeranvändarens behörigheter och försök igen.</value>
+  </data>
+  <data name="SetupFinishTitle" xml:space="preserve">
+    <value>Kontrollera anslutningen</value>
+  </data>
+  <data name="SetupFinishSubtitle" xml:space="preserve">
+    <value>Granska profilen och kontrollera att RouterTray kan se den registrerade enheten och läsa in åtkomstprinciperna.</value>
+  </data>
+  <data name="SetupSummaryRouter" xml:space="preserve">
+    <value>Router</value>
+  </data>
+  <data name="SetupSummaryAuthentication" xml:space="preserve">
+    <value>Inloggningsmetod</value>
+  </data>
+  <data name="SetupSummaryNetwork" xml:space="preserve">
+    <value>Profilval</value>
+  </data>
+  <data name="SetupSummaryDevice" xml:space="preserve">
+    <value>Enhet</value>
+  </data>
+  <data name="SetupAutomaticAddressSummaryFormat" xml:space="preserve">
+    <value>Automatiskt via {0}</value>
+  </data>
+  <data name="SetupAutomaticAddressUnavailable" xml:space="preserve">
+    <value>Automatiskt via det aktiva nätverkets gateway</value>
+  </data>
+  <data name="SetupNetworkNotBound" xml:space="preserve">
+    <value>Välj den här profilen manuellt i meddelandefältet</value>
+  </data>
+  <data name="SetupConnectionCheckTitle" xml:space="preserve">
+    <value>Anslutningstest</value>
+  </data>
+  <data name="SetupConnectionCheckDescription" xml:space="preserve">
+    <value>RouterTray loggar in och begär listan över åtkomstprinciper utan att ändra routerns inställningar.</value>
+  </data>
+  <data name="SetupConnectionNotChecked" xml:space="preserve">
+    <value>Anslutningen har inte kontrollerats ännu.</value>
+  </data>
+  <data name="SetupTestConnection" xml:space="preserve">
+    <value>Testa anslutningen</value>
+  </data>
+  <data name="SetupTestingConnection" xml:space="preserve">
+    <value>Ansluter till routern...</value>
+  </data>
+  <data name="SetupConnectionSuccessFormat" xml:space="preserve">
+    <value>Anslutningen upprättades. Principer hittades: {0}.</value>
+  </data>
+  <data name="SetupConnectionSuccessNoPolicies" xml:space="preserve">
+    <value>Anslutningen upprättades, men inga åtkomstprinciper hittades. Skapa dem i routerns webbgränssnitt.</value>
+  </data>
+  <data name="SetupConnectionNoEndpoint" xml:space="preserve">
+    <value>Routerns adress är inte tillgänglig. Anslut till routerns nätverk eller gå tillbaka och ange adressen manuellt.</value>
+  </data>
+  <data name="SetupConnectionAuthFailed" xml:space="preserve">
+    <value>Autentiseringen misslyckades. Gå tillbaka och kontrollera användarnamn, lösenord eller åtkomsttoken.</value>
+  </data>
+  <data name="SetupConnectionUnreachable" xml:space="preserve">
+    <value>Det gick inte att nå routern. Kontrollera adressen och nätverksanslutningen.</value>
+  </data>
+  <data name="SetupConnectionTimeout" xml:space="preserve">
+    <value>Routern svarade inte i tid. Kontrollera nätverket och försök igen.</value>
+  </data>
+  <data name="SetupConnectionApiFailed" xml:space="preserve">
+    <value>Routern svarade, men dess API kunde inte läsas. Kontrollera stöd för firmware och behörigheter.</value>
+  </data>
+  <data name="SetupConnectionDeviceNotRegistered" xml:space="preserve">
+    <value>Anslutningen fungerar, men den aktuella MAC-adressen är inte längre registrerad på routern. Gå tillbaka till steget ”Enhet”.</value>
+  </data>
+  <data name="SetupTrayHint" xml:space="preserve">
+    <value>Efter konfigurationen finns RouterTray kvar i meddelandefältet i Windows. Vänsterklicka på den blå R-ikonen för att välja en princip och högerklicka för att öppna inställningarna.</value>
+  </data>
+  <data name="SetupBack" xml:space="preserve">
+    <value>Tillbaka</value>
+  </data>
+  <data name="SetupNext" xml:space="preserve">
+    <value>Nästa</value>
+  </data>
+  <data name="SetupFinish" xml:space="preserve">
+    <value>Slutför konfigurationen</value>
+  </data>
+  <data name="SetupAddProfileFinish" xml:space="preserve">
+    <value>Lägg till profil</value>
+  </data>
+  <data name="SetupCancel" xml:space="preserve">
+    <value>Avsluta konfigurationen</value>
+  </data>
+  <data name="SetupCancelConfirmation" xml:space="preserve">
+    <value>Konfigurationen är inte klar, så RouterTray startar inte. Vill du avsluta nu?</value>
+  </data>
+  <data name="SetupAddProfileCancelConfirmation" xml:space="preserve">
+    <value>Vill du avbryta tillägget av den här profilen? Informationen du angav sparas inte.</value>
+  </data>
+  <data name="SetupProgressFormat" xml:space="preserve">
+    <value>Steg {0} av {1}</value>
+  </data>
 </root>

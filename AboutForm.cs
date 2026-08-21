@@ -8,6 +8,7 @@ internal sealed class AboutForm : Form
     private const int MaxTextWidth = 460;
     private const int WorkingAreaMargin = 24;
 
+    private readonly Icon _formIcon;
     private readonly Image? _logoImage;
     private readonly List<Control> _bodyWrappingControls = [];
     private readonly List<Control> _footerWrappingControls = [];
@@ -16,9 +17,12 @@ internal sealed class AboutForm : Form
     private readonly Panel _scrollHost;
     private readonly TableLayoutPanel _rootLayout;
     private bool _updatingResponsiveLayout;
+    private bool _disposed;
 
     public AboutForm()
     {
+        _formIcon = AppIconProvider.CreateIcon();
+        Icon = _formIcon;
         Text = UiText.AboutTitle;
         StartPosition = FormStartPosition.CenterParent;
         FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -356,8 +360,11 @@ internal sealed class AboutForm : Form
 
     protected override void Dispose(bool disposing)
     {
-        if (disposing)
+        if (disposing && !_disposed)
         {
+            _disposed = true;
+            Icon = null;
+            _formIcon.Dispose();
             _logoImage?.Dispose();
         }
 
@@ -403,8 +410,8 @@ internal sealed class AboutForm : Form
     {
         try
         {
-            using var extractedIcon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            return (extractedIcon ?? SystemIcons.Application).ToBitmap();
+            using var appIcon = AppIconProvider.CreateIcon();
+            return appIcon.ToBitmap();
         }
         catch
         {

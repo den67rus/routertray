@@ -5,14 +5,16 @@ internal sealed class SettingsForm : Form
     private const int CompactProfileEditorWidth = 640;
     private const int WorkingAreaMargin = 24;
 
-    private readonly AppSettings _workingSettings;
+    private AppSettings _workingSettings;
     private readonly RouterNetworkBinding? _currentNetwork;
+    private readonly FileLogger _logger;
     private readonly Func<
         ApplicationUpdateChannel,
         CancellationToken,
         Task<ApplicationUpdateCheckResult>> _checkForUpdates;
     private readonly bool _updatesManagedByPackage;
     private readonly CancellationTokenSource _updateCheckCancellation = new();
+    private readonly Icon _formIcon;
 
     private TabControl _settingsTabs = null!;
     private TabPage _profilesPage = null!;
@@ -58,14 +60,19 @@ internal sealed class SettingsForm : Form
             ApplicationUpdateChannel,
             CancellationToken,
             Task<ApplicationUpdateCheckResult>> checkForUpdates,
+        FileLogger logger,
         bool updatesManagedByPackage = false)
     {
         ArgumentNullException.ThrowIfNull(checkForUpdates);
+        ArgumentNullException.ThrowIfNull(logger);
         _workingSettings = settings.Clone();
         _currentNetwork = currentNetwork?.Clone();
         _checkForUpdates = checkForUpdates;
+        _logger = logger;
         _updatesManagedByPackage = updatesManagedByPackage;
 
+        _formIcon = AppIconProvider.CreateIcon();
+        Icon = _formIcon;
         Text = UiText.SettingsTitle;
         StartPosition = FormStartPosition.CenterParent;
         FormBorderStyle = FormBorderStyle.Sizable;
@@ -181,6 +188,8 @@ internal sealed class SettingsForm : Form
             _updateCheckCancellationDisposed = true;
             _updateCheckCancellation.Cancel();
             _updateCheckCancellation.Dispose();
+            Icon = null;
+            _formIcon.Dispose();
         }
 
         base.Dispose(disposing);
@@ -258,8 +267,31 @@ internal sealed class SettingsForm : Form
         };
         _removeProfileButton.Click += OnRemoveProfileClick;
 
+        var profileActions = new FlowLayoutPanel
+        {
+            AutoSize = true,
+            AutoSizeMode = AutoSizeMode.GrowAndShrink,
+            FlowDirection = FlowDirection.LeftToRight,
+            WrapContents = false,
+            Anchor = AnchorStyles.Right,
+            Margin = Padding.Empty,
+            BackColor = SystemColors.Window
+        };
+
+        var addProfileButton = new Button
+        {
+            Text = UiText.SettingsProfileAdd,
+            AutoSize = true,
+            MinimumSize = new Size(128, 32),
+            Margin = new Padding(12, 2, 0, 2)
+        };
+        addProfileButton.Click += OnAddProfileClick;
+
+        profileActions.Controls.Add(addProfileButton);
+        profileActions.Controls.Add(_removeProfileButton);
+
         profileHeader.Controls.Add(_profileTabsToolStrip, 0, 0);
-        profileHeader.Controls.Add(_removeProfileButton, 1, 0);
+        profileHeader.Controls.Add(profileActions, 1, 0);
 
         _profileEditorLayout = new TableLayoutPanel
         {
@@ -1017,21 +1049,29 @@ internal sealed class SettingsForm : Form
     private void OnAddProfileClick(object? sender, EventArgs e)
     {
         CommitProfileEditor();
-
-        var number = _workingSettings.Profiles.Count + 1;
-        string name;
-        do
+        if (!TryValidateProfiles())
         {
-            name = UiText.SettingsNewProfileName(number++);
+            return;
         }
-        while (_workingSettings.Profiles.Any(profile =>
-                   string.Equals(profile.Name, name, StringComparison.OrdinalIgnoreCase)));
 
-        var profile = new RouterProfile { Name = name };
-        _workingSettings.Profiles.Add(profile);
-        PopulateProfileTabs(profile.Id);
-        _profileNameTextBox.Focus();
-        _profileNameTextBox.SelectAll();
+        CommitApplicationEditors();
+
+        try
+        {
+            using var wizard = FirstRunSetupForm.CreateForNewProfile(_workingSettings, _logger);
+            if (wizard.ShowDialog(this) != DialogResult.OK)
+            {
+                return;
+            }
+
+            _workingSettings = wizard.ResultSettings;
+            PopulateProfileTabs(_workingSettings.SelectedProfileId);
+        }
+        catch (Exception ex)
+        {
+            _logger.Error("Failed to open the router profile setup wizard.", ex);
+            ShowValidationMessage(UiText.UnexpectedErrorMessage);
+        }
     }
 
     private void OnRemoveProfileClick(object? sender, EventArgs e)
@@ -1263,79 +1303,12 @@ internal sealed class SettingsForm : Form
     {
         CommitProfileEditor();
 
-        var emptyNameProfile = _workingSettings.Profiles.FirstOrDefault(profile =>
-            string.IsNullOrWhiteSpace(profile.Name));
-        if (emptyNameProfile is not null)
+        if (!TryValidateProfiles())
         {
-            SelectProfile(emptyNameProfile);
-            ShowValidationMessage(UiText.SettingsProfileNameValidationMessage);
-            _profileNameTextBox.Focus();
             return;
         }
 
-        var duplicateName = _workingSettings.Profiles
-            .GroupBy(profile => profile.Name.Trim(), StringComparer.OrdinalIgnoreCase)
-            .FirstOrDefault(group => group.Count() > 1);
-        if (duplicateName is not null)
-        {
-            SelectProfile(duplicateName.First());
-            ShowValidationMessage(UiText.SettingsProfileDuplicateNameMessage);
-            _profileNameTextBox.Focus();
-            _profileNameTextBox.SelectAll();
-            return;
-        }
-
-        foreach (var profile in _workingSettings.Profiles)
-        {
-            if (profile.AuthMode == RouterAuthMode.Password &&
-                (string.IsNullOrWhiteSpace(profile.Login) || string.IsNullOrWhiteSpace(profile.Password)))
-            {
-                SelectProfile(profile);
-                ShowValidationMessage(UiText.SettingsProfileValidation(
-                    profile.Name,
-                    UiText.SettingsValidationMessage));
-                var missingCredential = string.IsNullOrWhiteSpace(profile.Login)
-                    ? _loginTextBox
-                    : _passwordTextBox;
-                missingCredential.Focus();
-                return;
-            }
-
-            if (profile.AuthMode == RouterAuthMode.AccessToken &&
-                string.IsNullOrWhiteSpace(profile.AccessToken))
-            {
-                SelectProfile(profile);
-                ShowValidationMessage(UiText.SettingsProfileValidation(
-                    profile.Name,
-                    UiText.SettingsAccessTokenValidationMessage));
-                _accessTokenTextBox.Focus();
-                return;
-            }
-
-            try
-            {
-                _ = RouterEndpoint.NormalizeConfiguredUrl(profile.RouterUrl);
-            }
-            catch (InvalidOperationException)
-            {
-                SelectProfile(profile);
-                ShowValidationMessage(UiText.SettingsProfileValidation(
-                    profile.Name,
-                    UiText.SettingsRouterUrlValidationMessage));
-                _routerUrlTextBox.Focus();
-                _routerUrlTextBox.SelectAll();
-                return;
-            }
-        }
-
-        _workingSettings.AutomaticProfileSelection = _automaticProfileSelectionCheckBox.Checked;
-        _workingSettings.AutoStart = _autoStartCheckBox.Checked;
-        if (!_updatesManagedByPackage)
-        {
-            _workingSettings.CheckForUpdatesAutomatically = _checkForUpdatesCheckBox.Checked;
-            _workingSettings.UpdateChannel = SelectedUpdateChannel;
-        }
-        _workingSettings.ShowPolicyNotifications = _notifyPolicyCheckBox.Checked;
+        CommitApplicationEditors();
         if (_workingSettings.FindProfile(_workingSettings.SelectedProfileId) is null)
         {
             _workingSettings.SelectedProfileId = _workingSettings.Profiles[0].Id;
@@ -1353,6 +1326,89 @@ internal sealed class SettingsForm : Form
 
         DialogResult = DialogResult.OK;
         Close();
+    }
+
+    private bool TryValidateProfiles()
+    {
+
+        var emptyNameProfile = _workingSettings.Profiles.FirstOrDefault(profile =>
+            string.IsNullOrWhiteSpace(profile.Name));
+        if (emptyNameProfile is not null)
+        {
+            SelectProfile(emptyNameProfile);
+            ShowValidationMessage(UiText.SettingsProfileNameValidationMessage);
+            _profileNameTextBox.Focus();
+            return false;
+        }
+
+        var duplicateName = _workingSettings.Profiles
+            .GroupBy(profile => profile.Name.Trim(), StringComparer.OrdinalIgnoreCase)
+            .FirstOrDefault(group => group.Count() > 1);
+        if (duplicateName is not null)
+        {
+            SelectProfile(duplicateName.First());
+            ShowValidationMessage(UiText.SettingsProfileDuplicateNameMessage);
+            _profileNameTextBox.Focus();
+            _profileNameTextBox.SelectAll();
+            return false;
+        }
+
+        foreach (var profile in _workingSettings.Profiles)
+        {
+            if (profile.AuthMode == RouterAuthMode.Password &&
+                (string.IsNullOrWhiteSpace(profile.Login) || string.IsNullOrWhiteSpace(profile.Password)))
+            {
+                SelectProfile(profile);
+                ShowValidationMessage(UiText.SettingsProfileValidation(
+                    profile.Name,
+                    UiText.SettingsValidationMessage));
+                var missingCredential = string.IsNullOrWhiteSpace(profile.Login)
+                    ? _loginTextBox
+                    : _passwordTextBox;
+                missingCredential.Focus();
+                return false;
+            }
+
+            if (profile.AuthMode == RouterAuthMode.AccessToken &&
+                string.IsNullOrWhiteSpace(profile.AccessToken))
+            {
+                SelectProfile(profile);
+                ShowValidationMessage(UiText.SettingsProfileValidation(
+                    profile.Name,
+                    UiText.SettingsAccessTokenValidationMessage));
+                _accessTokenTextBox.Focus();
+                return false;
+            }
+
+            try
+            {
+                _ = RouterEndpoint.NormalizeConfiguredUrl(profile.RouterUrl);
+            }
+            catch (InvalidOperationException)
+            {
+                SelectProfile(profile);
+                ShowValidationMessage(UiText.SettingsProfileValidation(
+                    profile.Name,
+                    UiText.SettingsRouterUrlValidationMessage));
+                _routerUrlTextBox.Focus();
+                _routerUrlTextBox.SelectAll();
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void CommitApplicationEditors()
+    {
+        _workingSettings.AutomaticProfileSelection = _automaticProfileSelectionCheckBox.Checked;
+        _workingSettings.AutoStart = _autoStartCheckBox.Checked;
+        if (!_updatesManagedByPackage)
+        {
+            _workingSettings.CheckForUpdatesAutomatically = _checkForUpdatesCheckBox.Checked;
+            _workingSettings.UpdateChannel = SelectedUpdateChannel;
+        }
+        _workingSettings.ShowPolicyNotifications = _notifyPolicyCheckBox.Checked;
     }
 
     private void SelectProfile(RouterProfile profile)

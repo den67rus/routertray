@@ -303,4 +303,292 @@
   <data name="SettingsMoveNetworkConfirmationFormat" xml:space="preserve">
     <value>Nykyinen verkko on jo liitetty profiiliin ”{0}”. Siirretäänkö se tähän profiiliin?</value>
   </data>
+  <data name="SetupTitle" xml:space="preserve">
+    <value>Määritä RouterTray</value>
+  </data>
+  <data name="SetupAddProfileTitle" xml:space="preserve">
+    <value>Lisää RouterTray-profiili</value>
+  </data>
+  <data name="SetupSidebarCaption" xml:space="preserve">
+    <value>Ensiasetus</value>
+  </data>
+  <data name="SetupAddProfileSidebarCaption" xml:space="preserve">
+    <value>Uusi reititinprofiili</value>
+  </data>
+  <data name="SetupStepWelcome" xml:space="preserve">
+    <value>Tervetuloa</value>
+  </data>
+  <data name="SetupStepRouter" xml:space="preserve">
+    <value>Reititin</value>
+  </data>
+  <data name="SetupStepAuthentication" xml:space="preserve">
+    <value>Kirjautuminen</value>
+  </data>
+  <data name="SetupStepDevice" xml:space="preserve">
+    <value>Laite</value>
+  </data>
+  <data name="SetupStepFinish" xml:space="preserve">
+    <value>Tarkistus</value>
+  </data>
+  <data name="SetupWelcomeTitle" xml:space="preserve">
+    <value>Yhdistetään RouterTray reitittimeesi</value>
+  </data>
+  <data name="SetupWelcomeSubtitle" xml:space="preserve">
+    <value>Tämä ohjattu toiminto luo ensimmäisen reititinprofiilisi viidessä vaiheessa ja kertoo kaiken toimivaan yhteyteen tarvittavan.</value>
+  </data>
+  <data name="SetupAddProfileWelcomeTitle" xml:space="preserve">
+    <value>Lisätään RouterTrayhin toinen reititin</value>
+  </data>
+  <data name="SetupAddProfileWelcomeSubtitle" xml:space="preserve">
+    <value>Tämä ohjattu toiminto luo uuden reititinprofiilin viidessä vaiheessa ja tekee samat yhteys- ja laitetarkistukset kuin ensiasetuksessa.</value>
+  </data>
+  <data name="SetupWelcomeBeforeTitle" xml:space="preserve">
+    <value>Ennen aloittamista</value>
+  </data>
+  <data name="SetupWelcomeRouterTitle" xml:space="preserve">
+    <value>Yhdistä tämä tietokone reitittimeen</value>
+  </data>
+  <data name="SetupWelcomeRouterDescription" xml:space="preserve">
+    <value>Käytä hallittavan Keenetic- tai Netcraze-reitittimen Wi-Fi- tai Ethernet-verkkoa.</value>
+  </data>
+  <data name="SetupWelcomePoliciesTitle" xml:space="preserve">
+    <value>Luo reitittimeen käyttöoikeuskäytännöt</value>
+  </data>
+  <data name="SetupWelcomePoliciesDescription" xml:space="preserve">
+    <value>RouterTray vaihtaa olemassa olevien käytäntöjen välillä muuttamatta niitä. Ohjattu toiminto voi rekisteröidä tämän tietokoneen kotiverkon laitteeksi.</value>
+  </data>
+  <data name="SetupWelcomeCredentialsTitle" xml:space="preserve">
+    <value>Pidä kirjautumistiedot valmiina</value>
+  </data>
+  <data name="SetupWelcomeCredentialsDescription" xml:space="preserve">
+    <value>Käytä järjestelmänvalvojan tiliä, erillistä verkkokäyttöliittymään pääsevää käyttäjää tai käyttöoikeustunnusta laiteohjelmistossa 5.2 tai uudemmassa.</value>
+  </data>
+  <data name="SetupWelcomeSecurityNote" xml:space="preserve">
+    <value>Salasana tai käyttöoikeustunnus salataan nykyiselle Windows-käyttäjälle eikä sitä koskaan tallenneta selväkielisenä.</value>
+  </data>
+  <data name="SetupRouterTitle" xml:space="preserve">
+    <value>Missä reitittimesi on?</value>
+  </data>
+  <data name="SetupRouterSubtitle" xml:space="preserve">
+    <value>Nimeä yhteys ja anna sitten RouterTrayn etsiä reititin automaattisesti tai kirjoita sen osoite itse.</value>
+  </data>
+  <data name="SetupDefaultProfileName" xml:space="preserve">
+    <value>Pääreititin</value>
+  </data>
+  <data name="SetupAutomaticAddress" xml:space="preserve">
+    <value>Käytä nykyisen verkon yhdyskäytävää (suositus)</value>
+  </data>
+  <data name="SetupAutomaticAddressDescription" xml:space="preserve">
+    <value>Sopii parhaiten, kun reititin on tämän Wi-Fi- tai Ethernet-verkon yhdyskäytävä. Osoitetta ei tarvitse tallentaa.</value>
+  </data>
+  <data name="SetupDetectingNetwork" xml:space="preserve">
+    <value>Tunnistetaan nykyistä verkkoa ja yhdyskäytävää...</value>
+  </data>
+  <data name="SetupRouterDetectedFormat" xml:space="preserve">
+    <value>Tunnistettu reitittimen osoite: {0}</value>
+  </data>
+  <data name="SetupRouterNotDetected" xml:space="preserve">
+    <value>Yhdyskäytävää ei juuri nyt näy. Voit jatkaa; RouterTray yrittää uudelleen, kun verkko on käytettävissä.</value>
+  </data>
+  <data name="SetupManualAddress" xml:space="preserve">
+    <value>Kirjoita reitittimen osoite käsin</value>
+  </data>
+  <data name="SetupManualAddressDescription" xml:space="preserve">
+    <value>Käytä täydellistä HTTP- tai HTTPS-osoitetta, esimerkiksi http://192.168.1.1/.</value>
+  </data>
+  <data name="SetupBindCurrentNetwork" xml:space="preserve">
+    <value>Käytä tätä profiilia automaattisesti nykyisessä Windows-verkossa</value>
+  </data>
+  <data name="SetupCurrentNetworkFormat" xml:space="preserve">
+    <value>Nykyinen verkko: {0}</value>
+  </data>
+  <data name="SetupNetworkUnavailable" xml:space="preserve">
+    <value>Windows ei tunnistanut nykyistä verkkoa. Voit valita tämän profiilin ilmaisinalueelta käsin.</value>
+  </data>
+  <data name="SetupAuthenticationTitle" xml:space="preserve">
+    <value>Miten RouterTrayn tulee kirjautua?</value>
+  </data>
+  <data name="SetupAuthenticationSubtitle" xml:space="preserve">
+    <value>Valitse yksi tapa. Näitä tunnistetietoja käytetään vain yhteydenpitoon reitittimen kanssa paikallisverkossa.</value>
+  </data>
+  <data name="SetupCredentialsInstruction" xml:space="preserve">
+    <value>Luo vähimpien oikeuksien periaatteen mukaisesti reitittimeen erillinen käyttäjä ja anna sille vain pääsy verkkokäyttöliittymään. Myös järjestelmänvalvojan tili toimii.</value>
+  </data>
+  <data name="SetupPasswordMethodDescription" xml:space="preserve">
+    <value>Toimii tuetuissa Keenetic- ja Netcraze-laiteohjelmistoissa NDW2- tai NDW4-todennuksella.</value>
+  </data>
+  <data name="SetupTokenMethodDescription" xml:space="preserve">
+    <value>Käytettävissä laiteohjelmistossa 5.2 tai uudemmassa. Liitä reitittimen luoma käyttöoikeustunnus.</value>
+  </data>
+  <data name="SetupOpenRouter" xml:space="preserve">
+    <value>Avaa reitittimen verkkokäyttöliittymä</value>
+  </data>
+  <data name="SetupDeviceTitle" xml:space="preserve">
+    <value>Tarkista tämä laite</value>
+  </data>
+  <data name="SetupDeviceSubtitle" xml:space="preserve">
+    <value>Reitittimen täytyy tuntea tämän tietokoneen MAC-osoite, jotta RouterTray voi määrittää sille käyttöoikeuskäytännöt luotettavasti.</value>
+  </data>
+  <data name="SetupDeviceCurrentTitle" xml:space="preserve">
+    <value>Nykyinen yhteys</value>
+  </data>
+  <data name="SetupDeviceAdapter" xml:space="preserve">
+    <value>Verkkosovitin</value>
+  </data>
+  <data name="SetupDeviceMacAddress" xml:space="preserve">
+    <value>MAC-osoite</value>
+  </data>
+  <data name="SetupDeviceUnavailable" xml:space="preserve">
+    <value>Ei tunnistettu</value>
+  </data>
+  <data name="SetupTemporaryMacWarning" xml:space="preserve">
+    <value>Paikallisesti hallinnoitu MAC-osoite havaittiin. Windows käyttää tätä muotoa satunnaisille laiteosoitteille. Jos osoite muuttuu, reititin ei enää tunnista tätä tietokonetta eikä käytäntöjen vaihtaminen toimi oikein. Poista ”Satunnaiset laiteosoitteet” käytöstä tässä Wi-Fi-verkossa, yhdistä uudelleen ja valitse ”Tarkista uudelleen”.</value>
+  </data>
+  <data name="SetupTemporaryMacAcknowledge" xml:space="preserve">
+    <value>Ymmärrän riskin ja haluan jatkaa nykyisellä MAC-osoitteella</value>
+  </data>
+  <data name="SetupOpenWifiSettings" xml:space="preserve">
+    <value>Avaa Windowsin Wi-Fi-asetukset</value>
+  </data>
+  <data name="SetupDeviceRegistrationTitle" xml:space="preserve">
+    <value>Rekisteröinti reitittimeen</value>
+  </data>
+  <data name="SetupDeviceRegistrationDescription" xml:space="preserve">
+    <value>Jos laitetta ei ole vielä rekisteröity, anna sille tunnistettava nimi ja lisää se reitittimen kotiverkon laiteluetteloon.</value>
+  </data>
+  <data name="SetupDeviceName" xml:space="preserve">
+    <value>Laitteen nimi</value>
+  </data>
+  <data name="SetupDeviceNotChecked" xml:space="preserve">
+    <value>Laitteen rekisteröintiä ei ole vielä tarkistettu.</value>
+  </data>
+  <data name="SetupCheckingDevice" xml:space="preserve">
+    <value>Tarkistetaan MAC-osoitetta reitittimestä...</value>
+  </data>
+  <data name="SetupDeviceRegisteredFormat" xml:space="preserve">
+    <value>Laite on rekisteröity nimellä ”{0}”.</value>
+  </data>
+  <data name="SetupDeviceRegisteredNoName" xml:space="preserve">
+    <value>Laite on jo rekisteröity reitittimeen.</value>
+  </data>
+  <data name="SetupDeviceNotRegistered" xml:space="preserve">
+    <value>Tätä MAC-osoitetta ei ole rekisteröity. Anna nimi ja valitse ”Rekisteröi”.</value>
+  </data>
+  <data name="SetupRegisterDevice" xml:space="preserve">
+    <value>Rekisteröi</value>
+  </data>
+  <data name="SetupRegisteringDevice" xml:space="preserve">
+    <value>Rekisteröidään laitetta ja tallennetaan reitittimen asetuksia...</value>
+  </data>
+  <data name="SetupRecheckDevice" xml:space="preserve">
+    <value>Tarkista uudelleen</value>
+  </data>
+  <data name="SetupDeviceRegistrationRequired" xml:space="preserve">
+    <value>Rekisteröi laite reitittimeen ennen jatkamista.</value>
+  </data>
+  <data name="SetupTemporaryMacConfirmationRequired" xml:space="preserve">
+    <value>Poista satunnainen MAC-osoite käytöstä ja tarkista uudelleen tai vahvista, että ymmärrät riskin.</value>
+  </data>
+  <data name="SetupDeviceNameRequired" xml:space="preserve">
+    <value>Anna rekisteröitävälle laitteelle nimi.</value>
+  </data>
+  <data name="SetupDeviceNoMac" xml:space="preserve">
+    <value>Aktiivisen yhteyden MAC-osoitetta ei voitu tunnistaa. Yhdistä reitittimeen ja tarkista uudelleen.</value>
+  </data>
+  <data name="SetupDeviceRegistrationFailed" xml:space="preserve">
+    <value>Laitetta ei voitu tarkistaa tai rekisteröidä. Tarkista reititinkäyttäjän oikeudet ja yritä uudelleen.</value>
+  </data>
+  <data name="SetupFinishTitle" xml:space="preserve">
+    <value>Tarkista yhteys</value>
+  </data>
+  <data name="SetupFinishSubtitle" xml:space="preserve">
+    <value>Tarkista profiili ja varmista, että RouterTray näkee rekisteröidyn laitteen ja pystyy lataamaan käyttöoikeuskäytännöt.</value>
+  </data>
+  <data name="SetupSummaryRouter" xml:space="preserve">
+    <value>Reititin</value>
+  </data>
+  <data name="SetupSummaryAuthentication" xml:space="preserve">
+    <value>Kirjautumistapa</value>
+  </data>
+  <data name="SetupSummaryNetwork" xml:space="preserve">
+    <value>Profiilin valinta</value>
+  </data>
+  <data name="SetupSummaryDevice" xml:space="preserve">
+    <value>Laite</value>
+  </data>
+  <data name="SetupAutomaticAddressSummaryFormat" xml:space="preserve">
+    <value>Automaattisesti kohteen {0} kautta</value>
+  </data>
+  <data name="SetupAutomaticAddressUnavailable" xml:space="preserve">
+    <value>Automaattisesti aktiivisen verkon yhdyskäytävän kautta</value>
+  </data>
+  <data name="SetupNetworkNotBound" xml:space="preserve">
+    <value>Valitse tämä profiili käsin ilmaisinalueelta</value>
+  </data>
+  <data name="SetupConnectionCheckTitle" xml:space="preserve">
+    <value>Yhteystesti</value>
+  </data>
+  <data name="SetupConnectionCheckDescription" xml:space="preserve">
+    <value>RouterTray kirjautuu sisään ja pyytää käyttöoikeuskäytäntöjen luettelon muuttamatta reitittimen asetuksia.</value>
+  </data>
+  <data name="SetupConnectionNotChecked" xml:space="preserve">
+    <value>Yhteyttä ei ole vielä tarkistettu.</value>
+  </data>
+  <data name="SetupTestConnection" xml:space="preserve">
+    <value>Testaa yhteys</value>
+  </data>
+  <data name="SetupTestingConnection" xml:space="preserve">
+    <value>Yhdistetään reitittimeen...</value>
+  </data>
+  <data name="SetupConnectionSuccessFormat" xml:space="preserve">
+    <value>Yhteys muodostettu. Käytäntöjä löytyi: {0}.</value>
+  </data>
+  <data name="SetupConnectionSuccessNoPolicies" xml:space="preserve">
+    <value>Yhteys muodostettiin, mutta käyttöoikeuskäytäntöjä ei löytynyt. Luo ne reitittimen verkkokäyttöliittymässä.</value>
+  </data>
+  <data name="SetupConnectionNoEndpoint" xml:space="preserve">
+    <value>Reitittimen osoite ei ole käytettävissä. Yhdistä reitittimen verkkoon tai palaa takaisin ja kirjoita osoite käsin.</value>
+  </data>
+  <data name="SetupConnectionAuthFailed" xml:space="preserve">
+    <value>Todennus epäonnistui. Palaa takaisin ja tarkista käyttäjänimi, salasana tai käyttöoikeustunnus.</value>
+  </data>
+  <data name="SetupConnectionUnreachable" xml:space="preserve">
+    <value>Reitittimeen ei saatu yhteyttä. Tarkista osoite ja verkkoyhteys.</value>
+  </data>
+  <data name="SetupConnectionTimeout" xml:space="preserve">
+    <value>Reititin ei vastannut ajoissa. Tarkista verkko ja yritä uudelleen.</value>
+  </data>
+  <data name="SetupConnectionApiFailed" xml:space="preserve">
+    <value>Reititin vastasi, mutta sen ohjelmointirajapintaa ei voitu lukea. Tarkista laiteohjelmiston tuki ja käyttöoikeudet.</value>
+  </data>
+  <data name="SetupConnectionDeviceNotRegistered" xml:space="preserve">
+    <value>Yhteys toimii, mutta nykyistä MAC-osoitetta ei ole enää rekisteröity reitittimeen. Palaa vaiheeseen ”Laite”.</value>
+  </data>
+  <data name="SetupTrayHint" xml:space="preserve">
+    <value>Määrityksen jälkeen RouterTray pysyy Windowsin ilmaisinalueella. Valitse käytäntö napsauttamalla sinistä R-kuvaketta hiiren ykköspainikkeella ja avaa asetukset napsauttamalla sitä kakkospainikkeella.</value>
+  </data>
+  <data name="SetupBack" xml:space="preserve">
+    <value>Takaisin</value>
+  </data>
+  <data name="SetupNext" xml:space="preserve">
+    <value>Seuraava</value>
+  </data>
+  <data name="SetupFinish" xml:space="preserve">
+    <value>Viimeistele määritys</value>
+  </data>
+  <data name="SetupAddProfileFinish" xml:space="preserve">
+    <value>Lisää profiili</value>
+  </data>
+  <data name="SetupCancel" xml:space="preserve">
+    <value>Poistu määrityksestä</value>
+  </data>
+  <data name="SetupCancelConfirmation" xml:space="preserve">
+    <value>Määritystä ei ole viimeistelty, joten RouterTray ei käynnisty. Poistutaanko nyt?</value>
+  </data>
+  <data name="SetupAddProfileCancelConfirmation" xml:space="preserve">
+    <value>Peruutetaanko tämän profiilin lisääminen? Antamiasi tietoja ei tallenneta.</value>
+  </data>
+  <data name="SetupProgressFormat" xml:space="preserve">
+    <value>Vaihe {0}/{1}</value>
+  </data>
 </root>

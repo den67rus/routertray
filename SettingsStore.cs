@@ -6,7 +6,12 @@ internal static class SettingsStore
 {
     public static SettingsLoadResult Load(string settingsPath, string fallbackPath)
     {
-        if (File.Exists(settingsPath))
+        var settingsFileExists = File.Exists(settingsPath);
+        var backupPath = settingsPath + ".bak";
+        var backupExists = File.Exists(backupPath);
+        var isFirstRun = !settingsFileExists && !backupExists;
+
+        if (settingsFileExists)
         {
             try
             {
@@ -15,13 +20,13 @@ internal static class SettingsStore
                     settings,
                     settingsPath,
                     settings.ContainsLegacyPlaintextPassword || settings.RequiresMigrationSave,
-                    Recovered: false);
+                    Recovered: false,
+                    IsFirstRun: false);
             }
             catch (Exception primaryException) when (IsRecoverable(primaryException))
             {
                 PreserveCorruptFile(settingsPath);
 
-                var backupPath = settingsPath + ".bak";
                 if (File.Exists(backupPath))
                 {
                     try
@@ -30,7 +35,8 @@ internal static class SettingsStore
                             AppSettings.Load(backupPath),
                             backupPath,
                             NeedsSave: true,
-                            Recovered: true);
+                            Recovered: true,
+                            IsFirstRun: false);
                     }
                     catch (Exception backupException) when (IsRecoverable(backupException))
                     {
@@ -38,20 +44,20 @@ internal static class SettingsStore
                     }
                 }
 
-                return LoadFallback(fallbackPath, recovered: true);
+                return LoadFallback(fallbackPath, recovered: true, isFirstRun: false);
             }
         }
 
-        var orphanedBackupPath = settingsPath + ".bak";
-        if (File.Exists(orphanedBackupPath))
+        if (backupExists)
         {
             try
             {
                 return new SettingsLoadResult(
-                    AppSettings.Load(orphanedBackupPath),
-                    orphanedBackupPath,
+                    AppSettings.Load(backupPath),
+                    backupPath,
                     NeedsSave: true,
-                    Recovered: true);
+                    Recovered: true,
+                    IsFirstRun: false);
             }
             catch (Exception backupException) when (IsRecoverable(backupException))
             {
@@ -59,10 +65,16 @@ internal static class SettingsStore
             }
         }
 
-        return LoadFallback(fallbackPath, recovered: File.Exists(orphanedBackupPath));
+        return LoadFallback(
+            fallbackPath,
+            recovered: backupExists,
+            isFirstRun: isFirstRun);
     }
 
-    private static SettingsLoadResult LoadFallback(string fallbackPath, bool recovered)
+    private static SettingsLoadResult LoadFallback(
+        string fallbackPath,
+        bool recovered,
+        bool isFirstRun)
     {
         if (File.Exists(fallbackPath))
         {
@@ -72,7 +84,8 @@ internal static class SettingsStore
                     AppSettings.Load(fallbackPath),
                     fallbackPath,
                     NeedsSave: true,
-                    Recovered: recovered);
+                    Recovered: recovered,
+                    IsFirstRun: isFirstRun);
             }
             catch (Exception fallbackException) when (IsRecoverable(fallbackException))
             {
@@ -80,7 +93,12 @@ internal static class SettingsStore
             }
         }
 
-        return new SettingsLoadResult(new AppSettings(), null, NeedsSave: true, Recovered: true);
+        return new SettingsLoadResult(
+            new AppSettings(),
+            null,
+            NeedsSave: true,
+            Recovered: true,
+            IsFirstRun: isFirstRun);
     }
 
     private static void PreserveCorruptFile(string path)
@@ -108,4 +126,5 @@ internal sealed record SettingsLoadResult(
     AppSettings Settings,
     string? SourcePath,
     bool NeedsSave,
-    bool Recovered);
+    bool Recovered,
+    bool IsFirstRun);

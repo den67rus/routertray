@@ -416,6 +416,50 @@ internal sealed class KeeneticClient : IDisposable
         await EnsureSuccessOrThrow(response, "clear policy", ct);
     }
 
+    public async Task<KnownHostInfo?> GetKnownHostAsync(
+        string deviceMac,
+        CancellationToken ct = default)
+    {
+        var normalizedMac = NormalizeRequiredMac(deviceMac);
+        using var response = await SendWithAuthAsync(
+            () => SendRciRequestAsync(HttpMethod.Get, "rci/known/host", null, ct), ct);
+
+        if (response.StatusCode is HttpStatusCode.MethodNotAllowed or HttpStatusCode.NotFound)
+        {
+            return await GetKnownHostFromHotspotAsync(normalizedMac, ct);
+        }
+
+        await EnsureSuccessOrThrow(response, "get known host", ct);
+        return await ParseKnownHostAsync(response, normalizedMac, false, ct);
+    }
+
+    public async Task<KnownHostInfo> RegisterKnownHostAsync(
+        string deviceMac,
+        string deviceName,
+        CancellationToken ct = default)
+    {
+        var normalizedMac = NormalizeRequiredMac(deviceMac);
+        ArgumentException.ThrowIfNullOrWhiteSpace(deviceName);
+        var normalizedName = deviceName.Trim();
+        if (normalizedName.Any(char.IsControl))
+        {
+            throw new ArgumentException("Device name must not contain control characters.", nameof(deviceName));
+        }
+
+        using (var response = await SendJsonWithAuthAsync(
+                   "rci/known/host",
+                   new { name = normalizedName, mac = normalizedMac },
+                   ct))
+        {
+            await EnsureSuccessOrThrow(response, "register known host", ct);
+        }
+
+        await SaveConfigurationAsync(ct);
+        var knownHost = await GetKnownHostAsync(normalizedMac, ct);
+        return knownHost ?? throw new KeeneticRequestException(
+            "The router accepted the registration command but did not return the device as a known host.");
+    }
+
     public async Task<string> GetCurrentPolicyAsync(string deviceMac, CancellationToken ct = default)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(deviceMac);
@@ -439,6 +483,56 @@ internal sealed class KeeneticClient : IDisposable
 
         await EnsureSuccessOrThrow(response, "get policy", ct);
         return await ParsePolicyAsync(response, deviceMac, ct);
+    }
+
+    private async Task<KnownHostInfo?> GetKnownHostFromHotspotAsync(
+        string normalizedMac,
+        CancellationToken ct)
+    {
+        using var response = await SendWithAuthAsync(
+            () => SendRciRequestAsync(HttpMethod.Get, "rci/show/ip/hotspot", null, ct), ct);
+        await EnsureSuccessOrThrow(response, "get hotspot hosts", ct);
+        return await ParseKnownHostAsync(response, normalizedMac, true, ct);
+    }
+
+    private async Task SaveConfigurationAsync(CancellationToken ct)
+    {
+        using var response = await SendJsonWithAuthAsync(
+            "rci/system/configuration/save",
+            new { },
+            ct);
+        if (response.StatusCode is HttpStatusCode.MethodNotAllowed or HttpStatusCode.NotFound)
+        {
+            return;
+        }
+
+        await EnsureSuccessOrThrow(response, "save configuration", ct);
+    }
+
+    private static async Task<KnownHostInfo?> ParseKnownHostAsync(
+        HttpResponseMessage response,
+        string normalizedMac,
+        bool requireRegistrationEvidence,
+        CancellationToken ct)
+    {
+        var json = await response.Content.ReadAsStringAsync(ct);
+        if (string.IsNullOrWhiteSpace(json))
+        {
+            return null;
+        }
+
+        try
+        {
+            using var document = JsonDocument.Parse(json);
+            return FindKnownHost(
+                document.RootElement,
+                normalizedMac,
+                requireRegistrationEvidence);
+        }
+        catch (JsonException ex)
+        {
+            throw new KeeneticRequestException("Invalid known-host response JSON.", ex);
+        }
     }
 
     private async Task<string> ParsePolicyAsync(
@@ -787,6 +881,190 @@ internal sealed class KeeneticClient : IDisposable
         _baseUri = new Uri(finalUri.GetLeftPart(UriPartial.Authority) + basePath, UriKind.Absolute);
     }
 
+    internal static KnownHostInfo? FindKnownHost(
+        JsonElement element,
+        string deviceMac,
+        bool requireRegistrationEvidence = false)
+    {
+        if (!MacAddressInspector.TryNormalize(deviceMac, out var normalizedMac))
+        {
+            return null;
+        }
+
+        return FindKnownHostCore(element, normalizedMac, requireRegistrationEvidence);
+    }
+
+    private static KnownHostInfo? FindKnownHostCore(
+        JsonElement element,
+        string normalizedMac,
+        bool requireRegistrationEvidence)
+    {
+        switch (element.ValueKind)
+        {
+            case JsonValueKind.Object:
+                if (TryGetStringIgnoreCase(element, "mac", out var macValue) &&
+                    MacEquals(macValue, normalizedMac) &&
+                    (!requireRegistrationEvidence || HasRegistrationEvidence(element)))
+                {
+                    return new KnownHostInfo(
+                        normalizedMac,
+                        GetStringPropertyIgnoreCase(element, "name") ??
+                        GetStringPropertyIgnoreCase(element, "description") ??
+                        GetStringPropertyIgnoreCase(element, "hostname") ??
+                        string.Empty);
+                }
+
+                foreach (var property in element.EnumerateObject())
+                {
+                    if (MacEquals(property.Name, normalizedMac) &&
+                        (!requireRegistrationEvidence || HasRegistrationEvidence(property.Value)))
+                    {
+                        return new KnownHostInfo(
+                            normalizedMac,
+                            GetStringPropertyIgnoreCase(property.Value, "name") ??
+                            GetStringPropertyIgnoreCase(property.Value, "description") ??
+                            string.Empty);
+                    }
+
+                    var nested = FindKnownHostCore(
+                        property.Value,
+                        normalizedMac,
+                        requireRegistrationEvidence);
+                    if (nested is not null)
+                    {
+                        return nested;
+                    }
+                }
+
+                break;
+
+            case JsonValueKind.Array:
+                foreach (var item in element.EnumerateArray())
+                {
+                    var nested = FindKnownHostCore(
+                        item,
+                        normalizedMac,
+                        requireRegistrationEvidence);
+                    if (nested is not null)
+                    {
+                        return nested;
+                    }
+                }
+
+                break;
+        }
+
+        return null;
+    }
+
+    private static bool HasRegistrationEvidence(JsonElement element)
+    {
+        if (element.ValueKind != JsonValueKind.Object)
+        {
+            return false;
+        }
+
+        if (TryGetBooleanLike(element, "registered", out var registered))
+        {
+            return registered;
+        }
+
+        if (TryGetBooleanLike(element, "known", out var known))
+        {
+            return known;
+        }
+
+        // Keenetic firmware versions that omit the explicit flag keep the user
+        // assigned name in `name`; DHCP-supplied names are exposed as `hostname`.
+        return !string.IsNullOrWhiteSpace(GetStringPropertyIgnoreCase(element, "name"));
+    }
+
+    private static bool TryGetBooleanLike(JsonElement element, string name, out bool value)
+    {
+        value = false;
+        if (!TryGetPropertyIgnoreCase(element, name, out var property))
+        {
+            return false;
+        }
+
+        if (property.ValueKind is JsonValueKind.True or JsonValueKind.False)
+        {
+            value = property.GetBoolean();
+            return true;
+        }
+
+        if (property.ValueKind == JsonValueKind.String)
+        {
+            var text = property.GetString();
+            if (bool.TryParse(text, out value))
+            {
+                return true;
+            }
+
+            if (string.Equals(text, "yes", StringComparison.OrdinalIgnoreCase) || text == "1")
+            {
+                value = true;
+                return true;
+            }
+
+            if (string.Equals(text, "no", StringComparison.OrdinalIgnoreCase) || text == "0")
+            {
+                value = false;
+                return true;
+            }
+        }
+
+        if (property.ValueKind == JsonValueKind.Number && property.TryGetInt32(out var numeric))
+        {
+            value = numeric != 0;
+            return true;
+        }
+
+        return false;
+    }
+
+    private static string? GetStringPropertyIgnoreCase(JsonElement element, string name)
+    {
+        return TryGetStringIgnoreCase(element, name, out var value) ? value : null;
+    }
+
+    private static bool TryGetStringIgnoreCase(
+        JsonElement element,
+        string name,
+        out string? value)
+    {
+        value = null;
+        if (!TryGetPropertyIgnoreCase(element, name, out var property) ||
+            property.ValueKind != JsonValueKind.String)
+        {
+            return false;
+        }
+
+        value = property.GetString();
+        return !string.IsNullOrWhiteSpace(value);
+    }
+
+    private static bool TryGetPropertyIgnoreCase(
+        JsonElement element,
+        string name,
+        out JsonElement property)
+    {
+        if (element.ValueKind == JsonValueKind.Object)
+        {
+            foreach (var candidate in element.EnumerateObject())
+            {
+                if (string.Equals(candidate.Name, name, StringComparison.OrdinalIgnoreCase))
+                {
+                    property = candidate.Value;
+                    return true;
+                }
+            }
+        }
+
+        property = default;
+        return false;
+    }
+
     private static string? FindPolicyByMac(JsonElement element, string mac)
     {
         switch (element.ValueKind)
@@ -1093,6 +1371,14 @@ internal sealed class KeeneticClient : IDisposable
         return NormalizeMac(left) == NormalizeMac(right);
     }
 
+    private static string NormalizeRequiredMac(string value)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(value);
+        return MacAddressInspector.TryNormalize(value, out var normalized)
+            ? normalized
+            : throw new ArgumentException("A valid unicast MAC address is required.", nameof(value));
+    }
+
     private static string NormalizeMac(string value)
     {
         var sb = new StringBuilder(value.Length);
@@ -1191,6 +1477,8 @@ internal sealed class PolicyInfo
     public string Id { get; }
     public string Name { get; }
 }
+
+internal sealed record KnownHostInfo(string MacAddress, string Name);
 
 internal sealed class KeeneticAuthException : Exception
 {

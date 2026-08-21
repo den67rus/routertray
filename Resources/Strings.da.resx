@@ -303,4 +303,292 @@
   <data name="SettingsMoveNetworkConfirmationFormat" xml:space="preserve">
     <value>Det aktuelle netværk er allerede knyttet til profilen “{0}”. Flyt det til denne profil?</value>
   </data>
+  <data name="SetupTitle" xml:space="preserve">
+    <value>Konfigurer RouterTray</value>
+  </data>
+  <data name="SetupAddProfileTitle" xml:space="preserve">
+    <value>Tilføj en RouterTray-profil</value>
+  </data>
+  <data name="SetupSidebarCaption" xml:space="preserve">
+    <value>Førstegangsopsætning</value>
+  </data>
+  <data name="SetupAddProfileSidebarCaption" xml:space="preserve">
+    <value>Ny routerprofil</value>
+  </data>
+  <data name="SetupStepWelcome" xml:space="preserve">
+    <value>Velkommen</value>
+  </data>
+  <data name="SetupStepRouter" xml:space="preserve">
+    <value>Router</value>
+  </data>
+  <data name="SetupStepAuthentication" xml:space="preserve">
+    <value>Logon</value>
+  </data>
+  <data name="SetupStepDevice" xml:space="preserve">
+    <value>Enhed</value>
+  </data>
+  <data name="SetupStepFinish" xml:space="preserve">
+    <value>Kontrollér og afslut</value>
+  </data>
+  <data name="SetupWelcomeTitle" xml:space="preserve">
+    <value>Lad os forbinde RouterTray med din router</value>
+  </data>
+  <data name="SetupWelcomeSubtitle" xml:space="preserve">
+    <value>Denne guide opretter din første routerprofil i fem trin og forklarer alt, der kræves for at få forbindelsen til at fungere.</value>
+  </data>
+  <data name="SetupAddProfileWelcomeTitle" xml:space="preserve">
+    <value>Lad os føje endnu en router til RouterTray</value>
+  </data>
+  <data name="SetupAddProfileWelcomeSubtitle" xml:space="preserve">
+    <value>Denne guide opretter en ny routerprofil i fem trin og udfører de samme forbindelses- og enhedskontroller som ved førstegangsopsætningen.</value>
+  </data>
+  <data name="SetupWelcomeBeforeTitle" xml:space="preserve">
+    <value>Før du går i gang</value>
+  </data>
+  <data name="SetupWelcomeRouterTitle" xml:space="preserve">
+    <value>Forbind denne pc med routeren</value>
+  </data>
+  <data name="SetupWelcomeRouterDescription" xml:space="preserve">
+    <value>Brug Wi-Fi- eller Ethernet-netværket fra den Keenetic- eller Netcraze-router, du vil styre.</value>
+  </data>
+  <data name="SetupWelcomePoliciesTitle" xml:space="preserve">
+    <value>Opret adgangspolitikker på routeren</value>
+  </data>
+  <data name="SetupWelcomePoliciesDescription" xml:space="preserve">
+    <value>RouterTray skifter mellem eksisterende politikker uden at ændre dem. Guiden kan registrere denne pc som en enhed på hjemmenetværket.</value>
+  </data>
+  <data name="SetupWelcomeCredentialsTitle" xml:space="preserve">
+    <value>Hav logonoplysningerne klar</value>
+  </data>
+  <data name="SetupWelcomeCredentialsDescription" xml:space="preserve">
+    <value>Brug en administratorkonto, en særskilt bruger med adgang til webgrænsefladen eller et adgangstoken med firmware 5.2 eller nyere.</value>
+  </data>
+  <data name="SetupWelcomeSecurityNote" xml:space="preserve">
+    <value>Din adgangskode eller dit token krypteres til den aktuelle Windows-bruger og gemmes aldrig som almindelig tekst.</value>
+  </data>
+  <data name="SetupRouterTitle" xml:space="preserve">
+    <value>Hvor er din router?</value>
+  </data>
+  <data name="SetupRouterSubtitle" xml:space="preserve">
+    <value>Giv forbindelsen et navn, og lad derefter RouterTray finde routeren automatisk, eller angiv selv dens adresse.</value>
+  </data>
+  <data name="SetupDefaultProfileName" xml:space="preserve">
+    <value>Primær router</value>
+  </data>
+  <data name="SetupAutomaticAddress" xml:space="preserve">
+    <value>Brug det aktuelle netværks gateway (anbefales)</value>
+  </data>
+  <data name="SetupAutomaticAddressDescription" xml:space="preserve">
+    <value>Bedst, når routeren er gateway for dette Wi-Fi- eller Ethernet-netværk. Der behøver ikke at blive gemt en adresse.</value>
+  </data>
+  <data name="SetupDetectingNetwork" xml:space="preserve">
+    <value>Registrerer det aktuelle netværk og gatewayen...</value>
+  </data>
+  <data name="SetupRouterDetectedFormat" xml:space="preserve">
+    <value>Registreret routeradresse: {0}</value>
+  </data>
+  <data name="SetupRouterNotDetected" xml:space="preserve">
+    <value>Der er ingen synlig gateway lige nu. Du kan fortsætte; RouterTray prøver igen, når netværket er tilgængeligt.</value>
+  </data>
+  <data name="SetupManualAddress" xml:space="preserve">
+    <value>Angiv routerens adresse manuelt</value>
+  </data>
+  <data name="SetupManualAddressDescription" xml:space="preserve">
+    <value>Brug en fuldstændig HTTP- eller HTTPS-adresse, f.eks. http://192.168.1.1/.</value>
+  </data>
+  <data name="SetupBindCurrentNetwork" xml:space="preserve">
+    <value>Brug automatisk denne profil på det aktuelle Windows-netværk</value>
+  </data>
+  <data name="SetupCurrentNetworkFormat" xml:space="preserve">
+    <value>Aktuelt netværk: {0}</value>
+  </data>
+  <data name="SetupNetworkUnavailable" xml:space="preserve">
+    <value>Windows kunne ikke identificere det aktuelle netværk. Du kan vælge denne profil manuelt i meddelelsesområdet.</value>
+  </data>
+  <data name="SetupAuthenticationTitle" xml:space="preserve">
+    <value>Hvordan skal RouterTray logge på?</value>
+  </data>
+  <data name="SetupAuthenticationSubtitle" xml:space="preserve">
+    <value>Vælg én metode. Disse legitimationsoplysninger bruges kun til at kommunikere med routeren på dit lokale netværk.</value>
+  </data>
+  <data name="SetupCredentialsInstruction" xml:space="preserve">
+    <value>Opret en særskilt routerbruger med kun adgang til webgrænsefladen for at begrænse rettighederne mest muligt. En administratorkonto kan også bruges.</value>
+  </data>
+  <data name="SetupPasswordMethodDescription" xml:space="preserve">
+    <value>Fungerer med understøttet Keenetic- og Netcraze-firmware via NDW2- eller NDW4-godkendelse.</value>
+  </data>
+  <data name="SetupTokenMethodDescription" xml:space="preserve">
+    <value>Tilgængelig på firmware 5.2 eller nyere. Indsæt det token, routeren har genereret.</value>
+  </data>
+  <data name="SetupOpenRouter" xml:space="preserve">
+    <value>Åbn routerens webgrænseflade</value>
+  </data>
+  <data name="SetupDeviceTitle" xml:space="preserve">
+    <value>Kontrollér denne enhed</value>
+  </data>
+  <data name="SetupDeviceSubtitle" xml:space="preserve">
+    <value>Routeren skal kende denne pc's MAC-adresse, før RouterTray pålideligt kan tildele den adgangspolitikker.</value>
+  </data>
+  <data name="SetupDeviceCurrentTitle" xml:space="preserve">
+    <value>Aktuel forbindelse</value>
+  </data>
+  <data name="SetupDeviceAdapter" xml:space="preserve">
+    <value>Netværkskort</value>
+  </data>
+  <data name="SetupDeviceMacAddress" xml:space="preserve">
+    <value>MAC-adresse</value>
+  </data>
+  <data name="SetupDeviceUnavailable" xml:space="preserve">
+    <value>Ikke fundet</value>
+  </data>
+  <data name="SetupTemporaryMacWarning" xml:space="preserve">
+    <value>Der blev registreret en lokalt administreret MAC-adresse. Windows bruger dette format til tilfældige hardwareadresser. Hvis adressen ændres, kan routeren ikke længere genkende denne pc, og skift af politik fungerer ikke korrekt. Slå ”Tilfældige hardwareadresser” fra for dette Wi-Fi-netværk, opret forbindelsen igen, og vælg ”Kontrollér igen”.</value>
+  </data>
+  <data name="SetupTemporaryMacAcknowledge" xml:space="preserve">
+    <value>Jeg forstår risikoen og vil fortsætte med den aktuelle MAC-adresse</value>
+  </data>
+  <data name="SetupOpenWifiSettings" xml:space="preserve">
+    <value>Åbn Wi-Fi-indstillinger i Windows</value>
+  </data>
+  <data name="SetupDeviceRegistrationTitle" xml:space="preserve">
+    <value>Registrering på routeren</value>
+  </data>
+  <data name="SetupDeviceRegistrationDescription" xml:space="preserve">
+    <value>Hvis enheden endnu ikke er registreret, skal du give den et genkendeligt navn og føje den til routerens liste over enheder på hjemmenetværket.</value>
+  </data>
+  <data name="SetupDeviceName" xml:space="preserve">
+    <value>Enhedsnavn</value>
+  </data>
+  <data name="SetupDeviceNotChecked" xml:space="preserve">
+    <value>Enhedens registrering er endnu ikke blevet kontrolleret.</value>
+  </data>
+  <data name="SetupCheckingDevice" xml:space="preserve">
+    <value>Kontrollerer MAC-adressen på routeren...</value>
+  </data>
+  <data name="SetupDeviceRegisteredFormat" xml:space="preserve">
+    <value>Enheden er registreret som ”{0}”.</value>
+  </data>
+  <data name="SetupDeviceRegisteredNoName" xml:space="preserve">
+    <value>Enheden er allerede registreret på routeren.</value>
+  </data>
+  <data name="SetupDeviceNotRegistered" xml:space="preserve">
+    <value>Denne MAC-adresse er ikke registreret. Angiv et navn, og vælg ”Registrer”.</value>
+  </data>
+  <data name="SetupRegisterDevice" xml:space="preserve">
+    <value>Registrer</value>
+  </data>
+  <data name="SetupRegisteringDevice" xml:space="preserve">
+    <value>Registrerer enheden og gemmer routerindstillingerne...</value>
+  </data>
+  <data name="SetupRecheckDevice" xml:space="preserve">
+    <value>Kontrollér igen</value>
+  </data>
+  <data name="SetupDeviceRegistrationRequired" xml:space="preserve">
+    <value>Registrer enheden på routeren, før du fortsætter.</value>
+  </data>
+  <data name="SetupTemporaryMacConfirmationRequired" xml:space="preserve">
+    <value>Slå den tilfældige MAC-adresse fra, og kontrollér igen, eller bekræft, at du forstår risikoen.</value>
+  </data>
+  <data name="SetupDeviceNameRequired" xml:space="preserve">
+    <value>Angiv et enhedsnavn til registreringen.</value>
+  </data>
+  <data name="SetupDeviceNoMac" xml:space="preserve">
+    <value>MAC-adressen for den aktive forbindelse kunne ikke registreres. Opret forbindelse til routeren, og kontrollér igen.</value>
+  </data>
+  <data name="SetupDeviceRegistrationFailed" xml:space="preserve">
+    <value>Enheden kunne ikke kontrolleres eller registreres. Kontrollér routerbrugerens rettigheder, og prøv igen.</value>
+  </data>
+  <data name="SetupFinishTitle" xml:space="preserve">
+    <value>Kontrollér forbindelsen</value>
+  </data>
+  <data name="SetupFinishSubtitle" xml:space="preserve">
+    <value>Gennemgå profilen, og kontrollér, at RouterTray kan se den registrerede enhed og indlæse adgangspolitikkerne.</value>
+  </data>
+  <data name="SetupSummaryRouter" xml:space="preserve">
+    <value>Router</value>
+  </data>
+  <data name="SetupSummaryAuthentication" xml:space="preserve">
+    <value>Logonmetode</value>
+  </data>
+  <data name="SetupSummaryNetwork" xml:space="preserve">
+    <value>Profilvalg</value>
+  </data>
+  <data name="SetupSummaryDevice" xml:space="preserve">
+    <value>Enhed</value>
+  </data>
+  <data name="SetupAutomaticAddressSummaryFormat" xml:space="preserve">
+    <value>Automatisk via {0}</value>
+  </data>
+  <data name="SetupAutomaticAddressUnavailable" xml:space="preserve">
+    <value>Automatisk via det aktive netværks gateway</value>
+  </data>
+  <data name="SetupNetworkNotBound" xml:space="preserve">
+    <value>Vælg denne profil manuelt i meddelelsesområdet</value>
+  </data>
+  <data name="SetupConnectionCheckTitle" xml:space="preserve">
+    <value>Forbindelsestest</value>
+  </data>
+  <data name="SetupConnectionCheckDescription" xml:space="preserve">
+    <value>RouterTray logger på og henter listen over adgangspolitikker uden at ændre routerens indstillinger.</value>
+  </data>
+  <data name="SetupConnectionNotChecked" xml:space="preserve">
+    <value>Forbindelsen er endnu ikke blevet kontrolleret.</value>
+  </data>
+  <data name="SetupTestConnection" xml:space="preserve">
+    <value>Test forbindelse</value>
+  </data>
+  <data name="SetupTestingConnection" xml:space="preserve">
+    <value>Opretter forbindelse til routeren...</value>
+  </data>
+  <data name="SetupConnectionSuccessFormat" xml:space="preserve">
+    <value>Forbindelsen er oprettet. Fundne politikker: {0}.</value>
+  </data>
+  <data name="SetupConnectionSuccessNoPolicies" xml:space="preserve">
+    <value>Forbindelsen er oprettet, men der blev ikke fundet nogen adgangspolitikker. Opret dem i routerens webgrænseflade.</value>
+  </data>
+  <data name="SetupConnectionNoEndpoint" xml:space="preserve">
+    <value>Routerens adresse er ikke tilgængelig. Opret forbindelse til routerens netværk, eller gå tilbage, og angiv adressen manuelt.</value>
+  </data>
+  <data name="SetupConnectionAuthFailed" xml:space="preserve">
+    <value>Godkendelse mislykkedes. Gå tilbage, og kontrollér brugernavn, adgangskode eller adgangstoken.</value>
+  </data>
+  <data name="SetupConnectionUnreachable" xml:space="preserve">
+    <value>Routeren kunne ikke nås. Kontrollér adressen og din netværksforbindelse.</value>
+  </data>
+  <data name="SetupConnectionTimeout" xml:space="preserve">
+    <value>Routeren svarede ikke i tide. Kontrollér netværket, og prøv igen.</value>
+  </data>
+  <data name="SetupConnectionApiFailed" xml:space="preserve">
+    <value>Routeren svarede, men dens API kunne ikke læses. Kontrollér firmwareunderstøttelsen og rettighederne.</value>
+  </data>
+  <data name="SetupConnectionDeviceNotRegistered" xml:space="preserve">
+    <value>Forbindelsen virker, men den aktuelle MAC-adresse er ikke længere registreret på routeren. Gå tilbage til trinnet ”Enhed”.</value>
+  </data>
+  <data name="SetupTrayHint" xml:space="preserve">
+    <value>Efter opsætningen forbliver RouterTray i Windows-meddelelsesområdet. Venstreklik på det blå R-ikon for at vælge en politik, og højreklik for at åbne indstillingerne.</value>
+  </data>
+  <data name="SetupBack" xml:space="preserve">
+    <value>Tilbage</value>
+  </data>
+  <data name="SetupNext" xml:space="preserve">
+    <value>Næste</value>
+  </data>
+  <data name="SetupFinish" xml:space="preserve">
+    <value>Fuldfør opsætningen</value>
+  </data>
+  <data name="SetupAddProfileFinish" xml:space="preserve">
+    <value>Tilføj profil</value>
+  </data>
+  <data name="SetupCancel" xml:space="preserve">
+    <value>Forlad opsætningen</value>
+  </data>
+  <data name="SetupCancelConfirmation" xml:space="preserve">
+    <value>Opsætningen er ikke færdig, så RouterTray starter ikke. Vil du afslutte nu?</value>
+  </data>
+  <data name="SetupAddProfileCancelConfirmation" xml:space="preserve">
+    <value>Vil du annullere tilføjelsen af denne profil? De indtastede oplysninger bliver ikke gemt.</value>
+  </data>
+  <data name="SetupProgressFormat" xml:space="preserve">
+    <value>Trin {0} af {1}</value>
+  </data>
 </root>

@@ -185,6 +185,103 @@ public sealed class KeeneticClientTests
     }
 
     [Fact]
+    public async Task GetKnownHostAsync_FindsRegisteredDeviceInKnownHostConfiguration()
+    {
+        var handler = new StubHandler((request, requestIndex, _) =>
+        {
+            Assert.Equal(0, requestIndex);
+            Assert.Equal(HttpMethod.Get, request.Method);
+            Assert.Equal("/rci/known/host", request.RequestUri!.AbsolutePath);
+            return Task.FromResult(CreateJsonResponse(
+                HttpStatusCode.OK,
+                """{"host":[{"name":"Work PC","mac":"02:11:22:33:44:55"}]}"""));
+        });
+        using var client = CreateTokenClient(handler);
+
+        var host = await client.GetKnownHostAsync("02-11-22-33-44-55");
+
+        Assert.NotNull(host);
+        Assert.Equal("02:11:22:33:44:55", host.MacAddress);
+        Assert.Equal("Work PC", host.Name);
+        Assert.Equal(1, handler.RequestCount);
+    }
+
+    [Fact]
+    public async Task GetKnownHostAsync_FallsBackToHotspotAndRequiresRegistrationEvidence()
+    {
+        var handler = new StubHandler((request, requestIndex, _) =>
+        {
+            if (requestIndex == 0)
+            {
+                Assert.Equal("/rci/known/host", request.RequestUri!.AbsolutePath);
+                return Task.FromResult(new HttpResponseMessage(HttpStatusCode.MethodNotAllowed));
+            }
+
+            Assert.Equal(1, requestIndex);
+            Assert.Equal("/rci/show/ip/hotspot", request.RequestUri!.AbsolutePath);
+            return Task.FromResult(CreateJsonResponse(
+                HttpStatusCode.OK,
+                """
+                {
+                  "host": [
+                    {"mac":"00:AA:BB:CC:DD:01","hostname":"unregistered-pc"},
+                    {"mac":"00:AA:BB:CC:DD:02","name":"Registered PC","registered":true}
+                  ]
+                }
+                """));
+        });
+        using var client = CreateTokenClient(handler);
+
+        var unregistered = await client.GetKnownHostAsync("00:AA:BB:CC:DD:01");
+
+        Assert.Null(unregistered);
+    }
+
+    [Fact]
+    public async Task RegisterKnownHostAsync_RegistersSavesAndVerifiesDevice()
+    {
+        var handler = new StubHandler(async (request, requestIndex, ct) =>
+        {
+            switch (requestIndex)
+            {
+                case 0:
+                    Assert.Equal(HttpMethod.Post, request.Method);
+                    Assert.Equal("/rci/known/host", request.RequestUri!.AbsolutePath);
+                    using (var body = await ReadJsonAsync(request, ct))
+                    {
+                        Assert.Equal("RouterTray PC", body.RootElement.GetProperty("name").GetString());
+                        Assert.Equal("02:11:22:33:44:55", body.RootElement.GetProperty("mac").GetString());
+                    }
+
+                    return CreateJsonResponse(HttpStatusCode.OK, """{"status":[{"status":"ok"}]}""");
+
+                case 1:
+                    Assert.Equal(HttpMethod.Post, request.Method);
+                    Assert.Equal("/rci/system/configuration/save", request.RequestUri!.AbsolutePath);
+                    return CreateJsonResponse(HttpStatusCode.OK, """{"status":[{"status":"ok"}]}""");
+
+                case 2:
+                    Assert.Equal(HttpMethod.Get, request.Method);
+                    Assert.Equal("/rci/known/host", request.RequestUri!.AbsolutePath);
+                    return CreateJsonResponse(
+                        HttpStatusCode.OK,
+                        """{"host":[{"name":"RouterTray PC","mac":"02:11:22:33:44:55"}]}""");
+
+                default:
+                    throw new InvalidOperationException("Unexpected request.");
+            }
+        });
+        using var client = CreateTokenClient(handler);
+
+        var host = await client.RegisterKnownHostAsync(
+            "02-11-22-33-44-55",
+            " RouterTray PC ");
+
+        Assert.Equal("RouterTray PC", host.Name);
+        Assert.Equal(3, handler.RequestCount);
+    }
+
+    [Fact]
     public async Task EnsureSuccessOrThrow_RejectsRciErrorInsideHttpSuccess()
     {
         using var response = CreateJsonResponse(
@@ -271,6 +368,17 @@ public sealed class KeeneticClientTests
     {
         using var document = JsonDocument.Parse(json);
         return KeeneticClient.ExtractPolicies(document.RootElement);
+    }
+
+    private static KeeneticClient CreateTokenClient(HttpMessageHandler handler)
+    {
+        return new KeeneticClient(
+            new Uri("http://router.example/"),
+            RouterAuthMode.AccessToken,
+            string.Empty,
+            string.Empty,
+            "test-token",
+            handler);
     }
 
     private static HttpResponseMessage CreateJsonResponse(HttpStatusCode statusCode, string json)

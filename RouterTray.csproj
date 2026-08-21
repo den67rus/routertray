@@ -17,6 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="favicon.ico" LogicalName="RouterTray.favicon.ico" />
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
@@ -32,10 +33,12 @@
 
   <ItemGroup>
     <Compile Remove="tests\**\*.cs" />
+    <Compile Remove="tools\**\*.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <InternalsVisibleTo Include="RouterTray.Tests" />
+    <InternalsVisibleTo Include="RouterTray.StoreScreenshotStudio" />
   </ItemGroup>
 
 </Project>

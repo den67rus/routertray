@@ -303,4 +303,292 @@
   <data name="SettingsMoveNetworkConfirmationFormat" xml:space="preserve">
     <value>Поточну мережу вже прив’язано до профілю «{0}». Перенести її до цього профілю?</value>
   </data>
+  <data name="SetupTitle" xml:space="preserve">
+    <value>Налаштування RouterTray</value>
+  </data>
+  <data name="SetupAddProfileTitle" xml:space="preserve">
+    <value>Додавання профілю RouterTray</value>
+  </data>
+  <data name="SetupSidebarCaption" xml:space="preserve">
+    <value>Початкове налаштування</value>
+  </data>
+  <data name="SetupAddProfileSidebarCaption" xml:space="preserve">
+    <value>Новий профіль маршрутизатора</value>
+  </data>
+  <data name="SetupStepWelcome" xml:space="preserve">
+    <value>Знайомство</value>
+  </data>
+  <data name="SetupStepRouter" xml:space="preserve">
+    <value>Маршрутизатор</value>
+  </data>
+  <data name="SetupStepAuthentication" xml:space="preserve">
+    <value>Вхід</value>
+  </data>
+  <data name="SetupStepDevice" xml:space="preserve">
+    <value>Пристрій</value>
+  </data>
+  <data name="SetupStepFinish" xml:space="preserve">
+    <value>Перевірка</value>
+  </data>
+  <data name="SetupWelcomeTitle" xml:space="preserve">
+    <value>Підключімо RouterTray до маршрутизатора</value>
+  </data>
+  <data name="SetupWelcomeSubtitle" xml:space="preserve">
+    <value>Цей майстер за п’ять кроків створить ваш перший профіль маршрутизатора та пояснить усе, що потрібно для роботи підключення.</value>
+  </data>
+  <data name="SetupAddProfileWelcomeTitle" xml:space="preserve">
+    <value>Додаймо до RouterTray ще один маршрутизатор</value>
+  </data>
+  <data name="SetupAddProfileWelcomeSubtitle" xml:space="preserve">
+    <value>Цей майстер за п’ять кроків створить новий профіль маршрутизатора та виконає ті самі перевірки підключення й пристрою, що й під час початкового налаштування.</value>
+  </data>
+  <data name="SetupWelcomeBeforeTitle" xml:space="preserve">
+    <value>Перед початком</value>
+  </data>
+  <data name="SetupWelcomeRouterTitle" xml:space="preserve">
+    <value>Підключіть цей комп’ютер до маршрутизатора</value>
+  </data>
+  <data name="SetupWelcomeRouterDescription" xml:space="preserve">
+    <value>Використовуйте мережу Wi-Fi або Ethernet маршрутизатора Keenetic чи Netcraze, яким хочете керувати.</value>
+  </data>
+  <data name="SetupWelcomePoliciesTitle" xml:space="preserve">
+    <value>Створіть політики доступу на маршрутизаторі</value>
+  </data>
+  <data name="SetupWelcomePoliciesDescription" xml:space="preserve">
+    <value>RouterTray перемикає наявні політики, не змінюючи їх. Майстер може зареєструвати цей комп’ютер як пристрій домашньої мережі.</value>
+  </data>
+  <data name="SetupWelcomeCredentialsTitle" xml:space="preserve">
+    <value>Підготуйте дані для входу</value>
+  </data>
+  <data name="SetupWelcomeCredentialsDescription" xml:space="preserve">
+    <value>Використовуйте обліковий запис адміністратора, окремого користувача з доступом до вебінтерфейсу або токен доступу на прошивці 5.2 чи новішій.</value>
+  </data>
+  <data name="SetupWelcomeSecurityNote" xml:space="preserve">
+    <value>Пароль або токен шифрується для поточного користувача Windows і ніколи не зберігається у відкритому вигляді.</value>
+  </data>
+  <data name="SetupRouterTitle" xml:space="preserve">
+    <value>Де розташований ваш маршрутизатор?</value>
+  </data>
+  <data name="SetupRouterSubtitle" xml:space="preserve">
+    <value>Назвіть це підключення, а потім дозвольте RouterTray знайти маршрутизатор автоматично або введіть його адресу вручну.</value>
+  </data>
+  <data name="SetupDefaultProfileName" xml:space="preserve">
+    <value>Основний маршрутизатор</value>
+  </data>
+  <data name="SetupAutomaticAddress" xml:space="preserve">
+    <value>Використовувати шлюз поточної мережі (рекомендовано)</value>
+  </data>
+  <data name="SetupAutomaticAddressDescription" xml:space="preserve">
+    <value>Найкраще підходить, якщо маршрутизатор є шлюзом цієї мережі Wi-Fi або Ethernet. Зберігати адресу не потрібно.</value>
+  </data>
+  <data name="SetupDetectingNetwork" xml:space="preserve">
+    <value>Визначаємо поточну мережу та шлюз...</value>
+  </data>
+  <data name="SetupRouterDetectedFormat" xml:space="preserve">
+    <value>Виявлена адреса маршрутизатора: {0}</value>
+  </data>
+  <data name="SetupRouterNotDetected" xml:space="preserve">
+    <value>Зараз шлюз не видно. Можна продовжити: RouterTray повторить спробу, коли мережа стане доступною.</value>
+  </data>
+  <data name="SetupManualAddress" xml:space="preserve">
+    <value>Ввести адресу маршрутизатора вручну</value>
+  </data>
+  <data name="SetupManualAddressDescription" xml:space="preserve">
+    <value>Використовуйте повну адресу HTTP або HTTPS, наприклад http://192.168.1.1/.</value>
+  </data>
+  <data name="SetupBindCurrentNetwork" xml:space="preserve">
+    <value>Автоматично використовувати цей профіль у поточній мережі Windows</value>
+  </data>
+  <data name="SetupCurrentNetworkFormat" xml:space="preserve">
+    <value>Поточна мережа: {0}</value>
+  </data>
+  <data name="SetupNetworkUnavailable" xml:space="preserve">
+    <value>Windows не вдалося визначити поточну мережу. Цей профіль можна вибрати вручну в області сповіщень.</value>
+  </data>
+  <data name="SetupAuthenticationTitle" xml:space="preserve">
+    <value>Як RouterTray має входити?</value>
+  </data>
+  <data name="SetupAuthenticationSubtitle" xml:space="preserve">
+    <value>Виберіть один спосіб. Ці облікові дані використовуються лише для зв’язку з маршрутизатором через локальну мережу.</value>
+  </data>
+  <data name="SetupCredentialsInstruction" xml:space="preserve">
+    <value>Для мінімальних привілеїв створіть окремого користувача маршрутизатора й надайте йому лише доступ до вебінтерфейсу. Обліковий запис адміністратора також підійде.</value>
+  </data>
+  <data name="SetupPasswordMethodDescription" xml:space="preserve">
+    <value>Працює на підтримуваних прошивках Keenetic і Netcraze через автентифікацію NDW2 або NDW4.</value>
+  </data>
+  <data name="SetupTokenMethodDescription" xml:space="preserve">
+    <value>Доступно на прошивці 5.2 або новішій. Вставте токен, створений маршрутизатором.</value>
+  </data>
+  <data name="SetupOpenRouter" xml:space="preserve">
+    <value>Відкрити вебінтерфейс маршрутизатора</value>
+  </data>
+  <data name="SetupDeviceTitle" xml:space="preserve">
+    <value>Перевіримо цей пристрій</value>
+  </data>
+  <data name="SetupDeviceSubtitle" xml:space="preserve">
+    <value>Маршрутизатор має знати MAC-адресу цього комп’ютера, щоб RouterTray міг надійно призначати йому політики доступу.</value>
+  </data>
+  <data name="SetupDeviceCurrentTitle" xml:space="preserve">
+    <value>Поточне підключення</value>
+  </data>
+  <data name="SetupDeviceAdapter" xml:space="preserve">
+    <value>Мережевий адаптер</value>
+  </data>
+  <data name="SetupDeviceMacAddress" xml:space="preserve">
+    <value>MAC-адреса</value>
+  </data>
+  <data name="SetupDeviceUnavailable" xml:space="preserve">
+    <value>Не визначено</value>
+  </data>
+  <data name="SetupTemporaryMacWarning" xml:space="preserve">
+    <value>Виявлено локально призначену MAC-адресу. Windows використовує такий формат для випадкових апаратних адрес. Якщо адреса зміниться, маршрутизатор перестане впізнавати цей комп’ютер і перемикання політик працюватиме некоректно. Вимкніть «Випадкові апаратні адреси» для цієї мережі Wi-Fi, підключіться знову й натисніть «Перевірити ще раз».</value>
+  </data>
+  <data name="SetupTemporaryMacAcknowledge" xml:space="preserve">
+    <value>Я розумію ризик і хочу продовжити з поточною MAC-адресою</value>
+  </data>
+  <data name="SetupOpenWifiSettings" xml:space="preserve">
+    <value>Відкрити параметри Wi-Fi у Windows</value>
+  </data>
+  <data name="SetupDeviceRegistrationTitle" xml:space="preserve">
+    <value>Реєстрація на маршрутизаторі</value>
+  </data>
+  <data name="SetupDeviceRegistrationDescription" xml:space="preserve">
+    <value>Якщо пристрій ще не зареєстровано, дайте йому зрозумілу назву й додайте до списку пристроїв домашньої мережі маршрутизатора.</value>
+  </data>
+  <data name="SetupDeviceName" xml:space="preserve">
+    <value>Назва пристрою</value>
+  </data>
+  <data name="SetupDeviceNotChecked" xml:space="preserve">
+    <value>Реєстрацію пристрою ще не перевірено.</value>
+  </data>
+  <data name="SetupCheckingDevice" xml:space="preserve">
+    <value>Перевіряємо MAC-адресу на маршрутизаторі...</value>
+  </data>
+  <data name="SetupDeviceRegisteredFormat" xml:space="preserve">
+    <value>Пристрій зареєстровано як «{0}».</value>
+  </data>
+  <data name="SetupDeviceRegisteredNoName" xml:space="preserve">
+    <value>Пристрій уже зареєстровано на маршрутизаторі.</value>
+  </data>
+  <data name="SetupDeviceNotRegistered" xml:space="preserve">
+    <value>Цю MAC-адресу не зареєстровано. Введіть назву й натисніть «Зареєструвати».</value>
+  </data>
+  <data name="SetupRegisterDevice" xml:space="preserve">
+    <value>Зареєструвати</value>
+  </data>
+  <data name="SetupRegisteringDevice" xml:space="preserve">
+    <value>Реєструємо пристрій і зберігаємо налаштування маршрутизатора...</value>
+  </data>
+  <data name="SetupRecheckDevice" xml:space="preserve">
+    <value>Перевірити ще раз</value>
+  </data>
+  <data name="SetupDeviceRegistrationRequired" xml:space="preserve">
+    <value>Перш ніж продовжити, зареєструйте пристрій на маршрутизаторі.</value>
+  </data>
+  <data name="SetupTemporaryMacConfirmationRequired" xml:space="preserve">
+    <value>Вимкніть випадкову MAC-адресу та перевірте ще раз або підтвердьте, що розумієте ризик.</value>
+  </data>
+  <data name="SetupDeviceNameRequired" xml:space="preserve">
+    <value>Введіть назву пристрою для реєстрації.</value>
+  </data>
+  <data name="SetupDeviceNoMac" xml:space="preserve">
+    <value>Не вдалося визначити MAC-адресу активного підключення. Підключіться до маршрутизатора й перевірте ще раз.</value>
+  </data>
+  <data name="SetupDeviceRegistrationFailed" xml:space="preserve">
+    <value>Не вдалося перевірити або зареєструвати пристрій. Перевірте права користувача маршрутизатора й повторіть спробу.</value>
+  </data>
+  <data name="SetupFinishTitle" xml:space="preserve">
+    <value>Перевіримо підключення</value>
+  </data>
+  <data name="SetupFinishSubtitle" xml:space="preserve">
+    <value>Перевірте профіль і переконайтеся, що RouterTray бачить зареєстрований пристрій та може завантажити політики доступу.</value>
+  </data>
+  <data name="SetupSummaryRouter" xml:space="preserve">
+    <value>Маршрутизатор</value>
+  </data>
+  <data name="SetupSummaryAuthentication" xml:space="preserve">
+    <value>Спосіб входу</value>
+  </data>
+  <data name="SetupSummaryNetwork" xml:space="preserve">
+    <value>Вибір профілю</value>
+  </data>
+  <data name="SetupSummaryDevice" xml:space="preserve">
+    <value>Пристрій</value>
+  </data>
+  <data name="SetupAutomaticAddressSummaryFormat" xml:space="preserve">
+    <value>Автоматично через {0}</value>
+  </data>
+  <data name="SetupAutomaticAddressUnavailable" xml:space="preserve">
+    <value>Автоматично через шлюз активної мережі</value>
+  </data>
+  <data name="SetupNetworkNotBound" xml:space="preserve">
+    <value>Вибирати цей профіль вручну в області сповіщень</value>
+  </data>
+  <data name="SetupConnectionCheckTitle" xml:space="preserve">
+    <value>Перевірка підключення</value>
+  </data>
+  <data name="SetupConnectionCheckDescription" xml:space="preserve">
+    <value>RouterTray увійде та запросить список політик доступу, не змінюючи налаштування маршрутизатора.</value>
+  </data>
+  <data name="SetupConnectionNotChecked" xml:space="preserve">
+    <value>Підключення ще не перевірялося.</value>
+  </data>
+  <data name="SetupTestConnection" xml:space="preserve">
+    <value>Перевірити підключення</value>
+  </data>
+  <data name="SetupTestingConnection" xml:space="preserve">
+    <value>Підключаємося до маршрутизатора...</value>
+  </data>
+  <data name="SetupConnectionSuccessFormat" xml:space="preserve">
+    <value>Підключення встановлено. Знайдено політик: {0}.</value>
+  </data>
+  <data name="SetupConnectionSuccessNoPolicies" xml:space="preserve">
+    <value>Підключення встановлено, але політик доступу не знайдено. Створіть їх у вебінтерфейсі маршрутизатора.</value>
+  </data>
+  <data name="SetupConnectionNoEndpoint" xml:space="preserve">
+    <value>Адреса маршрутизатора недоступна. Підключіться до його мережі або поверніться назад і введіть адресу вручну.</value>
+  </data>
+  <data name="SetupConnectionAuthFailed" xml:space="preserve">
+    <value>Помилка автентифікації. Поверніться назад і перевірте ім’я користувача, пароль або токен доступу.</value>
+  </data>
+  <data name="SetupConnectionUnreachable" xml:space="preserve">
+    <value>Не вдалося зв’язатися з маршрутизатором. Перевірте адресу й підключення до мережі.</value>
+  </data>
+  <data name="SetupConnectionTimeout" xml:space="preserve">
+    <value>Маршрутизатор не відповів вчасно. Перевірте мережу й повторіть спробу.</value>
+  </data>
+  <data name="SetupConnectionApiFailed" xml:space="preserve">
+    <value>Маршрутизатор відповів, але не вдалося прочитати його API. Перевірте підтримку прошивки та права доступу.</value>
+  </data>
+  <data name="SetupConnectionDeviceNotRegistered" xml:space="preserve">
+    <value>Підключення працює, але поточну MAC-адресу більше не зареєстровано на маршрутизаторі. Поверніться до кроку «Пристрій».</value>
+  </data>
+  <data name="SetupTrayHint" xml:space="preserve">
+    <value>Після налаштування RouterTray залишиться в області сповіщень Windows. Клацніть лівою кнопкою синю піктограму R, щоб вибрати політику, або правою, щоб відкрити налаштування.</value>
+  </data>
+  <data name="SetupBack" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="SetupNext" xml:space="preserve">
+    <value>Далі</value>
+  </data>
+  <data name="SetupFinish" xml:space="preserve">
+    <value>Завершити налаштування</value>
+  </data>
+  <data name="SetupAddProfileFinish" xml:space="preserve">
+    <value>Додати профіль</value>
+  </data>
+  <data name="SetupCancel" xml:space="preserve">
+    <value>Вийти з налаштування</value>
+  </data>
+  <data name="SetupCancelConfirmation" xml:space="preserve">
+    <value>Налаштування не завершено, тому RouterTray не запуститься. Вийти зараз?</value>
+  </data>
+  <data name="SetupAddProfileCancelConfirmation" xml:space="preserve">
+    <value>Скасувати додавання цього профілю? Введені дані не буде збережено.</value>
+  </data>
+  <data name="SetupProgressFormat" xml:space="preserve">
+    <value>Крок {0} із {1}</value>
+  </data>
 </root>

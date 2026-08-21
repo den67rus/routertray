@@ -303,4 +303,292 @@
   <data name="SettingsMoveNetworkConfirmationFormat" xml:space="preserve">
     <value>The current network is already bound to profile “{0}”. Move it to this profile?</value>
   </data>
+  <data name="SetupTitle" xml:space="preserve">
+    <value>Set up RouterTray</value>
+  </data>
+  <data name="SetupAddProfileTitle" xml:space="preserve">
+    <value>Add a RouterTray profile</value>
+  </data>
+  <data name="SetupSidebarCaption" xml:space="preserve">
+    <value>Initial setup</value>
+  </data>
+  <data name="SetupAddProfileSidebarCaption" xml:space="preserve">
+    <value>New router profile</value>
+  </data>
+  <data name="SetupStepWelcome" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="SetupStepRouter" xml:space="preserve">
+    <value>Router</value>
+  </data>
+  <data name="SetupStepAuthentication" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="SetupStepDevice" xml:space="preserve">
+    <value>Device</value>
+  </data>
+  <data name="SetupStepFinish" xml:space="preserve">
+    <value>Check and finish</value>
+  </data>
+  <data name="SetupWelcomeTitle" xml:space="preserve">
+    <value>Let's connect RouterTray to your router</value>
+  </data>
+  <data name="SetupWelcomeSubtitle" xml:space="preserve">
+    <value>This five-step guide will create your first router profile and explain everything needed for a working connection.</value>
+  </data>
+  <data name="SetupAddProfileWelcomeTitle" xml:space="preserve">
+    <value>Let's add another router to RouterTray</value>
+  </data>
+  <data name="SetupAddProfileWelcomeSubtitle" xml:space="preserve">
+    <value>This five-step guide will create a new router profile and run the same connection and device checks as initial setup.</value>
+  </data>
+  <data name="SetupWelcomeBeforeTitle" xml:space="preserve">
+    <value>Before you start</value>
+  </data>
+  <data name="SetupWelcomeRouterTitle" xml:space="preserve">
+    <value>Connect this PC to the router</value>
+  </data>
+  <data name="SetupWelcomeRouterDescription" xml:space="preserve">
+    <value>Use the Wi-Fi or Ethernet network of the Keenetic or Netcraze router you want to control.</value>
+  </data>
+  <data name="SetupWelcomePoliciesTitle" xml:space="preserve">
+    <value>Create access policies on the router</value>
+  </data>
+  <data name="SetupWelcomePoliciesDescription" xml:space="preserve">
+    <value>RouterTray switches existing policies without changing them. The wizard can register this PC as a home-network device.</value>
+  </data>
+  <data name="SetupWelcomeCredentialsTitle" xml:space="preserve">
+    <value>Have sign-in details ready</value>
+  </data>
+  <data name="SetupWelcomeCredentialsDescription" xml:space="preserve">
+    <value>Use an administrator account, a dedicated user with Web interface access, or an access token on firmware 5.2 or newer.</value>
+  </data>
+  <data name="SetupWelcomeSecurityNote" xml:space="preserve">
+    <value>Your password or token is encrypted for the current Windows user and is never stored as plain text.</value>
+  </data>
+  <data name="SetupRouterTitle" xml:space="preserve">
+    <value>Where is your router?</value>
+  </data>
+  <data name="SetupRouterSubtitle" xml:space="preserve">
+    <value>Give this connection a name, then let RouterTray find the router automatically or enter its address yourself.</value>
+  </data>
+  <data name="SetupDefaultProfileName" xml:space="preserve">
+    <value>Main router</value>
+  </data>
+  <data name="SetupAutomaticAddress" xml:space="preserve">
+    <value>Use the current network gateway (recommended)</value>
+  </data>
+  <data name="SetupAutomaticAddressDescription" xml:space="preserve">
+    <value>Best when the router is the gateway for this Wi-Fi or Ethernet network. No address needs to be saved.</value>
+  </data>
+  <data name="SetupDetectingNetwork" xml:space="preserve">
+    <value>Detecting the current network and gateway...</value>
+  </data>
+  <data name="SetupRouterDetectedFormat" xml:space="preserve">
+    <value>Detected router address: {0}</value>
+  </data>
+  <data name="SetupRouterNotDetected" xml:space="preserve">
+    <value>No gateway is visible right now. You can continue; RouterTray will try again when the network is available.</value>
+  </data>
+  <data name="SetupManualAddress" xml:space="preserve">
+    <value>Enter the router address manually</value>
+  </data>
+  <data name="SetupManualAddressDescription" xml:space="preserve">
+    <value>Use a complete HTTP or HTTPS address, for example http://192.168.1.1/.</value>
+  </data>
+  <data name="SetupBindCurrentNetwork" xml:space="preserve">
+    <value>Automatically use this profile on the current Windows network</value>
+  </data>
+  <data name="SetupCurrentNetworkFormat" xml:space="preserve">
+    <value>Current network: {0}</value>
+  </data>
+  <data name="SetupNetworkUnavailable" xml:space="preserve">
+    <value>Windows could not identify the current network. You can select this profile manually from the tray.</value>
+  </data>
+  <data name="SetupAuthenticationTitle" xml:space="preserve">
+    <value>How should RouterTray sign in?</value>
+  </data>
+  <data name="SetupAuthenticationSubtitle" xml:space="preserve">
+    <value>Choose one method. These credentials are used only to communicate with the router over your local network.</value>
+  </data>
+  <data name="SetupCredentialsInstruction" xml:space="preserve">
+    <value>For least privilege, create a separate router user and grant only Web interface access. An administrator account also works.</value>
+  </data>
+  <data name="SetupPasswordMethodDescription" xml:space="preserve">
+    <value>Works with supported Keenetic and Netcraze firmware using NDW2 or NDW4 authentication.</value>
+  </data>
+  <data name="SetupTokenMethodDescription" xml:space="preserve">
+    <value>Available on firmware 5.2 or newer. Paste the token generated by the router.</value>
+  </data>
+  <data name="SetupOpenRouter" xml:space="preserve">
+    <value>Open the router web interface</value>
+  </data>
+  <data name="SetupDeviceTitle" xml:space="preserve">
+    <value>Check this device</value>
+  </data>
+  <data name="SetupDeviceSubtitle" xml:space="preserve">
+    <value>The router must know this PC's MAC address before RouterTray can reliably assign access policies to it.</value>
+  </data>
+  <data name="SetupDeviceCurrentTitle" xml:space="preserve">
+    <value>Current connection</value>
+  </data>
+  <data name="SetupDeviceAdapter" xml:space="preserve">
+    <value>Adapter</value>
+  </data>
+  <data name="SetupDeviceMacAddress" xml:space="preserve">
+    <value>MAC address</value>
+  </data>
+  <data name="SetupDeviceUnavailable" xml:space="preserve">
+    <value>Not detected</value>
+  </data>
+  <data name="SetupTemporaryMacWarning" xml:space="preserve">
+    <value>A locally administered MAC address was detected. Windows uses this format for random hardware addresses. If the address changes, the router will no longer recognize this PC and policy switching will not work correctly. Turn off “Random hardware addresses” for this Wi-Fi network, reconnect, and select “Check again”.</value>
+  </data>
+  <data name="SetupTemporaryMacAcknowledge" xml:space="preserve">
+    <value>I understand the risk and want to continue with the current MAC address</value>
+  </data>
+  <data name="SetupOpenWifiSettings" xml:space="preserve">
+    <value>Open Windows Wi-Fi settings</value>
+  </data>
+  <data name="SetupDeviceRegistrationTitle" xml:space="preserve">
+    <value>Router registration</value>
+  </data>
+  <data name="SetupDeviceRegistrationDescription" xml:space="preserve">
+    <value>If the device is not registered yet, give it a recognizable name and add it to the router's home-network device list.</value>
+  </data>
+  <data name="SetupDeviceName" xml:space="preserve">
+    <value>Device name</value>
+  </data>
+  <data name="SetupDeviceNotChecked" xml:space="preserve">
+    <value>Device registration has not been checked yet.</value>
+  </data>
+  <data name="SetupCheckingDevice" xml:space="preserve">
+    <value>Checking the MAC address on the router...</value>
+  </data>
+  <data name="SetupDeviceRegisteredFormat" xml:space="preserve">
+    <value>The device is registered as “{0}”.</value>
+  </data>
+  <data name="SetupDeviceRegisteredNoName" xml:space="preserve">
+    <value>The device is already registered on the router.</value>
+  </data>
+  <data name="SetupDeviceNotRegistered" xml:space="preserve">
+    <value>This MAC address is not registered. Enter a name and select “Register”.</value>
+  </data>
+  <data name="SetupRegisterDevice" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="SetupRegisteringDevice" xml:space="preserve">
+    <value>Registering the device and saving router settings...</value>
+  </data>
+  <data name="SetupRecheckDevice" xml:space="preserve">
+    <value>Check again</value>
+  </data>
+  <data name="SetupDeviceRegistrationRequired" xml:space="preserve">
+    <value>Register the device on the router before continuing.</value>
+  </data>
+  <data name="SetupTemporaryMacConfirmationRequired" xml:space="preserve">
+    <value>Turn off the random MAC address and check again, or confirm that you understand the risk.</value>
+  </data>
+  <data name="SetupDeviceNameRequired" xml:space="preserve">
+    <value>Enter a device name for registration.</value>
+  </data>
+  <data name="SetupDeviceNoMac" xml:space="preserve">
+    <value>The active connection's MAC address could not be detected. Connect to the router and check again.</value>
+  </data>
+  <data name="SetupDeviceRegistrationFailed" xml:space="preserve">
+    <value>The device could not be checked or registered. Verify the router user's permissions and try again.</value>
+  </data>
+  <data name="SetupFinishTitle" xml:space="preserve">
+    <value>Check the connection</value>
+  </data>
+  <data name="SetupFinishSubtitle" xml:space="preserve">
+    <value>Review the profile and verify that RouterTray can see the registered device and load access policies.</value>
+  </data>
+  <data name="SetupSummaryRouter" xml:space="preserve">
+    <value>Router</value>
+  </data>
+  <data name="SetupSummaryAuthentication" xml:space="preserve">
+    <value>Sign-in method</value>
+  </data>
+  <data name="SetupSummaryNetwork" xml:space="preserve">
+    <value>Profile selection</value>
+  </data>
+  <data name="SetupSummaryDevice" xml:space="preserve">
+    <value>Device</value>
+  </data>
+  <data name="SetupAutomaticAddressSummaryFormat" xml:space="preserve">
+    <value>Automatically through {0}</value>
+  </data>
+  <data name="SetupAutomaticAddressUnavailable" xml:space="preserve">
+    <value>Automatically through the active network gateway</value>
+  </data>
+  <data name="SetupNetworkNotBound" xml:space="preserve">
+    <value>Select this profile manually from the tray</value>
+  </data>
+  <data name="SetupConnectionCheckTitle" xml:space="preserve">
+    <value>Connection test</value>
+  </data>
+  <data name="SetupConnectionCheckDescription" xml:space="preserve">
+    <value>RouterTray will sign in and request the list of access policies without changing router settings.</value>
+  </data>
+  <data name="SetupConnectionNotChecked" xml:space="preserve">
+    <value>The connection has not been checked yet.</value>
+  </data>
+  <data name="SetupTestConnection" xml:space="preserve">
+    <value>Test connection</value>
+  </data>
+  <data name="SetupTestingConnection" xml:space="preserve">
+    <value>Connecting to the router...</value>
+  </data>
+  <data name="SetupConnectionSuccessFormat" xml:space="preserve">
+    <value>Connection established. Policies found: {0}.</value>
+  </data>
+  <data name="SetupConnectionSuccessNoPolicies" xml:space="preserve">
+    <value>Connection established, but no access policies were found. Create policies in the router web interface.</value>
+  </data>
+  <data name="SetupConnectionNoEndpoint" xml:space="preserve">
+    <value>The router address is not available. Connect to the router network or go back and enter the address manually.</value>
+  </data>
+  <data name="SetupConnectionAuthFailed" xml:space="preserve">
+    <value>Authentication failed. Go back and check the login, password, or access token.</value>
+  </data>
+  <data name="SetupConnectionUnreachable" xml:space="preserve">
+    <value>The router could not be reached. Check the address and your network connection.</value>
+  </data>
+  <data name="SetupConnectionTimeout" xml:space="preserve">
+    <value>The router did not respond in time. Check the network and try again.</value>
+  </data>
+  <data name="SetupConnectionApiFailed" xml:space="preserve">
+    <value>The router responded, but its API could not be read. Check firmware support and permissions.</value>
+  </data>
+  <data name="SetupConnectionDeviceNotRegistered" xml:space="preserve">
+    <value>The connection works, but the current MAC address is no longer registered on the router. Return to the Device step.</value>
+  </data>
+  <data name="SetupTrayHint" xml:space="preserve">
+    <value>After setup, RouterTray will stay in the Windows notification area. Left-click its blue R icon to choose a policy; right-click for settings.</value>
+  </data>
+  <data name="SetupBack" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="SetupNext" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="SetupFinish" xml:space="preserve">
+    <value>Finish setup</value>
+  </data>
+  <data name="SetupAddProfileFinish" xml:space="preserve">
+    <value>Add profile</value>
+  </data>
+  <data name="SetupCancel" xml:space="preserve">
+    <value>Exit setup</value>
+  </data>
+  <data name="SetupCancelConfirmation" xml:space="preserve">
+    <value>Setup is not finished, so RouterTray will not start. Exit now?</value>
+  </data>
+  <data name="SetupAddProfileCancelConfirmation" xml:space="preserve">
+    <value>Cancel adding this profile? The information you entered will not be saved.</value>
+  </data>
+  <data name="SetupProgressFormat" xml:space="preserve">
+    <value>Step {0} of {1}</value>
+  </data>
 </root>
