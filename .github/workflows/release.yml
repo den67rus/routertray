@@ -19,7 +19,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
 
       - name: Restore and audit all dependencies
         run: dotnet restore tests/RouterTray.Tests/RouterTray.Tests.csproj -p:NuGetAudit=true -p:NuGetAuditMode=all -p:TreatWarningsAsErrors=true
@@ -71,7 +71,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
 
       - name: Compute Store version and validate configuration
         id: store_metadata
@@ -219,7 +219,7 @@ jobs:
         if: steps.channel.outputs.published != 'true'
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
 
       - name: Restore Velopack CLI
         if: steps.channel.outputs.published != 'true'

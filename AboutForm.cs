@@ -107,6 +107,11 @@ internal sealed class AboutForm : Form
             rowIndex,
             UiText.AboutDescription,
             _bodyWrappingControls);
+        _ = AddOptionalControl(
+            _bodyTextLayout,
+            rowIndex,
+            CreateLink(UiText.AboutPrivacyPolicy, Path.Combine(AppContext.BaseDirectory, "privacy.html")),
+            _bodyWrappingControls);
 
         _logoImage = GetAppIconBitmap();
         var logo = new PictureBox

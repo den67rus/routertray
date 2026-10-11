@@ -24,3 +24,7 @@ TestResults/
 
 # Logs
 *.log
+
+# Partner Center identity and local submission configuration
+packaging/MicrosoftStore/StoreConfig.local.json
+packaging/MicrosoftStore/StoreConfig.json

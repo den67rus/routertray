@@ -28,6 +28,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $PSNativeCommandUseErrorActionPreference = $true
+& (Join-Path $PSScriptRoot 'Update-PrivacyPolicy.ps1') -Check
 
 $repositoryRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 if ([string]::IsNullOrWhiteSpace($OutputDirectory)) {
@@ -221,7 +222,59 @@ function Invoke-MakeAppx {
     }
 }
 
+function Copy-DependencyNotices {
+    param(
+        [Parameter(Mandatory)][string] $RuntimeIdentifier,
+        [Parameter(Mandatory)][string] $PackageLayout
+    )
+
+    $assets = Get-Content -LiteralPath (Join-Path $repositoryRoot 'obj\project.assets.json') -Raw |
+        ConvertFrom-Json
+    $packageFolders = @($assets.packageFolders.PSObject.Properties.Name)
+    $packages = @($assets.libraries.PSObject.Properties |
+        Where-Object { $_.Value.type -eq 'package' } |
+        ForEach-Object { $_.Name.ToLowerInvariant() })
+    $runtimeConfig = Get-Content -LiteralPath (Join-Path $PackageLayout 'RouterTray.runtimeconfig.json') -Raw |
+        ConvertFrom-Json
+    foreach ($framework in $runtimeConfig.runtimeOptions.includedFrameworks) {
+        $packages += "$($framework.name.ToLowerInvariant()).runtime.$RuntimeIdentifier/$($framework.version)"
+    }
+
+    foreach ($package in ($packages | Sort-Object -Unique)) {
+        $packageDirectory = $null
+        foreach ($folder in $packageFolders) {
+            $candidate = Join-Path $folder $package
+            if (Test-Path -LiteralPath $candidate -PathType Container) {
+                $packageDirectory = $candidate
+                break
+            }
+        }
+        if ($null -eq $packageDirectory) {
+            throw "Restored package directory not found: $package."
+        }
+        $notices = @(Get-ChildItem -LiteralPath $packageDirectory -File |
+            Where-Object { $_.Name -match '^(LICENSE|COPYING|NOTICE|THIRD[-_]?PARTY[-_]?NOTICES)(\..*)?$' })
+        if ($notices.Count -gt 0) {
+            $noticeDirectory = Join-Path $PackageLayout "Licenses\$($package.Replace('/', '\'))"
+            New-Item -ItemType Directory -Force -Path $noticeDirectory | Out-Null
+            foreach ($notice in $notices) {
+                Copy-Item -LiteralPath $notice.FullName -Destination $noticeDirectory
+            }
+        }
+    }
+}
+
 Assert-StoreVersion $Version
+if ($IdentityName -notmatch '^[A-Za-z0-9.-]{3,50}$' -or $IdentityName -match 'STORE_|YOUR_') {
+    throw 'IdentityName must be the Package/Identity/Name value assigned by Partner Center.'
+}
+if ($Publisher -notmatch '^CN=' -or $PublisherDisplayName -match '^STORE_') {
+    throw 'Publisher and PublisherDisplayName must be the exact values assigned by Partner Center.'
+}
+if ($RuntimeIdentifiers.Count -eq 0 -or
+    @($RuntimeIdentifiers | Sort-Object -Unique).Count -ne $RuntimeIdentifiers.Count) {
+    throw 'RuntimeIdentifiers must contain at least one architecture and no duplicates.'
+}
 $makeAppx = Get-WindowsSdkTool -Name 'makeappx.exe'
 $architectureMap = @{
     'win-x86' = 'x86'
@@ -238,17 +291,16 @@ try {
         $packageLayout = Join-Path $workRoot "layout\$runtimeIdentifier"
         $packagePath = Join-Path $packageOutputRoot "RouterTray_$($Version)_$architecture.msix"
 
-        dotnet publish $projectPath `
-            -c Release `
-            -r $runtimeIdentifier `
-            --self-contained true `
-            -o $publishDirectory `
-            -p:StoreBuild=true `
-            -p:TreatWarningsAsErrors=true `
-            -p:Version=$Version `
-            -p:InformationalVersion=$Version `
-            -p:AssemblyVersion=$Version `
-            -p:FileVersion=$Version
+        $publishArguments = @(
+            'publish', $projectPath,
+            '-c', 'Release', '-r', $runtimeIdentifier,
+            '--self-contained', 'true', '-o', $publishDirectory,
+            '-p:StoreBuild=true', '-p:TreatWarningsAsErrors=true',
+            '-p:NuGetAudit=true', '-p:NuGetAuditMode=all',
+            "-p:Version=$Version", "-p:InformationalVersion=$Version",
+            "-p:AssemblyVersion=$Version", "-p:FileVersion=$Version"
+        )
+        dotnet @publishArguments
         if ($LASTEXITCODE -ne 0) {
             throw "dotnet publish failed for $runtimeIdentifier."
         }
@@ -264,6 +316,9 @@ try {
         New-Item -ItemType Directory -Force -Path $packageLayout | Out-Null
         Copy-Item -Path (Join-Path $publishDirectory '*') -Destination $packageLayout -Recurse
         Get-ChildItem -LiteralPath $packageLayout -Recurse -File -Filter '*.pdb' | Remove-Item -Force
+        Copy-Item -LiteralPath (Join-Path $repositoryRoot 'LICENSE') -Destination $packageLayout
+        Copy-Item -LiteralPath (Join-Path $repositoryRoot 'THIRD_PARTY_NOTICES.md') -Destination $packageLayout
+        Copy-DependencyNotices -RuntimeIdentifier $runtimeIdentifier -PackageLayout $packageLayout
         New-PackageAssets -AssetsDirectory (Join-Path $packageLayout 'Assets')
         New-PackageManifest -Architecture $architecture -Destination (Join-Path $packageLayout 'AppxManifest.xml')
 
@@ -281,6 +336,11 @@ try {
         if ($KeepPackageLayout) {
             $persistentLayout = Join-Path $outputRoot "layout\$runtimeIdentifier"
             if (Test-Path -LiteralPath $persistentLayout) {
+                $resolvedLayout = [IO.Path]::GetFullPath($persistentLayout)
+                $allowedPrefix = $outputRoot.TrimEnd([char[]] @('\', '/')) + [IO.Path]::DirectorySeparatorChar
+                if (-not $resolvedLayout.StartsWith($allowedPrefix, [StringComparison]::OrdinalIgnoreCase)) {
+                    throw "Package layout is outside OutputDirectory: '$resolvedLayout'."
+                }
                 Remove-Item -LiteralPath $persistentLayout -Recurse -Force
             }
             New-Item -ItemType Directory -Force -Path $persistentLayout | Out-Null

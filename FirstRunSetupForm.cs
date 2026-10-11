@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing.Drawing2D;
 using System.Net.Http;
@@ -2366,6 +2367,7 @@ internal sealed class FirstRunSetupForm : Form
 
     private sealed class BorderedPanel : Panel
     {
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Color BorderColor { get; set; } = SystemColors.ControlLight;
 
         public BorderedPanel()
@@ -2390,6 +2392,7 @@ internal sealed class FirstRunSetupForm : Form
         private Control? _observedParent;
         private int _widthOffset;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int WidthOffset
         {
             get => _widthOffset;
@@ -2509,6 +2512,7 @@ internal sealed class FirstRunSetupForm : Form
             AccessibleName = _caption;
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int CurrentStep
         {
             get => _currentStep;

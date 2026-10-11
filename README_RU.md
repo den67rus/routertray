@@ -191,7 +191,7 @@ flowchart LR
 
 ## Сборка из исходников
 
-Понадобятся Windows и [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0).
+Понадобятся Windows и [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0).
 
 ```powershell
 git clone https://github.com/den67rus/routertray.git
@@ -209,7 +209,7 @@ dotnet test tests/RouterTray.Tests/RouterTray.Tests.csproj -c Release --no-resto
 dotnet publish RouterTray.csproj -c Release -r win-x64 --self-contained true -o artifacts/publish/win-x64
 ```
 
-Сборка `.msixupload` для Microsoft Store, настройка Partner Center и отличия Store-версии описаны в [отдельной инструкции](docs/MICROSOFT_STORE_RU.md).
+[Политика конфиденциальности](PRIVACY.md) доступна на английском языке.
 
 ## Как помочь
 

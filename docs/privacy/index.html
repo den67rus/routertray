@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="routertray-policy-sha256" content="75895063F7BB3491E7D0FC18F9BE9AE9A5FE39A555112C15202250533225B2D5">
+<title>RouterTray Privacy Policy</title>
+<style>
+body { margin: 0 auto; max-width: 850px; padding: 32px 24px; font: 17px/1.65 system-ui, sans-serif; color: #17202a; background: #fff; }
+h1 { font-size: 30px; line-height: 1.25; } h2 { font-size: 22px; margin-top: 32px; }
+a { color: #075aa5; } code { overflow-wrap: anywhere; font-size: .9em; } main { overflow-wrap: anywhere; }
+@media (prefers-color-scheme: dark) { body { color: #eceff3; background: #161a20; } a { color: #81bcff; } }
+</style>
+</head>
+<body>
+<main>
+<h1 id="routertray-privacy-policy">RouterTray Privacy Policy</h1>
+<p>Last updated: 12 October 2026.</p>
+<p>RouterTray is an independent Windows utility published by <strong>den67rus</strong>.
+This notice describes official Microsoft Store and other official Windows
+builds. Modified builds and third-party services may have different practices.
+RouterTray is not affiliated with or endorsed by Keenetic or Netcraze.</p>
+<p>Privacy contact: <a href="mailto:den67rus@gmail.com">den67rus@gmail.com</a>.</p>
+<h2 id="information-used-and-why">Information used and why</h2>
+<p>RouterTray reads Windows network names and identifiers, network adapter
+identifiers, MAC addresses, and gateway addresses to identify the selected
+computer and choose its router profile. You supply router addresses, profile
+names, and a router username and password or an access token. The application
+uses these details to authenticate with the router you configure.</p>
+<p>Router responses provide policy names, current assignments, and device names,
+MAC addresses, and registration details. A response may contain information
+about other devices on that router; RouterTray uses it to find the selected
+device. Selecting a policy sends that device's MAC address and the selected
+policy to the router. If you explicitly register a device during setup, the
+application sends its MAC address and your chosen device name and may ask
+the router to save its configuration.</p>
+<p>The application has no developer-operated backend, advertising or analytics
+SDK, and does not automatically upload settings, credentials, or diagnostic
+logs to the developer. It does not inspect browsing history or the contents
+of your internet traffic. Local router operations do not send those details
+to the developer.</p>
+<h2 id="router-connections-and-external-services">Router connections and external services</h2>
+<p>Router requests use the address you configure or the detected gateway and the
+router's authentication endpoints. This is normally a local network connection,
+but a manually entered address can point elsewhere. The owner of that endpoint
+receives the requests. Choose only a router you are authorized to manage.</p>
+<p>Connections use HTTP or HTTPS according to the configured address. HTTPS uses
+Windows certificate validation. HTTP does not encrypt the transport: someone
+able to observe the connection may read authentication tokens, identifiers,
+commands, and responses. Prefer a trusted HTTPS endpoint where supported, and
+do not use HTTP over an untrusted network. No software or encryption mechanism
+can guarantee protection against every attack or compromise.</p>
+<p>Microsoft Store builds receive application updates through Microsoft Store
+and do not check GitHub Releases. Other installed builds can contact GitHub
+to check for and download updates, according to their update settings.
+Microsoft, GitHub, email providers, your router, and other services you choose
+may receive ordinary connection information, such as IP addresses, and process
+information under their own terms and privacy notices. Those services may
+process information in countries different from yours. Opening an external
+link or contacting support uses the service you choose.</p>
+<h2 id="local-storage-security-and-retention">Local storage, security, and retention</h2>
+<p>Profiles and preferences are stored in the current Windows user's local
+application data. Saved passwords and access tokens are protected with
+Windows Data Protection API (DPAPI), scoped to that Windows account. Profile
+names, router addresses, usernames, network bindings, and other preferences
+are ordinary settings and are not all encrypted. Secrets must also be
+available to the application in memory while authenticating.</p>
+<p>DPAPI is not protection against every threat, including malware running as
+the same Windows user, a compromised Windows account, or a compromised
+computer. You control Windows account access, router permissions, backups,
+and the endpoints you configure. The developer cannot remotely access or
+erase files that remain only on your computer.</p>
+<p>Diagnostic logs remain on the computer. They can contain timestamps, network,
+adapter, profile and policy identifiers, errors, and details returned by the
+router. Logs are not a secure vault, and unexpected router responses may
+contain sensitive information. Review and redact logs before sharing them.</p>
+<p>Settings, backup copies, logs, and preserved corrupt settings files can remain
+until you or Windows remove them. Removing a profile does not necessarily
+remove older copies. Uninstalling the application does not guarantee deletion
+of every backup, exported file, router-side record, or third-party copy.</p>
+<h2 id="your-choices-and-deletion">Your choices and deletion</h2>
+<p>You can edit or remove profiles, choose startup behavior, and change policy
+notifications in Settings. Other installed builds also offer update settings;
+Microsoft Store updates are controlled by Windows and Microsoft Store.</p>
+<p>Exit RouterTray before manually deleting local settings, logs, and backups.
+The usual unpackaged folder is <code>%LOCALAPPDATA%\RouterTray</code>. Windows may
+redirect Store files into the application's per-user package storage under
+<code>%LOCALAPPDATA%\Packages</code>. Revoke router tokens or accounts in the router's
+own administration interface: deleting a local profile does not revoke them.
+Router configuration and registration records must be managed on the router.</p>
+<h2 id="information-you-choose-to-send-to-support">Information you choose to send to support</h2>
+<p>If you email the privacy contact or submit a GitHub issue, the developer can
+receive your message, contact details, and any information you include. It is
+used to respond, investigate problems, handle privacy or security requests,
+and meet applicable legal obligations. Where a legal basis is required,
+handling ordinary support requests relies on the legitimate interest in
+responding and maintaining the software; legally required processing relies
+on the applicable obligation. Consent is used where the law requires it.</p>
+<p>Support information is kept only as reasonably necessary for those purposes,
+including required legal retention and establishing or defending legal claims.
+Service-provider backups or public copies can persist under the relevant
+provider's policies. Necessary information may be handled by email and hosting
+providers, or disclosed when required by law. It is not used for advertising.</p>
+<p>GitHub issues are public unless the service explicitly says otherwise. Do not
+post credentials, tokens, unredacted logs, or other people's personal data.
+Use the privacy email for confidential requests and share only what is needed.</p>
+<p>Where applicable law grants them, you may request access, correction, deletion,
+restriction, portability, or objection concerning information the developer
+holds, withdraw consent for processing based on consent, and complain to the
+competent data protection authority. These rights depend on the law and the
+processing involved. Contact the privacy email; do not publish identity
+documents in an issue. For information held only locally, use the controls
+above. For information held independently by a service provider, contact it.</p>
+<h2 id="software-license-and-limits-of-responsibility">Software license and limits of responsibility</h2>
+<p>RouterTray is distributed under the <a href="https://github.com/den67rus/routertray/blob/main/LICENSE">MIT License</a>,
+also included with the application. To the extent permitted by applicable
+law, the software is supplied as is, without express or implied warranties,
+including fitness for a particular purpose, merchantability, or non-infringement.
+The authors and copyright holders disclaim liability for claims, damages,
+and other liability arising from the software or its use as set out in that
+license. This includes, where legally excludable, loss of data, profits,
+connectivity, or privacy, interruptions, and effects of router configuration,
+third-party failures, unauthorized access, or inability to use the software.</p>
+<p>RouterTray selects policies that already exist on your router. It does not
+provide a VPN service, anonymity, an encrypted traffic tunnel, or a guarantee
+that a router will enforce a particular route or security policy. Policy
+changes can affect connectivity and the providers through which traffic
+passes. Verify the router's behavior and permissions and maintain appropriate
+backups before relying on it. Voluntary support does not create a guarantee
+of response times, continuing updates, or compatibility, except where the
+law requires otherwise.</p>
+<p>These statements do not limit the permissions granted by the MIT License.
+Nothing in this notice excludes liability that cannot lawfully be excluded,
+waives mandatory consumer or data protection rights, prevents complaints,
+or excuses the developer from applicable legal obligations. The description
+of security measures is not a promise of absolute security. This privacy
+notice is not a substitute for the software license or third-party terms.</p>
+<h2 id="changes-and-contact">Changes and contact</h2>
+<p>This notice will be updated when the application's data handling changes.
+The date above identifies this version. Material changes requiring notice
+or consent will be handled as required by applicable law; this notice does
+not authorize undisclosed future collection or sharing.</p>
+<p>Privacy requests: <a href="mailto:den67rus@gmail.com">den67rus@gmail.com</a>.
+General support: <a href="https://github.com/den67rus/routertray/issues">RouterTray issues</a>.</p>
+</main>
+</body>
+</html>

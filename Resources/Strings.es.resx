@@ -591,4 +591,7 @@
   <data name="SetupProgressFormat" xml:space="preserve">
     <value>Paso {0} de {1}</value>
   </data>
+  <data name="AboutPrivacyPolicy" xml:space="preserve">
+    <value>Política de privacidad</value>
+  </data>
 </root>

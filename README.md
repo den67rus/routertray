@@ -191,7 +191,7 @@ Error details are written to `%LOCALAPPDATA%\RouterTray\routertray.log`.
 
 ## Build from source
 
-Building requires Windows and the [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0).
+Building requires Windows and the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0).
 
 ```powershell
 git clone https://github.com/den67rus/routertray.git
@@ -209,7 +209,7 @@ Choose the target platform for the build: `win-x64`, `win-arm64`, or `win-x86`.
 dotnet publish RouterTray.csproj -c Release -r win-x64 --self-contained true -o artifacts/publish/win-x64
 ```
 
-See the [Microsoft Store packaging guide](docs/MICROSOFT_STORE.md) for the `.msixupload` build, Partner Center identity setup, and Store-specific behavior.
+The [privacy policy](PRIVACY.md) is available in English.
 
 ## Contributing
 

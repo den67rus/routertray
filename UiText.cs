@@ -187,6 +187,7 @@ internal static class UiText
     public static string AboutWebsiteText => Get(nameof(AboutWebsiteText));
     public static string AboutWebsiteUrl => Get(nameof(AboutWebsiteUrl));
     public static string AboutCopyright => Get(nameof(AboutCopyright));
+    public static string AboutPrivacyPolicy => Get(nameof(AboutPrivacyPolicy));
 
     public static string AuthFailedMessage => Get(nameof(AuthFailedMessage));
     public static string RequestTimeoutMessage => Get(nameof(RequestTimeoutMessage));
