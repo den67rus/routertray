@@ -106,10 +106,10 @@ try {
                 Assert-Submission ($privacy.Contains('<html lang="en">') -and $privacy -notmatch '\p{IsCyrillic}') `
                     'The bundled privacy policy must be English only.'
                 $defaults = Read-EntryText $package 'appsettings.json' | ConvertFrom-Json
-                foreach ($profile in $defaults.Profiles) {
-                    Assert-Submission ([string]::IsNullOrEmpty($profile.Login) -and
-                        [string]::IsNullOrEmpty($profile.ProtectedPassword) -and
-                        [string]::IsNullOrEmpty($profile.ProtectedAccessToken)) 'Package contains preconfigured credentials.'
+                foreach ($settings in (@($defaults) + @($defaults.Profiles))) {
+                    foreach ($field in @('Login', 'Password', 'ProtectedPassword', 'AccessToken', 'ProtectedAccessToken')) {
+                        Assert-Submission ([string]::IsNullOrEmpty($settings.$field)) 'Package contains preconfigured credentials.'
+                    }
                 }
                 $expectedMachine = @{ x86 = 0x014c; x64 = 0x8664; arm64 = 0xaa64 }[$identity.ProcessorArchitecture]
                 $exe = $package.GetEntry('RouterTray.exe').Open()
@@ -144,7 +144,9 @@ try {
 $listingRoot = Join-Path $repositoryRoot 'docs\store-assets\partner-center-upload'
 $listing = @(Import-Csv -LiteralPath (Join-Path $listingRoot 'listingData.csv'))
 $listingLanguages = @($listing[0].PSObject.Properties.Name | Select-Object -Skip 4)
-Assert-Submission ($listingLanguages.Count -eq 13 -and $listingLanguages -notcontains 'en') 'Expected 13 distinct listing languages.'
+Assert-Submission ($listingLanguages.Count -eq 13 -and
+    @(Compare-Object $expectedLanguages $listingLanguages).Count -eq 0) `
+    'Store listing language codes must match the 13 package language codes.'
 $imagePaths = [Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
 foreach ($language in $listingLanguages) {
     $description = ($listing | Where-Object Field -eq 'Description').$language

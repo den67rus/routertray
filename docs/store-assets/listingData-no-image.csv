@@ -1,4 +1,4 @@
-﻿"Field","ID","Type (Тип)","default","es","it","pt","ru","tr","fr","en-us","da","de","pl","uk","fi","sv"
+﻿"Field","ID","Type (Тип)","default","es-es","it-it","pt-pt","ru-ru","tr-tr","fr-fr","en-us","da-dk","de-de","pl-pl","uk-ua","fi-fi","sv-se"
 "Description","2","Текст","","La política de acceso del router que necesitas, a un solo clic.
 
 RouterTray lleva las políticas de acceso configuradas en tu router Keenetic o Netcraze al área de notificación de Windows. Elige para el equipo actual cualquier escenario que hayas creado, por ejemplo, acceso directo a Internet, una VPN de trabajo o un perfil familiar, sin tener que iniciar sesión continuamente en la interfaz web del router.

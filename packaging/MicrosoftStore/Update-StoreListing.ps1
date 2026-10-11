@@ -34,12 +34,13 @@ $routerTerms = @{
 
 foreach ($row in $rows) {
     foreach ($language in $languages) {
+        $textLanguage = if ($language -eq 'en-us') { 'en-us' } else { ($language -split '-')[0] }
         $row.$language = $row.$language.Replace('\n', "`n").Trim()
         switch ($row.Field) {
-            'ReleaseNotes' { $row.$language = $releaseNotes[$language] }
+            'ReleaseNotes' { $row.$language = $releaseNotes[$textLanguage] }
             'DevStudio' { $row.$language = 'den67rus' }
-            'SearchTerm3' { $row.$language = $routerTerms[$language][0] }
-            'SearchTerm4' { $row.$language = $routerTerms[$language][1] }
+            'SearchTerm3' { $row.$language = $routerTerms[$textLanguage][0] }
+            'SearchTerm4' { $row.$language = $routerTerms[$textLanguage][1] }
             'CopyrightTrademarkInformation' {
                 $row.$language = 'Copyright (c) 2026 Denis Sevostyanov. RouterTray is an independent application. Keenetic and Netcraze product names belong to their respective owners; no affiliation or endorsement is implied.'
             }
@@ -51,7 +52,7 @@ foreach ($row in $rows) {
 }
 
 $description = $rows | Where-Object Field -eq 'Description'
-$description.ru = $description.ru.Replace('сценарий например,', 'сценарий — например,').Replace(
+$description.'ru-ru' = $description.'ru-ru'.Replace('сценарий например,', 'сценарий — например,').Replace(
     'семейный профиль без постоянного', 'семейный профиль — без постоянного').Replace(
     'один раз и нужный', 'один раз — и нужный')
 
