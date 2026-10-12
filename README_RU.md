@@ -2,44 +2,44 @@
   <a href="README.md">English</a> · <strong>Русский</strong>
 </p>
 
-<p align="center">
-  <img src="docs/images/routertray-icon.png" width="112" height="112" alt="Значок RouterTray">
-</p>
+<h1 align="center">
+  <img src="docs/images/routertray-icon.png" width="52" height="52" align="middle" alt="">
+  &nbsp;RouterTray
+</h1>
 
-<h1 align="center">RouterTray</h1>
-
-<p align="center">
-  <strong>Быстро переключайте политики доступа Keenetic и Netcraze из трея Windows.</strong>
-</p>
+<h3 align="center">Политики роутера — в один клик.</h3>
 
 <p align="center">
-  Небольшая утилита, с которой не придётся каждый раз открывать веб-интерфейс роутера.
+  Переключайте политики Keenetic и Netcraze из трея Windows.
 </p>
 
 <p align="center">
-  <a href="https://github.com/den67rus/routertray/actions/workflows/release.yml"><img alt="Статус сборки" src="https://github.com/den67rus/routertray/actions/workflows/release.yml/badge.svg"></a>
-  <img alt="Windows: x64, x86 и ARM64" src="https://img.shields.io/badge/Windows-x64%20%7C%20x86%20%7C%20ARM64-0078D4?logo=windows11&logoColor=white">
-  <a href="LICENSE"><img alt="Лицензия MIT" src="https://img.shields.io/badge/license-MIT-2ea44f"></a>
+  <a href="https://apps.microsoft.com/store/detail/9NXKRM5GTXD8"><img src="https://get.microsoft.com/images/ru%20dark.svg" alt="Скачать RouterTray из Microsoft Store" width="220" align="middle"></a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/den67rus/routertray/releases">Релизы&nbsp;на&nbsp;GitHub</a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/den67rus/routertray/releases"><strong>Скачать</strong></a>
-  ·
-  <a href="#быстрый-старт">Быстрый старт</a>
-  ·
-  <a href="#если-что-то-не-работает">Решение проблем</a>
+  <a href="#быстрый-старт">Быстрый старт</a> · <a href="#если-что-то-не-работает">Решение проблем</a>
+</p>
+
+---
+
+<p align="center">
+  <img src="docs/images/quick-policy-switcher.png" width="300" alt="Быстрое меню RouterTray с выбранной политикой Privacy VPN">
 </p>
 
 <p align="center">
-  <img src="docs/images/quick-policy-switcher.png" width="322" alt="Быстрое меню RouterTray с выбранной политикой Privacy VPN">
+  Выберите политику. RouterTray применит её к компьютеру.
 </p>
 
-Если на роутере настроено несколько политик доступа, RouterTray переносит их в системный трей. Нажмите на значок и выберите нужную политику. Роутер применит её к текущему компьютеру, а активная политика будет отмечена галочкой.
-
-> [!NOTE]
-> RouterTray не является VPN-клиентом и ничего не маршрутизирует сам. Он только переключает уже созданные в Keenetic или Netcraze политики для MAC-адреса выбранного сетевого адаптера.
+<p align="center">
+  <sub>Windows · x64 / x86 / ARM64 · <a href="LICENSE">MIT</a></sub>
+</p>
 
 ## Что умеет
+
+Смена политики одним щелчком, профили роутеров и автоматический выбор по сети.
 
 - **Переключать политику одним щелчком.** Левый клик по значку открывает короткое меню без лишних окон.
 - **Работать с несколькими роутерами.** Для дома, офиса или другой сети можно создать отдельный профиль со своими настройками.
@@ -50,6 +50,9 @@
 - **Хранить секреты не в открытом виде.** Пароли и токены защищаются через Windows DPAPI.
 - **Запускаться вместе с Windows по желанию.**
 - **Обновляться автоматически.**
+
+> [!NOTE]
+> RouterTray не является VPN-клиентом и ничего не маршрутизирует сам. Он только переключает уже созданные в Keenetic или Netcraze политики для MAC-адреса выбранного сетевого адаптера.
 
 ## Управление из трея
 
@@ -80,7 +83,9 @@
 
 ### 1. Установите RouterTray
 
-Установщики и портативные версии публикуются на странице [Releases](https://github.com/den67rus/routertray/releases). Для большинства компьютеров подойдёт x64.
+Установите RouterTray из [Microsoft Store](https://apps.microsoft.com/store/detail/9NXKRM5GTXD8).
+
+Установщики и портативные версии также доступны на странице [Releases](https://github.com/den67rus/routertray/releases). Для большинства компьютеров подойдёт x64.
 
 | Устройство | Установщик | Портативная версия |
 | --- | --- | --- |
@@ -190,6 +195,8 @@ flowchart LR
 </details>
 
 ## Сборка из исходников
+
+[![Статус сборки](https://github.com/den67rus/routertray/actions/workflows/release.yml/badge.svg)](https://github.com/den67rus/routertray/actions/workflows/release.yml)
 
 Понадобятся Windows и [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0).
 

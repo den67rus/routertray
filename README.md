@@ -2,44 +2,44 @@
   <strong>English</strong> · <a href="README_RU.md">Русский</a>
 </p>
 
-<p align="center">
-  <img src="docs/images/routertray-icon.png" width="112" height="112" alt="RouterTray application icon">
-</p>
+<h1 align="center">
+  <img src="docs/images/routertray-icon.png" width="52" height="52" align="middle" alt="">
+  &nbsp;RouterTray
+</h1>
 
-<h1 align="center">RouterTray</h1>
-
-<p align="center">
-  <strong>Quickly switch Keenetic and Netcraze access policies from the Windows tray.</strong>
-</p>
+<h3 align="center">Router policies — one click away.</h3>
 
 <p align="center">
-  A small utility that saves you from opening the router web interface every time.
+  Switch Keenetic and Netcraze policies from the Windows tray.
 </p>
 
 <p align="center">
-  <a href="https://github.com/den67rus/routertray/actions/workflows/release.yml"><img alt="Build status" src="https://github.com/den67rus/routertray/actions/workflows/release.yml/badge.svg"></a>
-  <img alt="Windows: x64, x86, and ARM64" src="https://img.shields.io/badge/Windows-x64%20%7C%20x86%20%7C%20ARM64-0078D4?logo=windows11&logoColor=white">
-  <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-2ea44f"></a>
+  <a href="https://apps.microsoft.com/store/detail/9NXKRM5GTXD8"><img src="https://get.microsoft.com/images/en-us%20dark.svg" alt="Get RouterTray from Microsoft Store" width="220" align="middle"></a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/den67rus/routertray/releases">GitHub&nbsp;releases</a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/den67rus/routertray/releases"><strong>Download</strong></a>
-  ·
-  <a href="#quick-start">Quick start</a>
-  ·
-  <a href="#troubleshooting">Troubleshooting</a>
+  <a href="#quick-start">Quick start</a> · <a href="#troubleshooting">Troubleshooting</a>
+</p>
+
+---
+
+<p align="center">
+  <img src="docs/images/quick-policy-switcher.png" width="300" alt="RouterTray quick policy menu with Privacy VPN selected">
 </p>
 
 <p align="center">
-  <img src="docs/images/quick-policy-switcher.png" width="322" alt="RouterTray quick policy menu with Privacy VPN selected">
+  Choose a policy. RouterTray applies it to your PC.
 </p>
 
-If your router has several access policies, RouterTray puts them in the system tray. Click the icon and choose a policy. The router applies it to the current PC, and a checkmark shows which policy is active.
-
-> [!NOTE]
-> RouterTray is not a VPN client and does not route traffic itself. It only switches existing Keenetic or Netcraze policies for the MAC address of the selected network adapter.
+<p align="center">
+  <sub>Windows · x64 / x86 / ARM64 · <a href="LICENSE">MIT</a></sub>
+</p>
 
 ## Features
+
+One-click policy switching, router profiles, and automatic network matching.
 
 - **Switch policies with one click.** A left-click on the icon opens a short menu without extra windows.
 - **Work with several routers.** Create a separate profile with its own settings for home, work, or another network.
@@ -50,6 +50,9 @@ If your router has several access policies, RouterTray puts them in the system t
 - **Keep secrets out of plain text.** Passwords and tokens are protected with Windows DPAPI.
 - **Start with Windows if you want.**
 - **Stay up to date automatically.**
+
+> [!NOTE]
+> RouterTray is not a VPN client and does not route traffic itself. It only switches existing Keenetic or Netcraze policies for the MAC address of the selected network adapter.
 
 ## Tray controls
 
@@ -80,7 +83,9 @@ You can bind several Windows networks to one profile, such as home Wi-Fi and wir
 
 ### 1. Install RouterTray
 
-Installers and portable versions are published on the [Releases page](https://github.com/den67rus/routertray/releases). The x64 version is right for most PCs.
+Install RouterTray from [Microsoft Store](https://apps.microsoft.com/store/detail/9NXKRM5GTXD8).
+
+Installers and portable versions are also available on the [Releases page](https://github.com/den67rus/routertray/releases). The x64 version is right for most PCs.
 
 | Device | Installer asset | Portable asset |
 | --- | --- | --- |
@@ -190,6 +195,8 @@ Error details are written to `%LOCALAPPDATA%\RouterTray\routertray.log`.
 </details>
 
 ## Build from source
+
+[![Build status](https://github.com/den67rus/routertray/actions/workflows/release.yml/badge.svg)](https://github.com/den67rus/routertray/actions/workflows/release.yml)
 
 Building requires Windows and the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0).
 

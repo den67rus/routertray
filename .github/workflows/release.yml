@@ -16,6 +16,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Test automatic release descriptions
+        shell: pwsh
+        run: .\.github\scripts\Test-ReleaseBody.ps1
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
@@ -367,3 +371,51 @@ jobs:
 
           dotnet @uploadArgs
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+  release_notes:
+    name: Add release download table
+    if: github.event_name == 'release'
+    needs: build
+    runs-on: windows-latest
+    timeout-minutes: 5
+    concurrency:
+      group: release-notes-${{ github.event.release.id }}
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Apply release description template
+        shell: pwsh
+        env:
+          RELEASE_API_URL: ${{ github.event.release.url }}
+          RELEASE_TOKEN: ${{ github.token }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $headers = @{
+            Authorization = "Bearer $env:RELEASE_TOKEN"
+            Accept = "application/vnd.github+json"
+            "X-GitHub-Api-Version" = "2026-03-10"
+            "User-Agent" = "RouterTray-Release-Workflow"
+          }
+          $release = Invoke-RestMethod -Uri $env:RELEASE_API_URL -Headers $headers -TimeoutSec 60
+          New-Item -ItemType Directory -Force -Path 'artifacts' | Out-Null
+          $release | ConvertTo-Json -Depth 20 |
+            Set-Content -LiteralPath 'artifacts\release-data.json' -Encoding utf8NoBOM
+
+          .\.github\scripts\New-ReleaseBody.ps1 `
+            -ReleaseDataPath 'artifacts\release-data.json' `
+            -OutputPath 'artifacts\release-body.md'
+
+          $body = [IO.File]::ReadAllText((Join-Path $PWD 'artifacts\release-body.md'))
+          if ($body -ceq [string] $release.body) {
+            Write-Host 'Release description already matches the template.'
+          } else {
+            $payload = @{ body = $body } | ConvertTo-Json
+            Invoke-RestMethod -Method Patch -Uri $env:RELEASE_API_URL `
+              -Headers $headers -ContentType 'application/json; charset=utf-8' `
+              -Body $payload -TimeoutSec 60 | Out-Null
+            Write-Host "Updated the download table for $($release.tag_name)."
+          }
