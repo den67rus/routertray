@@ -52,7 +52,7 @@ jobs:
   store:
     name: Publish to Microsoft Store
     if: github.event_name == 'release' && github.event.release.draft == false && github.event.release.prerelease == false
-    needs: verify
+    needs: [verify, build]
     runs-on: windows-latest
     concurrency:
       group: microsoft-store-production
