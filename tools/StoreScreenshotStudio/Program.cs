@@ -119,7 +119,7 @@ internal static class Program
         var directory = new DirectoryInfo(AppContext.BaseDirectory);
         while (directory is not null)
         {
-            if (File.Exists(Path.Combine(directory.FullName, "RouterTray.csproj")))
+            if (File.Exists(Path.Combine(directory.FullName, "RouterTray.slnx")))
             {
                 return directory.FullName;
             }

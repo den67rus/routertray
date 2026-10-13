@@ -44,7 +44,8 @@ if ([string]::Equals($trimmedOutputRoot, $trimmedDriveRoot, [StringComparison]::
     throw "OutputDirectory must not be a drive root or the repository root: '$outputRoot'."
 }
 
-$projectPath = Join-Path $repositoryRoot 'RouterTray.csproj'
+$projectPath = Join-Path $repositoryRoot 'src\RouterTray\RouterTray.csproj'
+$projectDirectory = Split-Path -Path $projectPath -Parent
 $manifestTemplatePath = Join-Path $PSScriptRoot 'AppxManifest.template.xml'
 $sourceIconPath = Join-Path $repositoryRoot 'docs\images\routertray-icon.png'
 $workRoot = Join-Path $outputRoot ('.work-' + [Guid]::NewGuid().ToString('N'))
@@ -228,7 +229,7 @@ function Copy-DependencyNotices {
         [Parameter(Mandatory)][string] $PackageLayout
     )
 
-    $assets = Get-Content -LiteralPath (Join-Path $repositoryRoot 'obj\project.assets.json') -Raw |
+    $assets = Get-Content -LiteralPath (Join-Path $projectDirectory 'obj\project.assets.json') -Raw |
         ConvertFrom-Json
     $packageFolders = @($assets.packageFolders.PSObject.Properties.Name)
     $packages = @($assets.libraries.PSObject.Properties |

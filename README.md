@@ -200,20 +200,22 @@ Error details are written to `%LOCALAPPDATA%\RouterTray\routertray.log`.
 
 Building requires Windows and the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0).
 
+The application project, source code, resources, default settings, and publish profiles live in `src/RouterTray`. Tests live in `tests/RouterTray.Tests`, developer tools in `tools`, and packaging scripts in `packaging`. Open `RouterTray.slnx` at the repository root to work with all projects.
+
 ```powershell
 git clone https://github.com/den67rus/routertray.git
 cd routertray
 
-dotnet restore tests/RouterTray.Tests/RouterTray.Tests.csproj
+dotnet restore RouterTray.slnx
 dotnet tool restore
-dotnet build RouterTray.csproj -c Release --no-restore -warnaserror
-dotnet test tests/RouterTray.Tests/RouterTray.Tests.csproj -c Release --no-restore
+dotnet build RouterTray.slnx -c Release --no-restore -warnaserror
+dotnet test RouterTray.slnx -c Release --no-build --no-restore
 ```
 
 Choose the target platform for the build: `win-x64`, `win-arm64`, or `win-x86`.
 
 ```powershell
-dotnet publish RouterTray.csproj -c Release -r win-x64 --self-contained true -o artifacts/publish/win-x64
+dotnet publish src/RouterTray/RouterTray.csproj -c Release -r win-x64 --self-contained true -o artifacts/publish/win-x64
 ```
 
 The [privacy policy](PRIVACY.md) is available in English.

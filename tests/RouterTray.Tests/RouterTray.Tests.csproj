@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\RouterTray.csproj" />
+    <ProjectReference Include="..\..\src\RouterTray\RouterTray.csproj" />
   </ItemGroup>
 
 </Project>

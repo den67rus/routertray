@@ -26,18 +26,18 @@ jobs:
           dotnet-version: 10.0.x
 
       - name: Restore and audit all dependencies
-        run: dotnet restore tests/RouterTray.Tests/RouterTray.Tests.csproj -p:NuGetAudit=true -p:NuGetAuditMode=all -p:TreatWarningsAsErrors=true
+        run: dotnet restore RouterTray.slnx -p:NuGetAudit=true -p:NuGetAuditMode=all -p:TreatWarningsAsErrors=true
 
       - name: Build without warnings
-        run: dotnet build RouterTray.csproj -c Release --no-restore -warnaserror
+        run: dotnet build RouterTray.slnx -c Release --no-restore -warnaserror
 
       - name: Test
-        run: dotnet test tests/RouterTray.Tests/RouterTray.Tests.csproj -c Release --no-restore
+        run: dotnet test RouterTray.slnx -c Release --no-build --no-restore
 
       - name: Verify Microsoft Store flavor
         shell: pwsh
         run: |
-          dotnet publish RouterTray.csproj `
+          dotnet publish src/RouterTray/RouterTray.csproj `
             -c Release `
             -r win-x64 `
             --self-contained false `
@@ -275,7 +275,7 @@ jobs:
         if: steps.channel.outputs.published != 'true'
         shell: pwsh
         run: |
-          dotnet publish RouterTray.csproj `
+          dotnet publish src/RouterTray/RouterTray.csproj `
             -c Release `
             -r $env:TARGET `
             --self-contained true `
@@ -315,7 +315,7 @@ jobs:
             --packTitle RouterTray `
             --packAuthors "Denis Sevostyanov" `
             --releaseNotes "artifacts\release-notes.md" `
-            --icon favicon.ico `
+            --icon src/RouterTray/Resources/favicon.ico `
             --runtime $env:TARGET `
             --channel $env:TARGET `
             --outputDir $releaseDir `

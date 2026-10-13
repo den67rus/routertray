@@ -200,20 +200,22 @@ flowchart LR
 
 Понадобятся Windows и [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0).
 
+Проект приложения, исходники, ресурсы, настройки по умолчанию и профили публикации находятся в `src/RouterTray`. Тесты лежат в `tests/RouterTray.Tests`, инструменты разработчика — в `tools`, скрипты упаковки — в `packaging`. Для работы со всеми проектами откройте `RouterTray.slnx` в корне репозитория.
+
 ```powershell
 git clone https://github.com/den67rus/routertray.git
 cd routertray
 
-dotnet restore tests/RouterTray.Tests/RouterTray.Tests.csproj
+dotnet restore RouterTray.slnx
 dotnet tool restore
-dotnet build RouterTray.csproj -c Release --no-restore -warnaserror
-dotnet test tests/RouterTray.Tests/RouterTray.Tests.csproj -c Release --no-restore
+dotnet build RouterTray.slnx -c Release --no-restore -warnaserror
+dotnet test RouterTray.slnx -c Release --no-build --no-restore
 ```
 
 Для сборки выберите нужную платформу: `win-x64`, `win-arm64` или `win-x86`.
 
 ```powershell
-dotnet publish RouterTray.csproj -c Release -r win-x64 --self-contained true -o artifacts/publish/win-x64
+dotnet publish src/RouterTray/RouterTray.csproj -c Release -r win-x64 --self-contained true -o artifacts/publish/win-x64
 ```
 
 [Политика конфиденциальности](PRIVACY.md) доступна на английском языке.

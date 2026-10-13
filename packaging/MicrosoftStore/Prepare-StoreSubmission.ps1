@@ -24,7 +24,7 @@ if ($config.Version -notmatch '^[1-9][0-9]{0,4}\.[0-9]{1,5}\.[0-9]{1,5}\.0$' -or
 if (-not $SkipTests) {
     dotnet restore (Join-Path $repositoryRoot 'tests\RouterTray.Tests\RouterTray.Tests.csproj') `
         -p:NuGetAudit=true -p:NuGetAuditMode=all -p:TreatWarningsAsErrors=true
-    dotnet build (Join-Path $repositoryRoot 'RouterTray.csproj') -c Release --no-restore -warnaserror
+    dotnet build (Join-Path $repositoryRoot 'src\RouterTray\RouterTray.csproj') -c Release --no-restore -warnaserror
     dotnet test (Join-Path $repositoryRoot 'tests\RouterTray.Tests\RouterTray.Tests.csproj') `
         -c Release --no-restore --logger 'trx;LogFileName=store-preparation.trx' `
         --results-directory (Join-Path $repositoryRoot 'artifacts\store-readiness\tests')

@@ -4,7 +4,7 @@
     <AssemblyName>RouterTray</AssemblyName>
     <RootNamespace>RouterTray</RootNamespace>
     <OutputType>WinExe</OutputType>
-    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
     <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
@@ -17,19 +17,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="favicon.ico" LogicalName="RouterTray.favicon.ico" />
+    <EmbeddedResource Include="Resources\favicon.ico" LogicalName="RouterTray.favicon.ico" />
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </None>
-    <None Update="docs\privacy\index.html">
+    <None Include="..\..\docs\privacy\index.html">
       <Link>privacy.html</Link>
       <TargetPath>privacy.html</TargetPath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
-    <None Update="LICENSE;THIRD_PARTY_NOTICES.md">
+    <None Include="..\..\LICENSE;..\..\THIRD_PARTY_NOTICES.md">
+      <Link>%(Filename)%(Extension)</Link>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
@@ -38,11 +40,6 @@
   <ItemGroup>
     <PackageReference Include="BouncyCastle.Cryptography" Version="2.7.0" />
     <PackageReference Include="Velopack" Version="1.2.0" Condition="'$(StoreBuild)' != 'true'" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="tests\**\*.cs" />
-    <Compile Remove="tools\**\*.cs" />
   </ItemGroup>
 
   <ItemGroup>
