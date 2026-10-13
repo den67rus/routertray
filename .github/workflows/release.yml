@@ -147,7 +147,7 @@ jobs:
       - name: Setup Microsoft Store Developer CLI
         uses: microsoft/microsoft-store-apppublisher@v1.4
         with:
-          version: v0.4.1
+          version: v0.4.3
 
       - name: Authenticate with Partner Center
         shell: pwsh
@@ -172,7 +172,7 @@ jobs:
             throw "Expected exactly one .msixupload package, found $($packages.Count)."
           }
 
-          msstore publish $packages[0].FullName --appId $env:STORE_PRODUCT_ID
+          msstore publish $packages[0].FullName --appId $env:STORE_PRODUCT_ID --uploadTimeout 300
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
   build:

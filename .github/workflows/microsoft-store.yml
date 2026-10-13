@@ -7,20 +7,36 @@ name: Microsoft Store Package
         description: Store package version in Major.Minor.Build.0 format
         required: true
         type: string
+      source_ref:
+        description: Branch or tag containing the application to package
+        required: true
+        default: main
+        type: string
+      publish:
+        description: Submit the package to Microsoft Store for certification
+        required: true
+        default: false
+        type: boolean
 
 jobs:
   build:
     runs-on: windows-latest
+    concurrency:
+      group: microsoft-store-production
+      cancel-in-progress: false
     permissions:
       contents: read
     env:
       STORE_IDENTITY_NAME: ${{ vars.STORE_IDENTITY_NAME }}
       STORE_PUBLISHER: ${{ vars.STORE_PUBLISHER }}
       STORE_PUBLISHER_DISPLAY_NAME: ${{ vars.STORE_PUBLISHER_DISPLAY_NAME }}
+      STORE_PRODUCT_ID: ${{ vars.STORE_PRODUCT_ID }}
       STORE_VERSION: ${{ inputs.version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.source_ref }}
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
@@ -29,15 +45,33 @@ jobs:
 
       - name: Validate Partner Center identity
         shell: pwsh
+        env:
+          PUBLISH_STORE: ${{ inputs.publish }}
+          PARTNER_CENTER_TENANT_ID: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
+          PARTNER_CENTER_SELLER_ID: ${{ secrets.PARTNER_CENTER_SELLER_ID }}
+          PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
+          PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
         run: |
-          $missing = @(
+          $required = @(
             'STORE_IDENTITY_NAME',
             'STORE_PUBLISHER',
             'STORE_PUBLISHER_DISPLAY_NAME'
-          ) | Where-Object { [string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($_)) }
+          )
+          if ($env:PUBLISH_STORE -eq 'true') {
+            $required += @(
+              'STORE_PRODUCT_ID',
+              'PARTNER_CENTER_TENANT_ID',
+              'PARTNER_CENTER_SELLER_ID',
+              'PARTNER_CENTER_CLIENT_ID',
+              'PARTNER_CENTER_CLIENT_SECRET'
+            )
+          }
+          $missing = @($required | Where-Object {
+            [string]::IsNullOrWhiteSpace([Environment]::GetEnvironmentVariable($_))
+          })
 
           if ($missing.Count -gt 0) {
-            throw "Configure these GitHub Actions repository variables from Partner Center: $($missing -join ', ')."
+            throw "Configure these GitHub Actions variables/secrets from Partner Center: $($missing -join ', ')."
           }
 
       - name: Build MSIX bundle and Store upload package
@@ -58,3 +92,37 @@ jobs:
           path: artifacts/store/*.msixupload
           if-no-files-found: error
           retention-days: 30
+
+      - name: Setup Microsoft Store Developer CLI
+        if: inputs.publish
+        uses: microsoft/microsoft-store-apppublisher@v1.4
+        with:
+          version: v0.4.3
+
+      - name: Authenticate with Partner Center
+        if: inputs.publish
+        shell: pwsh
+        env:
+          PARTNER_CENTER_TENANT_ID: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
+          PARTNER_CENTER_SELLER_ID: ${{ secrets.PARTNER_CENTER_SELLER_ID }}
+          PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
+          PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
+        run: |
+          msstore reconfigure `
+            --tenantId $env:PARTNER_CENTER_TENANT_ID `
+            --sellerId $env:PARTNER_CENTER_SELLER_ID `
+            --clientId $env:PARTNER_CENTER_CLIENT_ID `
+            --clientSecret $env:PARTNER_CENTER_CLIENT_SECRET
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Submit package to Microsoft Store
+        if: inputs.publish
+        shell: pwsh
+        run: |
+          $packages = @(Get-ChildItem -LiteralPath 'artifacts\store' -Filter '*.msixupload' -File)
+          if ($packages.Count -ne 1) {
+            throw "Expected exactly one .msixupload package, found $($packages.Count)."
+          }
+
+          msstore publish $packages[0].FullName --appId $env:STORE_PRODUCT_ID --uploadTimeout 300
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
